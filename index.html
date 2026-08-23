@@ -590,6 +590,9 @@
     </nav>
     <div class="nav-actions">
       <button class="lang-toggle" onclick="toggleLang()">اردو / EN</button>
+      <button class="btn btn-ghost" id="install-btn" onclick="triggerInstall()" style="display:none;">
+        <span>⬇️</span> <span data-en="Install App" data-ur="ایپ انسٹال کریں">Install App</span>
+      </button>
       <a href="#sell" onclick="openSellForm(event)" class="btn btn-primary sell-trigger" data-en="+ Sell your car" data-ur="+ گاڑی فروخت کریں" style="display:inline-block;">+ Sell your car</a>
     </div>
   </div>
@@ -1285,6 +1288,31 @@ if('serviceWorker' in navigator){
     navigator.serviceWorker.register('sw.js').catch(err => console.log('Service worker registration failed:', err));
   });
 }
+
+// ---------- Install App button ----------
+let deferredInstallPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const btn = document.getElementById('install-btn');
+  if(btn) btn.style.display = 'inline-flex';
+});
+
+function triggerInstall(){
+  if(!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  deferredInstallPrompt.userChoice.finally(() => {
+    deferredInstallPrompt = null;
+    const btn = document.getElementById('install-btn');
+    if(btn) btn.style.display = 'none';
+  });
+}
+
+window.addEventListener('appinstalled', () => {
+  const btn = document.getElementById('install-btn');
+  if(btn) btn.style.display = 'none';
+});
 
 let isUrdu = false;
 function toggleLang(){
