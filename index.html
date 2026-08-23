@@ -1270,7 +1270,19 @@ const SUPABASE_ANON_KEY = "sb_publishable_ahnp3jBYRz_nuINiNRF_pQ_0r-rs8k2";
 
 // TODO: your real WhatsApp number, country code first, no + or spaces.
 // Used only as a fallback if Supabase isn't configured yet.
-const SELLER_INTAKE_WHATSAPP_NUMBER = "923001234567";
+const SELLER_INTAKE_WHATSAPP_NUMBER = "966590900938";
+
+// ============================================================
+// TODO — automatic admin notification when a new listing comes in.
+// This uses CallMeBot (free) to WhatsApp you directly, no backend needed.
+// One-time setup (takes ~2 minutes):
+//   1. Save this number in your phone contacts: +34 644 59 71 67
+//   2. Send it a WhatsApp message with exactly this text:
+//      I allow callmebot to send me messages
+//   3. CallMeBot replies with your personal API key — paste it below.
+// ============================================================
+const ADMIN_WHATSAPP_NUMBER = "966590900938";
+const ADMIN_CALLMEBOT_APIKEY = "YOUR_CALLMEBOT_API_KEY";
 
 const supabaseConfigured = SUPABASE_URL !== "YOUR_SUPABASE_PROJECT_URL" && SUPABASE_ANON_KEY !== "YOUR_SUPABASE_ANON_KEY";
 const supabaseClient = supabaseConfigured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
@@ -1424,6 +1436,16 @@ document.getElementById('listing-form').addEventListener('submit', async functio
     });
 
     if(insertErr) throw insertErr;
+
+    // Notify admin automatically via WhatsApp (best-effort — doesn't block submission if it fails)
+    if(ADMIN_CALLMEBOT_APIKEY !== "YOUR_CALLMEBOT_API_KEY"){
+      try{
+        const notifyText = encodeURIComponent(`🚗 New listing pending approval on Malakand Motors: ${make} ${model} — PKR ${price}. Seller: ${name} (${mobile}). Review it at your admin page.`);
+        fetch(`https://api.callmebot.com/whatsapp.php?phone=${ADMIN_WHATSAPP_NUMBER}&text=${notifyText}&apikey=${ADMIN_CALLMEBOT_APIKEY}`);
+      }catch(notifyErr){
+        console.error('Admin notification failed:', notifyErr);
+      }
+    }
 
     statusEl.style.color = 'var(--ok)';
     statusEl.textContent = isUrdu
