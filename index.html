@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaari Bazaar — Used & NCP Car Marketplace, Swat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Mukta:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine:#4a2e1d;       /* walnut wood — carved balconies */
+    --pine-2:#2e1b10;     /* deep walnut */
+    --river:#2c7873;      /* turquoise — truck-art accent */
+    --brass:#c9862e;      /* marigold */
+    --brass-light:#e3ab54;
+    --paper:#f1e7d4;      /* parchment */
+    --paper-2:#e8dabb;
+    --ink:#2a1e14;
+    --ink-soft:#6b5744;
+    --line:#d8c6a0;
+    --white:#fbf7ee;
+    --danger:#a13327;     /* truck-art vermillion */
+    --ok:#2c7873;
+    --warn:#b3781d;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Mukta',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  [dir="rtl"] body, .urdu{
+    font-family:'Noto Nastaliq Urdu','Mukta',sans-serif;
+  }
+  h1,h2,h3,.display{
+    font-family:'Cinzel',serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+    color:var(--pine-2);
+    margin:0;
+    text-transform:none;
+  }
+  .card-title, .logo-text, .hero-card-title{
+    font-family:'Cinzel',serif;
+    font-weight:600;
+  }
+  .mono{ font-family:'IBM Plex Mono',monospace; }
+  a{ color:inherit; }
+  img{max-width:100%;display:block;}
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+
+  /* ---------- jali lattice signature motif (Swat carved-balcony pattern) ---------- */
+  .lattice-divider{
+    height:26px; width:100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='26' viewBox='0 0 52 26'%3E%3Cg fill='none' stroke='%23c9862e' stroke-width='1.6'%3E%3Cpath d='M0 13 L13 0 L26 13 L13 26 Z'/%3E%3Ccircle cx='39' cy='13' r='6'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat:repeat-x;
+    background-position:center;
+    opacity:.85;
+  }
+  .lattice-divider.turquoise{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='26' viewBox='0 0 52 26'%3E%3Cg fill='none' stroke='%232c7873' stroke-width='1.6'%3E%3Cpath d='M0 13 L13 0 L26 13 L13 26 Z'/%3E%3Ccircle cx='39' cy='13' r='6'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:40;
+    background:rgba(238,238,226,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:1180px; margin:0 auto;
+  }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo-mark{
+    width:36px; height:36px; border-radius:8px;
+    background:linear-gradient(155deg, var(--pine), var(--pine-2));
+    display:flex; align-items:center; justify-content:center;
+    color:var(--brass-light); font-family:'Cinzel',serif; font-weight:700; font-size:19px;
+  }
+  .logo-text{ font-family:'Cinzel',serif; font-weight:700; font-size:20px; color:var(--pine-2); }
+  .logo-text small{ display:block; font-family:'Mukta',sans-serif; font-weight:500; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); }
+  .nav-actions{ display:flex; align-items:center; gap:10px; }
+  .btn{
+    border:none; cursor:pointer; font-family:'Mukta',sans-serif; font-weight:600; font-size:14px;
+    padding:10px 18px; border-radius:999px; transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn-primary{ background:var(--brass); color:var(--pine-2); }
+  .btn-primary:hover{ background:var(--brass-light); }
+  .btn-ghost{ background:transparent; color:var(--pine-2); border:1.5px solid var(--pine-2); }
+  .btn-ghost:hover{ background:var(--pine-2); color:var(--white); }
+  .lang-toggle{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;
+    background:var(--paper-2); border:1px solid var(--line); border-radius:999px; padding:8px 14px; cursor:pointer;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{ padding:64px 0 40px; position:relative; }
+  .hero-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center; }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--river); margin-bottom:14px; display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{ content:""; width:16px; height:1.5px; background:var(--river); display:inline-block; }
+  .hero h1{ font-size:clamp(34px,5vw,54px); line-height:1.06; }
+  .hero h1 em{ font-style:italic; color:var(--brass); }
+  .hero p{ font-size:17px; line-height:1.6; color:var(--ink-soft); margin-top:18px; max-width:46ch; }
+  .hero-actions{ display:flex; gap:12px; margin-top:28px; flex-wrap:wrap; }
+  .btn-lg{ padding:14px 26px; font-size:15px; }
+
+  .plate{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--white); border:2px solid var(--pine-2); border-radius:6px;
+    padding:6px 12px; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
+    box-shadow:2px 2px 0 var(--pine-2);
+  }
+
+  .hero-card{
+    background:var(--white); border-radius:6px; border:2px solid var(--pine-2);
+    padding:22px; box-shadow:6px 6px 0 var(--brass);
+  }
+  .hero-card-photo{
+    height:170px; border-radius:14px; margin-bottom:16px;
+    background:
+      repeating-linear-gradient(120deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 14px),
+      linear-gradient(135deg, var(--river), var(--pine));
+    position:relative; overflow:hidden;
+  }
+  .hero-card-photo .badge{
+    position:absolute; top:12px; left:12px;
+    background:var(--ok); color:var(--white); font-size:11px; font-weight:700;
+    padding:5px 10px; border-radius:999px; font-family:'Mukta',sans-serif;
+    display:flex; align-items:center; gap:5px;
+  }
+  .hero-card-photo .badge::before{ content:""; }
+  .hero-card-row{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px;}
+  .hero-card-title{ font-family:'Cinzel',serif; font-weight:600; font-size:19px; }
+  .hero-card-price{ font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--brass); font-size:17px; }
+  .hero-card-meta{ font-size:13px; color:var(--ink-soft); }
+
+  /* ---------- trust strip ---------- */
+  .trust-strip{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:16px; overflow:hidden; margin-top:56px;
+  }
+  .trust-cell{ background:var(--white); padding:26px 24px; }
+  .trust-cell .num{ font-family:'Cinzel',serif; font-size:30px; color:var(--pine-2); }
+  .trust-cell .label{ font-size:13px; color:var(--ink-soft); margin-top:4px; }
+
+  /* ---------- section shared ---------- */
+  section{ padding:64px 0; }
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:32px; gap:24px; flex-wrap:wrap; }
+  .section-head h2{ font-size:clamp(26px,3.4vw,36px); }
+  .section-head p{ color:var(--ink-soft); font-size:15px; max-width:44ch; }
+
+  /* ---------- filter bar ---------- */
+  .filter-bar{
+    display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;
+    background:var(--white); border:1px solid var(--line); border-radius:14px; padding:14px;
+  }
+  select, input[type=text]{
+    font-family:'Mukta',sans-serif; font-size:14px; padding:9px 12px;
+    border:1px solid var(--line); border-radius:8px; background:var(--paper); color:var(--ink);
+  }
+
+  /* ---------- listing grid ---------- */
+  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; transition:transform .15s ease, box-shadow .15s ease; cursor:pointer;
+  }
+  .card:hover{ transform:translateY(-3px); box-shadow:0 16px 30px -18px rgba(15,36,27,0.4); }
+  .card-photo{
+    height:150px; position:relative;
+  }
+  .card-photo .status{
+    position:absolute; top:10px; right:10px; font-size:10.5px; font-weight:700;
+    padding:4px 9px; border-radius:999px; font-family:'Mukta',sans-serif; color:var(--white);
+  }
+  .status-verified{ background:var(--ok); }
+  .status-profiled{ background:var(--warn); }
+  .status-unregistered{ background:var(--danger); }
+  .card-photo .area{
+    position:absolute; bottom:10px; left:10px; font-size:11px; font-weight:600;
+    background:rgba(23,51,39,0.75); color:var(--white); padding:4px 9px; border-radius:999px;
+  }
+  .card-body{ padding:16px; }
+  .card-title{ font-family:'Cinzel',serif; font-weight:600; font-size:17px; margin-bottom:2px; }
+  .card-sub{ font-size:12.5px; color:var(--ink-soft); margin-bottom:12px; }
+  .card-foot{ display:flex; justify-content:space-between; align-items:center; }
+  .card-price{ font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--pine-2); font-size:15.5px; }
+  .card-mi{ font-size:12px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; }
+
+  /* ---------- how it works ---------- */
+  .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .step{ background:var(--pine); color:var(--paper); border-radius:16px; padding:26px; position:relative; }
+  .step .plate-num{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:12px;
+    background:var(--brass); color:var(--pine-2); padding:3px 9px; border-radius:5px; margin-bottom:14px;
+  }
+  .step h3{ color:var(--white); font-size:19px; margin-bottom:8px; }
+  .step p{ font-size:13.5px; line-height:1.55; color:#cfd8ce; margin:0; }
+
+  /* ---------- CTA ---------- */
+  .cta{
+    background:linear-gradient(155deg, var(--pine-2), var(--pine));
+    border-radius:24px; padding:52px 44px; color:var(--white);
+    display:flex; justify-content:space-between; align-items:center; gap:32px; flex-wrap:wrap;
+  }
+  .cta h2{ color:var(--white); font-size:clamp(24px,3vw,32px); max-width:16ch; }
+  .cta p{ color:#c9d3c7; margin-top:10px; max-width:40ch; font-size:14.5px; }
+
+  /* ---------- footer ---------- */
+  footer{ border-top:1px solid var(--line); padding:36px 0 50px; }
+  .foot-grid{ display:flex; justify-content:space-between; align-items:flex-start; gap:24px; flex-wrap:wrap; }
+  .foot-cols{ display:flex; gap:56px; flex-wrap:wrap; }
+  .foot-col h4{ font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:10px; }
+  .foot-col a{ display:block; font-size:14px; margin-bottom:7px; color:var(--ink); text-decoration:none; }
+  .foot-col a:hover{ color:var(--brass); }
+  .foot-note{ font-size:12.5px; color:var(--ink-soft); margin-top:24px; }
+
+  [dir="rtl"] .eyebrow::before{ display:none; }
+  [dir="rtl"] .filter-bar, [dir="rtl"] .nav-actions{ flex-direction:row-reverse; }
+
+  @media(max-width:900px){
+    .hero-grid, .grid, .steps, .trust-strip{ grid-template-columns:1fr; }
+    .grid{ grid-template-columns:repeat(2,1fr); }
+    .nav{ flex-wrap:wrap; gap:12px; }
+  }
+  @media(max-width:560px){
+    .grid{ grid-template-columns:1fr; }
+    .cta{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">
+      <div class="logo-mark">G</div>
+      <div class="logo-text">Gaari Bazaar<small data-en="Swat &amp; Malakand" data-ur="سوات اور مالاکنڈ">Swat &amp; Malakand</small></div>
+    </div>
+    <div class="nav-actions">
+      <button class="lang-toggle" onclick="toggleLang()">اردو / EN</button>
+      <button class="btn btn-ghost" data-en="Sell your car" data-ur="گاڑی فروخت کریں">Sell your car</button>
+      <button class="btn btn-primary" data-en="Browse cars" data-ur="گاڑیاں دیکھیں">Browse cars</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow" data-en="Babuzai · Kabal · Charbagh · Barikot · Matta · Khwazakhela · Bahrain" data-ur="بابوزئی · کبل · چار باغ · بریکوٹ · متہ · خوازہ خیلہ · بحرین">Babuzai · Kabal · Charbagh · Barikot · Matta · Khwazakhela · Bahrain</div>
+      <h1 data-en='Buy and sell cars in Swat — <em>NCP status included, not hidden.</em>' data-ur='سوات میں گاڑیاں خریدیں اور بیچیں — <em>این سی پی حیثیت واضح طور پر بتائی جاتی ہے۔</em>'>Buy and sell cars in Swat — <em>NCP status included, not hidden.</em></h1>
+      <p data-en="Every listing shows the seller-reported registration status, chassis number, and area upfront — so you can ask the right questions before you drive to see it." data-ur="ہر اشتہار میں فروخت کنندہ کی بتائی گئی رجسٹریشن کی حیثیت، چیسس نمبر اور علاقہ پہلے سے دکھایا جاتا ہے — تاکہ گاڑی دیکھنے جانے سے پہلے آپ صحیح سوالات پوچھ سکیں۔">Every listing shows the seller-reported registration status, chassis number, and area upfront — so you can ask the right questions before you drive to see it.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-lg" data-en="Browse 240+ listings" data-ur="240+ اشتہارات دیکھیں">Browse 240+ listings</button>
+        <button class="btn btn-ghost btn-lg" data-en="List your car — free" data-ur="گاڑی درج کریں — مفت">List your car — free</button>
+      </div>
+      <div style="margin-top:26px;" class="plate">SWT · NCP CHECKED</div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hero-card-photo"><span class="badge" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span></div>
+      <div class="hero-card-row">
+        <div class="hero-card-title">Toyota Corolla '18</div>
+        <div class="hero-card-price">14.2L</div>
+      </div>
+      <div class="hero-card-meta" data-en="Mingora · 61,000 km · Custom paid" data-ur="مینگورہ · 61,000 کلومیٹر · کسٹم ادا شدہ">Mingora · 61,000 km · Custom paid</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="trust-strip">
+      <div class="trust-cell"><div class="num">240+</div><div class="label" data-en="Active listings across Malakand" data-ur="مالاکنڈ بھر میں فعال اشتہارات">Active listings across Malakand</div></div>
+      <div class="trust-cell"><div class="num">100%</div><div class="label" data-en="Listings show NCP / custom-paid status" data-ur="اشتہارات میں این سی پی / کسٹم حیثیت درج">Listings show NCP / custom-paid status</div></div>
+      <div class="trust-cell"><div class="num">7</div><div class="label" data-en="Areas covered, Mingora to Bahrain" data-ur="مینگورہ سے بحرین تک 7 علاقے شامل">Areas covered, Mingora to Bahrain</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="lattice-divider"></div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2 data-en="Browse listings" data-ur="اشتہارات دیکھیں">Browse listings</h2>
+        <p data-en="Filter by area and registration status — no surprises when you show up." data-ur="علاقے اور رجسٹریشن کی حیثیت کے مطابق فلٹر کریں — دیکھنے جانے پر کوئی حیرانی نہیں۔">Filter by area and registration status — no surprises when you show up.</p>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <select>
+        <option data-en="All tehsils" data-ur="تمام تحصیلیں">All tehsils</option>
+        <optgroup label="Swat District" data-en-label="Swat District" data-ur-label="ضلع سوات">
+          <option data-en="Babuzai (Mingora)" data-ur="بابوزئی (مینگورہ)">Babuzai (Mingora)</option>
+          <option data-en="Kabal" data-ur="کبل">Kabal</option>
+          <option data-en="Charbagh" data-ur="چار باغ">Charbagh</option>
+          <option data-en="Barikot" data-ur="بریکوٹ">Barikot</option>
+        </optgroup>
+        <optgroup label="Bar Swat District" data-en-label="Bar Swat District" data-ur-label="ضلع بر سوات">
+          <option data-en="Matta" data-ur="متہ">Matta</option>
+          <option data-en="Khwazakhela" data-ur="خوازہ خیلہ">Khwazakhela</option>
+          <option data-en="Bahrain" data-ur="بحرین">Bahrain</option>
+        </optgroup>
+      </select>
+      <select><option data-en="All statuses" data-ur="تمام حیثیتیں">All statuses</option><option data-en="Custom paid" data-ur="کسٹم ادا شدہ">Custom paid</option><option data-en="NCP — profiled" data-ur="این سی پی — پروفائل شدہ">NCP — profiled</option><option data-en="NCP — not registered" data-ur="این سی پی — غیر رجسٹرڈ">NCP — not registered</option></select>
+      <select><option data-en="Price range" data-ur="قیمت کی حد">Price range</option><option>Under 10L</option><option>10L – 20L</option><option>20L+</option></select>
+      <input type="text" data-en-ph="Search make or model…" data-ur-ph="گاڑی کا نام تلاش کریں…" placeholder="Search make or model…">
+    </div>
+
+    <div class="grid">
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="card-photo" style="background:linear-gradient(135deg,#2c5f74,#173327);">
+          <span class="status status-verified" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span>
+          <span class="area">Babuzai</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Suzuki Mehran 2015</div>
+          <div class="card-sub mono" data-en="72,000 km · Custom paid" data-ur="72,000 کلومیٹر · کسٹم ادا شدہ">72,000 km · Custom paid</div>
+          <div class="card-foot"><span class="card-price">6.8L</span><span class="card-mi">CH-2291</span></div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="card-photo" style="background:linear-gradient(135deg,#c98a2b,#8a5c1c);">
+          <span class="status status-profiled" data-en="NCP · Profiled" data-ur="این سی پی · پروفائل شدہ">NCP · Profiled</span>
+          <span class="area">Kabal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Toyota Hilux 2012</div>
+          <div class="card-sub mono" data-en="140,000 km · NCP" data-ur="140,000 کلومیٹر · این سی پی">140,000 km · NCP</div>
+          <div class="card-foot"><span class="card-price">21.5L</span><span class="card-mi">CH-5510</span></div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="card">
+        <div class="card-photo" style="background:linear-gradient(135deg,#3a6e5a,#173327);">
+          <span class="status status-verified" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span>
+          <span class="area">Matta</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Honda City 2019</div>
+          <div class="card-sub mono" data-en="38,000 km · Custom paid" data-ur="38,000 کلومیٹر · کسٹم ادا شدہ">38,000 km · Custom paid</div>
+          <div class="card-foot"><span class="card-price">17.9L</span><span class="card-mi">CH-9042</span></div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="card">
+        <div class="card-photo" style="background:linear-gradient(135deg,#a3432e,#5c2a1e);">
+          <span class="status status-unregistered" data-en="NCP · Not registered" data-ur="این سی پی · غیر رجسٹرڈ">NCP · Not registered</span>
+          <span class="area">Khwazakhela</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Toyota Prado 2010</div>
+          <div class="card-sub mono" data-en="98,000 km · NCP" data-ur="98,000 کلومیٹر · این سی پی">98,000 km · NCP</div>
+          <div class="card-foot"><span class="card-price">34.0L</span><span class="card-mi">CH-1187</span></div>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="card">
+        <div class="card-photo" style="background:linear-gradient(135deg,#2c5f74,#0f241b);">
+          <span class="status status-profiled" data-en="NCP · Profiled" data-ur="این سی پی · پروفائل شدہ">NCP · Profiled</span>
+          <span class="area">Bahrain</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Suzuki Bolan 2017</div>
+          <div class="card-sub mono" data-en="55,000 km · NCP" data-ur="55,000 کلومیٹر · این سی پی">55,000 km · NCP</div>
+          <div class="card-foot"><span class="card-price">9.4L</span><span class="card-mi">CH-3364</span></div>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="card">
+        <div class="card-photo" style="background:linear-gradient(135deg,#c98a2b,#173327);">
+          <span class="status status-verified" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span>
+          <span class="area">Babuzai</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Toyota Corolla 2018</div>
+          <div class="card-sub mono" data-en="61,000 km · Custom paid" data-ur="61,000 کلومیٹر · کسٹم ادا شدہ">61,000 km · Custom paid</div>
+          <div class="card-foot"><span class="card-price">14.2L</span><span class="card-mi">CH-7723</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lattice-divider turquoise"></div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2 data-en="How it works" data-ur="یہ کیسے کام کرتا ہے">How it works</h2>
+        <p data-en="Gaari Bazaar connects buyers and sellers directly. Documents and registration status are reported by the seller — always confirm them yourself before you pay." data-ur="گاڑی بازار خریداروں اور فروخت کنندگان کو براہ راست ملاتا ہے۔ کاغذات اور رجسٹریشن کی حیثیت فروخت کنندہ کی جانب سے بتائی جاتی ہے — ادائیگی سے پہلے خود تصدیق ضرور کریں۔">Gaari Bazaar connects buyers and sellers directly. Documents and registration status are reported by the seller — always confirm them yourself before you pay.</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="plate-num">01</span>
+        <h3 data-en="Seller posts the listing" data-ur="فروخت کنندہ اشتہار درج کرتا ہے">Seller posts the listing</h3>
+        <p data-en="Photos, price, area, and the status they report — custom paid, NCP, or unregistered — go up on the site or via WhatsApp." data-ur="تصاویر، قیمت، علاقہ، اور بتائی گئی حیثیت — کسٹم ادا شدہ، این سی پی، یا غیر رجسٹرڈ — ویب سائٹ یا واٹس ایپ پر درج ہو جاتی ہے۔">Photos, price, area, and the status they report — custom paid, NCP, or unregistered — go up on the site or via WhatsApp.</p>
+      </div>
+      <div class="step">
+        <span class="plate-num">02</span>
+        <h3 data-en="Buyer gets in touch" data-ur="خریدار رابطہ کرتا ہے">Buyer gets in touch</h3>
+        <p data-en="Interested buyers message the seller directly through the number listed — no middleman, no added fees at this stage." data-ur="دلچسپی رکھنے والے خریدار درج شدہ نمبر پر براہ راست فروخت کنندہ سے رابطہ کرتے ہیں — کوئی درمیانی شخص نہیں، اس مرحلے پر کوئی اضافی فیس نہیں۔">Interested buyers message the seller directly through the number listed — no middleman, no added fees at this stage.</p>
+      </div>
+      <div class="step">
+        <span class="plate-num">03</span>
+        <h3 data-en="They meet and settle it themselves" data-ur="وہ خود مل کر معاملہ طے کرتے ہیں">They meet and settle it themselves</h3>
+        <p data-en="Buyer and seller inspect the vehicle, check the paperwork, and agree on price between themselves — same as any local car bazaar." data-ur="خریدار اور فروخت کنندہ گاڑی کا معائنہ کرتے ہیں، کاغذات چیک کرتے ہیں، اور آپس میں قیمت طے کرتے ہیں — جیسا کسی بھی مقامی گاڑی بازار میں ہوتا ہے۔">Buyer and seller inspect the vehicle, check the paperwork, and agree on price between themselves — same as any local car bazaar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta">
+      <div>
+        <h2 data-en="Selling a car in Swat?" data-ur="سوات میں گاڑی بیچ رہے ہیں؟">Selling a car in Swat?</h2>
+        <p data-en="List it free in under 3 minutes. Send photos over WhatsApp and we'll help you write it up." data-ur="3 منٹ سے کم میں مفت درج کریں۔ واٹس ایپ پر تصاویر بھیجیں، ہم اشتہار لکھنے میں مدد کریں گے۔">List it free in under 3 minutes. Send photos over WhatsApp and we'll help you write it up.</p>
+      </div>
+      <button class="btn btn-primary btn-lg" data-en="Start listing" data-ur="اشتہار شروع کریں">Start listing</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="logo" style="margin-bottom:12px;">
+        <div class="logo-mark">G</div>
+        <div class="logo-text">Gaari Bazaar</div>
+      </div>
+      <p class="foot-note" data-en="An independent marketplace for Swat &amp; Malakand — not affiliated with Parrai Tanzeem." data-ur="سوات اور مالاکنڈ کے لیے ایک آزاد مارکیٹ پلیس — پارڑی تنظیم سے غیر منسلک۔">An independent marketplace for Swat &amp; Malakand — not affiliated with Parrai Tanzeem.</p>
+      <p class="foot-note" data-en="Gaari Bazaar only connects buyers and sellers. We do not verify registration status, documents, or ownership — please confirm these yourself before any payment." data-ur="گاڑی بازار صرف خریداروں اور فروخت کنندگان کو ملاتا ہے۔ ہم رجسٹریشن کی حیثیت، کاغذات یا ملکیت کی تصدیق نہیں کرتے — براہ کرم ادائیگی سے پہلے خود تصدیق کریں۔">Gaari Bazaar only connects buyers and sellers. We do not verify registration status, documents, or ownership — please confirm these yourself before any payment.</p>
+      <p class="foot-note" data-en="Free to list for now. A small fee may apply to listings in the future." data-ur="فی الحال درج کرنا مفت ہے۔ مستقبل میں اشتہارات پر معمولی فیس لاگو ہو سکتی ہے۔">Free to list for now. A small fee may apply to listings in the future.</p>
+    </div>
+    <div class="foot-cols">
+      <div class="foot-col">
+        <h4 data-en="Marketplace" data-ur="مارکیٹ پلیس">Marketplace</h4>
+        <a href="#" data-en="Browse cars" data-ur="گاڑیاں دیکھیں">Browse cars</a>
+        <a href="#" data-en="Sell your car" data-ur="گاڑی فروخت کریں">Sell your car</a>
+        <a href="#" data-en="Dealer plans" data-ur="ڈیلر پلانز">Dealer plans</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-en="Trust" data-ur="اعتماد">Trust</h4>
+        <a href="#" data-en="NCP status explained" data-ur="این سی پی حیثیت کی وضاحت">NCP status explained</a>
+        <a href="#" data-en="How it works" data-ur="یہ کیسے کام کرتا ہے">How it works</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-en="Contact" data-ur="رابطہ">Contact</h4>
+        <a href="#">WhatsApp</a>
+        <a href="#">Mingora, Swat</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+let isUrdu = false;
+function toggleLang(){
+  isUrdu = !isUrdu;
+  document.documentElement.dir = isUrdu ? 'rtl' : 'ltr';
+  document.documentElement.lang = isUrdu ? 'ur' : 'en';
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    const val = isUrdu ? el.getAttribute('data-ur') : el.getAttribute('data-en');
+    if(val !== null) el.innerHTML = val;
+  });
+  document.querySelectorAll('[data-en-ph]').forEach(el=>{
+    el.placeholder = isUrdu ? el.getAttribute('data-ur-ph') : el.getAttribute('data-en-ph');
+  });
+  document.querySelectorAll('optgroup[data-en-label]').forEach(el=>{
+    el.label = isUrdu ? el.getAttribute('data-ur-label') : el.getAttribute('data-en-label');
+  });
+}
+</script>
+
+</body>
+</html>
