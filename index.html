@@ -356,16 +356,37 @@
   .status-options input{ accent-color: var(--marigold); }
   .upload-box{
     border:2px dashed var(--line); border-radius:10px; padding:24px; text-align:center;
-    background:var(--panel-2); cursor:pointer;
+    background:var(--panel-2); cursor:pointer; position:relative;
   }
   .upload-box:hover{ border-color:var(--marigold); }
   .upload-box .ic{ font-size:26px; display:block; margin-bottom:6px; }
   .upload-box small{ display:block; color:var(--ink-soft); font-size:12px; margin-top:4px; }
-  #photo-input{ display:none; }
-  .file-list{ margin-top:10px; font-size:12.5px; color:var(--ink-soft); }
+  .photo-counter-badge{
+    position:absolute; top:10px; right:10px; background:var(--marigold); color:var(--walnut-2);
+    font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:12px;
+    padding:3px 9px; border-radius:999px;
+  }
+  #photo-input-camera, #photo-input-gallery{ display:none; }
+  .upload-box{ cursor:default; }
+  .upload-choice-row{ display:flex; gap:10px; margin-top:14px; }
+  .upload-choice-btn{
+    flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;
+    background:var(--panel); border:1px solid var(--line); border-radius:8px;
+    padding:12px 8px; font-family:'Mukta',sans-serif; font-size:12.5px; font-weight:700;
+    color:var(--walnut-2); cursor:pointer;
+  }
+  .upload-choice-btn span:first-child{ font-size:20px; }
+  .upload-choice-btn:active{ background:var(--panel-2); border-color:var(--marigold); }
+  .file-list{ margin-top:10px; font-size:12.5px; color:var(--ink-soft); font-weight:700; }
   .photo-preview-grid{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
-  .photo-preview-grid img{
+  .photo-thumb{ position:relative; width:64px; height:64px; }
+  .photo-thumb img{
     width:64px; height:64px; object-fit:cover; border-radius:8px; border:1px solid var(--line);
+  }
+  .photo-thumb .remove-photo{
+    position:absolute; top:-6px; right:-6px; width:20px; height:20px; border-radius:50%;
+    background:var(--danger); color:#fff; border:2px solid var(--panel); font-size:12px;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; line-height:1;
   }
 
   /* ---------- photo gallery lightbox ---------- */
@@ -595,9 +616,9 @@
             <div class="price-tag mono">6.8L</div>
           </div>
           <div class="card-body">
-            <div class="card-title">Suzuki Mehran 2015</div>
+            <div class="card-title">Suzuki Mehran</div>
             <div class="card-sub mono" data-en="72,000 km" data-ur="72,000 کلومیٹر">72,000 km</div>
-            <div class="card-foot"><span class="card-area" data-en="Babuzai" data-ur="بابوزئی">Babuzai</span><span class="card-mi">CH-2291</span></div>
+            <div class="card-foot"><span class="card-area" data-en="Babuzai" data-ur="بابوزئی">Babuzai</span><span class="card-mi">Automatic</span></div>
           </div>
         </div>
         <div class="card-actions">
@@ -613,9 +634,9 @@
             <div class="price-tag mono">21.5L</div>
           </div>
           <div class="card-body">
-            <div class="card-title">Toyota Hilux 2012</div>
+            <div class="card-title">Toyota Hilux</div>
             <div class="card-sub mono" data-en="140,000 km" data-ur="140,000 کلومیٹر">140,000 km</div>
-            <div class="card-foot"><span class="card-area" data-en="Kabal" data-ur="کبل">Kabal</span><span class="card-mi">CH-5510</span></div>
+            <div class="card-foot"><span class="card-area" data-en="Kabal" data-ur="کبل">Kabal</span><span class="card-mi">Manual</span></div>
           </div>
         </div>
         <div class="card-actions">
@@ -631,9 +652,9 @@
             <div class="price-tag mono">17.9L</div>
           </div>
           <div class="card-body">
-            <div class="card-title">Honda City 2019</div>
+            <div class="card-title">Honda City</div>
             <div class="card-sub mono" data-en="38,000 km" data-ur="38,000 کلومیٹر">38,000 km</div>
-            <div class="card-foot"><span class="card-area" data-en="Matta" data-ur="متہ">Matta</span><span class="card-mi">CH-9042</span></div>
+            <div class="card-foot"><span class="card-area" data-en="Matta" data-ur="متہ">Matta</span><span class="card-mi">Automatic</span></div>
           </div>
         </div>
         <div class="card-actions">
@@ -649,9 +670,9 @@
             <div class="price-tag mono">34.0L</div>
           </div>
           <div class="card-body">
-            <div class="card-title">Toyota Prado 2010</div>
+            <div class="card-title">Toyota Prado</div>
             <div class="card-sub mono" data-en="98,000 km" data-ur="98,000 کلومیٹر">98,000 km</div>
-            <div class="card-foot"><span class="card-area" data-en="Khwazakhela" data-ur="خوازہ خیلہ">Khwazakhela</span><span class="card-mi">CH-1187</span></div>
+            <div class="card-foot"><span class="card-area" data-en="Khwazakhela" data-ur="خوازہ خیلہ">Khwazakhela</span><span class="card-mi">Automatic</span></div>
           </div>
         </div>
         <div class="card-actions">
@@ -667,9 +688,9 @@
             <div class="price-tag mono">9.4L</div>
           </div>
           <div class="card-body">
-            <div class="card-title">Suzuki Bolan 2017</div>
+            <div class="card-title">Suzuki Bolan</div>
             <div class="card-sub mono" data-en="55,000 km" data-ur="55,000 کلومیٹر">55,000 km</div>
-            <div class="card-foot"><span class="card-area" data-en="Bahrain" data-ur="بحرین">Bahrain</span><span class="card-mi">CH-3364</span></div>
+            <div class="card-foot"><span class="card-area" data-en="Bahrain" data-ur="بحرین">Bahrain</span><span class="card-mi">Manual</span></div>
           </div>
         </div>
         <div class="card-actions">
@@ -685,9 +706,9 @@
             <div class="price-tag mono">14.2L</div>
           </div>
           <div class="card-body">
-            <div class="card-title">Toyota Corolla 2018</div>
+            <div class="card-title">Toyota Corolla</div>
             <div class="card-sub mono" data-en="61,000 km" data-ur="61,000 کلومیٹر">61,000 km</div>
-            <div class="card-foot"><span class="card-area" data-en="Babuzai" data-ur="بابوزئی">Babuzai</span><span class="card-mi">CH-7723</span></div>
+            <div class="card-foot"><span class="card-area" data-en="Babuzai" data-ur="بابوزئی">Babuzai</span><span class="card-mi">Automatic</span></div>
           </div>
         </div>
         <div class="card-actions">
@@ -758,21 +779,27 @@
         </div>
       </div>
 
-      <div class="form-row three">
+      <div class="form-row">
         <div class="field">
           <label data-en="Make" data-ur="کمپنی">Make</label>
-          <input type="text" id="f-make" required data-en-ph="e.g. Toyota" data-ur-ph="مثلاً ٹویوٹا" placeholder="e.g. Toyota">
+          <select id="f-make" onchange="updateModelOptions()">
+            <option value="" data-en="Select make" data-ur="کمپنی منتخب کریں">Select make</option>
+          </select>
           <span class="field-hint" id="hint-f-make"></span>
         </div>
         <div class="field">
           <label data-en="Model" data-ur="ماڈل">Model</label>
-          <input type="text" id="f-model" required data-en-ph="e.g. Corolla" data-ur-ph="مثلاً کرولا" placeholder="e.g. Corolla">
+          <select id="f-model">
+            <option value="" data-en="Select make first" data-ur="پہلے کمپنی منتخب کریں">Select make first</option>
+          </select>
           <span class="field-hint" id="hint-f-model"></span>
         </div>
+      </div>
+
+      <div class="form-row full" id="other-model-row" style="display:none;">
         <div class="field">
-          <label data-en="Year" data-ur="سال">Year</label>
-          <input type="number" id="f-year" required min="1990" max="2026" data-en-ph="e.g. 2018" data-ur-ph="مثلاً 2018" placeholder="e.g. 2018">
-          <span class="field-hint" id="hint-f-year"></span>
+          <label data-en="Enter make &amp; model" data-ur="کمپنی اور ماڈل درج کریں">Enter make &amp; model</label>
+          <input type="text" id="f-model-other" data-en-ph="e.g. Toyota Aqua" data-ur-ph="مثلاً ٹویوٹا ایکوا" placeholder="e.g. Toyota Aqua">
         </div>
       </div>
 
@@ -840,10 +867,6 @@
             </optgroup>
           </select>
         </div>
-        <div class="field">
-          <label data-en="Chassis number" data-ur="چیسس نمبر"><span>Chassis number</span> <span class="hint" data-en="(optional)" data-ur="(اختیاری)">(optional)</span></label>
-          <input type="text" id="f-chassis" data-en-ph="e.g. CH-7723" data-ur-ph="مثلاً CH-7723" placeholder="e.g. CH-7723">
-        </div>
       </div>
 
       <div class="form-row">
@@ -882,11 +905,21 @@
       <div class="form-row full">
         <div class="field">
           <label data-en="Photos (up to 10)" data-ur="تصاویر (زیادہ سے زیادہ 10)">Photos (up to 10)</label>
-          <div class="upload-box" onclick="document.getElementById('photo-input').click()">
+          <div class="upload-box">
+            <span class="photo-counter-badge" id="photo-counter-badge">0 / 10</span>
             <span class="ic">📷</span>
-            <span data-en="Tap to choose up to 10 photos" data-ur="زیادہ سے زیادہ 10 تصاویر منتخب کرنے کے لیے دبائیں">Tap to choose up to 10 photos</span>
-            <small data-en="More photos help buyers trust the listing" data-ur="زیادہ تصاویر خریداروں کا اعتماد بڑھاتی ہیں">More photos help buyers trust the listing</small>
-            <input type="file" id="photo-input" accept="image/*" multiple onchange="updateFileList()">
+            <span data-en="Add photos from your camera or gallery" data-ur="اپنے کیمرے یا گیلری سے تصاویر شامل کریں">Add photos from your camera or gallery</span>
+            <small data-en="Tap either button below — you can use both, and add more anytime" data-ur="نیچے کسی بھی بٹن کو دبائیں — آپ دونوں استعمال کر سکتے ہیں اور کبھی بھی مزید شامل کر سکتے ہیں">Tap either button below — you can use both, and add more anytime</small>
+            <div class="upload-choice-row">
+              <button type="button" class="upload-choice-btn" onclick="event.stopPropagation(); document.getElementById('photo-input-camera').click()">
+                <span>📷</span><span data-en="Take photo" data-ur="تصویر لیں">Take photo</span>
+              </button>
+              <button type="button" class="upload-choice-btn" onclick="event.stopPropagation(); document.getElementById('photo-input-gallery').click()">
+                <span>🖼️</span><span data-en="Choose from gallery" data-ur="گیلری سے منتخب کریں">Choose from gallery</span>
+              </button>
+            </div>
+            <input type="file" id="photo-input-camera" accept="image/*" capture="environment" onchange="handlePhotoSelection(this)">
+            <input type="file" id="photo-input-gallery" accept="image/*" multiple onchange="handlePhotoSelection(this)">
           </div>
           <div class="photo-preview-grid" id="photo-preview-grid"></div>
           <div class="file-list" id="file-list"></div>
@@ -995,6 +1028,57 @@
 </div>
 
 <script>
+const CAR_MODELS = {
+  "Toyota": ["Corolla", "Yaris", "Vitz", "Passo", "Aqua", "Prius", "Camry", "Premio", "Allion", "Fortuner", "Hilux", "Prado", "Land Cruiser", "Hiace", "Probox", "Raum", "Sienta", "Vigo"],
+  "Honda": ["City", "Civic", "Accord", "BR-V", "Vezel", "HR-V", "Fit / Jazz", "N-Box", "N-WGN", "Freed"],
+  "Suzuki": ["Mehran", "Alto", "Cultus", "Swift", "Wagon R", "Bolan", "Ravi", "Every", "Liana", "Baleno", "Hustler", "Spacia"],
+  "Daihatsu": ["Mira", "Move", "Cuore", "Hijet"],
+  "Hyundai": ["Tucson", "Elantra", "Sonata", "Santro", "Porter", "Ioniq"],
+  "KIA": ["Sportage", "Picanto", "Stonic", "Sorento", "Grand Carnival"],
+  "Changan": ["Alsvin", "Karvaan", "Oshan X7"],
+  "MG": ["HS", "ZS"],
+  "Nissan": ["Dayz", "Note", "X-Trail", "Roox", "Moco", "Clipper"],
+  "Mitsubishi": ["Lancer", "Pajero", "Mirage", "eK Wagon"],
+  "FAW": ["V2", "X-PV", "Carrier"],
+  "Prince": ["Pearl"],
+  "Mercedes-Benz": ["C-Class", "E-Class", "S-Class"],
+  "BMW": ["3 Series", "5 Series", "X1", "X5"],
+  "Other": []
+};
+
+function populateMakeOptions(){
+  const makeSelect = document.getElementById('f-make');
+  Object.keys(CAR_MODELS).forEach(make => {
+    const opt = document.createElement('option');
+    opt.value = make;
+    opt.textContent = make;
+    makeSelect.appendChild(opt);
+  });
+}
+populateMakeOptions();
+
+function updateModelOptions(){
+  const make = document.getElementById('f-make').value;
+  const modelSelect = document.getElementById('f-model');
+  const otherRow = document.getElementById('other-model-row');
+  modelSelect.innerHTML = '';
+
+  if(make === 'Other'){
+    modelSelect.innerHTML = `<option value="">${isUrdu ? 'نیچے درج کریں' : 'Enter below'}</option>`;
+    otherRow.style.display = 'block';
+    return;
+  }
+  otherRow.style.display = 'none';
+
+  const models = CAR_MODELS[make] || [];
+  if(models.length === 0){
+    modelSelect.innerHTML = `<option value="">${isUrdu ? 'پہلے کمپنی منتخب کریں' : 'Select make first'}</option>`;
+    return;
+  }
+  modelSelect.innerHTML = `<option value="">${isUrdu ? 'ماڈل منتخب کریں' : 'Select model'}</option>` +
+    models.map(m => `<option value="${m}">${m}</option>`).join('');
+}
+
 let capturedLat = null;
 let capturedLng = null;
 
@@ -1054,13 +1138,10 @@ const fieldValidators = {
     : { ok:false, en:'Enter as 03XXXXXXXXX (11 digits)', ur:'03XXXXXXXXX کی صورت میں درج کریں (11 ہندسے)' },
   'f-make': v => v.trim().length >= 2
     ? { ok:true, en:'✓ Looks good', ur:'✓ ٹھیک ہے' }
-    : { ok:false, en:'Enter the car\'s make', ur:'گاڑی کی کمپنی درج کریں' },
+    : { ok:false, en:'Select the car\'s make', ur:'گاڑی کی کمپنی منتخب کریں' },
   'f-model': v => v.trim().length >= 1
     ? { ok:true, en:'✓ Looks good', ur:'✓ ٹھیک ہے' }
-    : { ok:false, en:'Enter the model', ur:'ماڈل درج کریں' },
-  'f-year': v => (v && parseInt(v) >= 1990 && parseInt(v) <= 2026)
-    ? { ok:true, en:'✓ Valid year', ur:'✓ سال درست ہے' }
-    : { ok:false, en:'Enter a year between 1990–2026', ur:'1990 سے 2026 کے درمیان سال درج کریں' },
+    : { ok:false, en:'Select the model', ur:'ماڈل منتخب کریں' },
   'f-mileage': v => (v && parseInt(v) >= 0)
     ? { ok:true, en:'✓ Looks good', ur:'✓ ٹھیک ہے' }
     : { ok:false, en:'Enter mileage in km', ur:'مائلیج کلومیٹر میں درج کریں' },
@@ -1073,7 +1154,8 @@ Object.keys(fieldValidators).forEach(id => {
   const input = document.getElementById(id);
   const hint = document.getElementById('hint-' + id);
   if(!input || !hint) return;
-  input.addEventListener('input', () => {
+  const evt = input.tagName === 'SELECT' ? 'change' : 'input';
+  input.addEventListener(evt, () => {
     if(input.value.trim() === ''){ hint.textContent = ''; hint.className = 'field-hint'; return; }
     const result = fieldValidators[id](input.value);
     hint.textContent = isUrdu ? result.ur : result.en;
@@ -1098,24 +1180,54 @@ function toggleLang(){
   });
 }
 
-function updateFileList(){
-  const input = document.getElementById('photo-input');
-  const list = document.getElementById('file-list');
-  const grid = document.getElementById('photo-preview-grid');
+let selectedPhotos = []; // accumulates File objects across multiple picks
 
-  if(input.files.length > 10){
-    alert(isUrdu ? 'زیادہ سے زیادہ 10 تصاویر منتخب کریں۔' : 'Please choose a maximum of 10 photos.');
-    input.value = '';
-    list.textContent = '';
+function handlePhotoSelection(inputEl){
+  const newFiles = Array.from(inputEl.files);
+  inputEl.value = ''; // reset so picking the same photo again still fires onchange
+
+  if(newFiles.length === 0) return;
+
+  const room = 10 - selectedPhotos.length;
+  if(room <= 0){
+    alert(isUrdu ? 'آپ زیادہ سے زیادہ 10 تصاویر شامل کر چکے ہیں۔' : 'You\'ve already added the maximum of 10 photos.');
+    return;
+  }
+  if(newFiles.length > room){
+    alert(isUrdu ? `صرف ${room} مزید تصاویر شامل کی جا سکتی ہیں — پہلی ${room} شامل کر دی گئیں۔` : `Only ${room} more photo${room > 1 ? 's' : ''} can be added — the first ${room} were added.`);
+  }
+
+  selectedPhotos = selectedPhotos.concat(newFiles.slice(0, room));
+  renderPhotoPreview();
+}
+
+function removeSelectedPhoto(index){
+  selectedPhotos.splice(index, 1);
+  renderPhotoPreview();
+}
+
+function renderPhotoPreview(){
+  const grid = document.getElementById('photo-preview-grid');
+  const list = document.getElementById('file-list');
+  const badge = document.getElementById('photo-counter-badge');
+
+  badge.textContent = `${selectedPhotos.length} / 10`;
+
+  if(selectedPhotos.length === 0){
     grid.innerHTML = '';
+    list.textContent = '';
     return;
   }
 
-  if(input.files.length === 0){ list.textContent = ''; grid.innerHTML = ''; return; }
-
-  const urls = Array.from(input.files).map(f => URL.createObjectURL(f));
-  grid.innerHTML = urls.map((u, i) => `<img src="${u}" onclick="event.stopPropagation(); openGalleryUrls(${JSON.stringify(urls)}, ${i})">`).join('');
-  list.textContent = (isUrdu ? `${input.files.length} تصاویر منتخب کی گئیں` : `${input.files.length} photo${input.files.length > 1 ? 's' : ''} selected`);
+  const urls = selectedPhotos.map(f => URL.createObjectURL(f));
+  grid.innerHTML = urls.map((u, i) => `
+    <div class="photo-thumb">
+      <img src="${u}" onclick="event.stopPropagation(); openGalleryUrls(${JSON.stringify(urls).replace(/"/g,'&quot;')}, ${i})">
+      <span class="remove-photo" onclick="event.stopPropagation(); removeSelectedPhoto(${i})">✕</span>
+    </div>`).join('');
+  list.textContent = isUrdu
+    ? `${selectedPhotos.length} تصاویر منتخب کی گئیں`
+    : `${selectedPhotos.length} photo${selectedPhotos.length > 1 ? 's' : ''} selected`;
 }
 
 // ---------- photo gallery lightbox ----------
@@ -1191,7 +1303,7 @@ async function loadApprovedListings(){
     const photo = photos[0] ? `background-image:url('${photos[0]}');background-size:cover;background-position:center;` : 'background:linear-gradient(135deg,#2c7873,#4a2e1d);';
     const sellerPhone = (row.seller_mobile || '').replace(/[^0-9]/g,''); // digits only, e.g. 03001234567
     const intlPhone = sellerPhone.startsWith('0') ? '92' + sellerPhone.slice(1) : sellerPhone; // 03XXXXXXXXX -> 923XXXXXXXXX
-    const waText = encodeURIComponent(`Hi, I'm interested in your ${row.make} ${row.model} ${row.year} on Malakand Motors.`);
+    const waText = encodeURIComponent(`Hi, I'm interested in your ${row.make} ${row.model} on Malakand Motors.`);
     const areaLabel = row.village ? `${row.area || ''} · ${row.village}` : (row.area || '');
     const hasLocation = row.latitude && row.longitude;
     const galleryId = `listing-gallery-${rowIndex}`;
@@ -1206,9 +1318,9 @@ async function loadApprovedListings(){
           <div class="price-tag mono">${Number(row.price).toLocaleString()}</div>
         </div>
         <div class="card-body">
-          <div class="card-title">${row.make} ${row.model} ${row.year}</div>
+          <div class="card-title">${row.make} ${row.model}</div>
           <div class="card-sub mono">${Number(row.mileage).toLocaleString()} km</div>
-          <div class="card-foot"><span class="card-area">${areaLabel}</span><span class="card-mi">${row.chassis || ''}</span></div>
+          <div class="card-foot"><span class="card-area">${areaLabel}</span><span class="card-mi">${row.transmission || ''}</span></div>
         </div>
       </div>
       <div class="card-actions">
@@ -1226,23 +1338,27 @@ document.getElementById('listing-form').addEventListener('submit', async functio
 
   const name = document.getElementById('f-name').value.trim();
   const mobile = document.getElementById('f-mobile').value.trim();
-  const make = document.getElementById('f-make').value.trim();
-  const model = document.getElementById('f-model').value.trim();
-  const year = document.getElementById('f-year').value.trim();
+  const makeSelect = document.getElementById('f-make').value;
+  let make = makeSelect;
+  let model = document.getElementById('f-model').value;
+  if(makeSelect === 'Other'){
+    const otherText = document.getElementById('f-model-other').value.trim();
+    const parts = otherText.split(' ');
+    make = parts.shift() || otherText;
+    model = parts.join(' ') || otherText;
+  }
   const mileage = document.getElementById('f-mileage').value.trim();
   const price = document.getElementById('f-price').value.trim();
   const transmission = document.getElementById('f-transmission').value;
   const areaSelect = document.getElementById('f-area');
   const area = areaSelect.options[areaSelect.selectedIndex].text;
-  const chassis = document.getElementById('f-chassis').value.trim();
   const village = document.getElementById('f-village').value.trim();
   const regStatusInput = document.querySelector('input[name="status"]:checked');
   const regStatus = regStatusInput.value;
   const regStatusLabel = regStatusInput.nextElementSibling.textContent;
   const desc = document.getElementById('f-desc').value.trim();
-  const photoInput = document.getElementById('photo-input');
 
-  if(!name || !mobile || !make || !model || !year || !mileage || !price){
+  if(!name || !mobile || !make || !model || !mileage || !price){
     alert(isUrdu ? 'براہ کرم تمام لازمی خانے پُر کریں۔' : 'Please fill in all required fields.');
     return;
   }
@@ -1256,14 +1372,13 @@ document.getElementById('listing-form').addEventListener('submit', async functio
       "🚗 New listing — Malakand Motors",
       "",
       `Seller: ${name} (${mobile})`,
-      `Car: ${make} ${model} ${year}`,
+      `Car: ${make} ${model}`,
       `Mileage: ${mileage} km`,
       `Price: PKR ${price}`,
       `Transmission: ${transmission}`,
       `Area: ${area}`,
       village ? `Village: ${village}` : null,
       `Status: ${regStatusLabel}`,
-      chassis ? `Chassis #: ${chassis}` : null,
       desc ? `Notes: ${desc}` : null,
       (capturedLat && capturedLng) ? `Location: https://maps.google.com/?q=${capturedLat},${capturedLng}` : null,
       "",
@@ -1280,8 +1395,8 @@ document.getElementById('listing-form').addEventListener('submit', async functio
   try{
     // 1. Upload photos to storage, if any were picked
     const photoUrls = [];
-    if(photoInput.files.length > 0){
-      for(const file of photoInput.files){
+    if(selectedPhotos.length > 0){
+      for(const file of selectedPhotos){
         const path = `${Date.now()}-${file.name}`.replace(/\s+/g,'-');
         const { error: upErr } = await supabaseClient.storage.from('car-photos').upload(path, file);
         if(!upErr){
@@ -1296,13 +1411,11 @@ document.getElementById('listing-form').addEventListener('submit', async functio
       seller_name: name,
       seller_mobile: mobile,
       make, model,
-      year: parseInt(year),
       mileage: parseInt(mileage),
       price: parseFloat(price),
       transmission,
       area,
       village,
-      chassis,
       reg_status: regStatus,
       description: desc,
       latitude: capturedLat,
@@ -1318,6 +1431,9 @@ document.getElementById('listing-form').addEventListener('submit', async functio
       : 'Thanks! Your listing has been submitted for review.';
     document.getElementById('listing-form').reset();
     document.getElementById('file-list').textContent = '';
+    selectedPhotos = [];
+    document.getElementById('photo-preview-grid').innerHTML = '';
+    document.getElementById('photo-counter-badge').textContent = '0 / 10';
     capturedLat = null;
     capturedLng = null;
     const gpsBtn = document.getElementById('gps-btn');

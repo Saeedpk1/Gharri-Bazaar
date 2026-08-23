@@ -191,13 +191,13 @@ function listingCardHTML(l){
   <div class="listing-card" id="card-${l.id}">
     <div class="lc-top">
       <div>
-        <div class="lc-title">${l.make} ${l.model} ${l.year}</div>
+        <div class="lc-title">${l.make} ${l.model}</div>
         <div class="lc-meta">${l.seller_name} · ${l.seller_mobile} · ${locationLine}${mapLink}</div>
         <div class="lc-badges">
           ${badgeForStatus(l.status)}
           <span class="badge b-reg">${labelForReg(l.reg_status)}</span>
           <span class="badge b-reg mono">${Number(l.mileage).toLocaleString()} km</span>
-          <span class="badge b-reg mono">${l.chassis || 'no chassis #'}</span>
+          <span class="badge b-reg mono">${l.transmission || ''}</span>
         </div>
       </div>
       <div class="lc-price mono">PKR ${Number(l.price).toLocaleString()}</div>
@@ -235,12 +235,10 @@ function toggleEdit(id){
     <div class="edit-grid">
       <div><label>Make</label><input id="e-make-${id}" value="${l.make}"></div>
       <div><label>Model</label><input id="e-model-${id}" value="${l.model}"></div>
-      <div><label>Year</label><input id="e-year-${id}" type="number" value="${l.year}"></div>
       <div><label>Mileage (km)</label><input id="e-mileage-${id}" type="number" value="${l.mileage}"></div>
       <div><label>Price (PKR)</label><input id="e-price-${id}" type="number" value="${l.price}"></div>
       <div><label>Area</label><input id="e-area-${id}" value="${l.area || ''}"></div>
       <div><label>Village / locality</label><input id="e-village-${id}" value="${l.village || ''}"></div>
-      <div><label>Chassis #</label><input id="e-chassis-${id}" value="${l.chassis || ''}"></div>
       <div><label>Registration status</label>
         <select id="e-reg-${id}">
           <option value="Custom Paid" ${l.reg_status==='Custom Paid'?'selected':''}>Custom paid</option>
@@ -259,12 +257,10 @@ async function saveEdit(id){
   const updated = {
     make: document.getElementById(`e-make-${id}`).value.trim(),
     model: document.getElementById(`e-model-${id}`).value.trim(),
-    year: parseInt(document.getElementById(`e-year-${id}`).value),
     mileage: parseInt(document.getElementById(`e-mileage-${id}`).value),
     price: parseFloat(document.getElementById(`e-price-${id}`).value),
     area: document.getElementById(`e-area-${id}`).value.trim(),
     village: document.getElementById(`e-village-${id}`).value.trim(),
-    chassis: document.getElementById(`e-chassis-${id}`).value.trim(),
     reg_status: document.getElementById(`e-reg-${id}`).value,
     description: document.getElementById(`e-desc-${id}`).value.trim(),
   };
