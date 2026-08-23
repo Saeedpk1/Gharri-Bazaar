@@ -60,7 +60,7 @@
     --radius:12px;
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-x:hidden; max-width:100vw;}
   body{
     margin:0;
     background:var(--bg);
@@ -68,6 +68,7 @@
     font-family:'Mukta',sans-serif;
     font-size:15px;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden; max-width:100vw;
   }
   [dir="rtl"] body{ font-family:'Noto Nastaliq Urdu','Mukta',sans-serif; }
   h1,h2,h3{ font-family:'Cinzel',serif; font-weight:600; color:var(--walnut-2); margin:0; }
@@ -81,9 +82,13 @@
   .topbar{
     background:var(--walnut-2); color:#d8c6a8; font-size:12.5px;
   }
-  .topbar .wrap{ display:flex; justify-content:space-between; align-items:center; height:34px; }
+  .topbar .wrap{ display:flex; justify-content:space-between; align-items:center; height:34px; gap:10px; }
   .topbar a{ color:#d8c6a8; }
-  .topbar .topbar-links{ display:flex; gap:18px; }
+  .topbar .topbar-links{ display:flex; gap:18px; flex-shrink:0; }
+  .topbar-serving{
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;
+  }
+  @media(max-width:420px){ .topbar-serving{ display:none; } }
 
   /* ---------- main nav ---------- */
   header{
@@ -358,6 +363,43 @@
   .upload-box small{ display:block; color:var(--ink-soft); font-size:12px; margin-top:4px; }
   #photo-input{ display:none; }
   .file-list{ margin-top:10px; font-size:12.5px; color:var(--ink-soft); }
+  .photo-preview-grid{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .photo-preview-grid img{
+    width:64px; height:64px; object-fit:cover; border-radius:8px; border:1px solid var(--line);
+  }
+
+  /* ---------- photo gallery lightbox ---------- */
+  .gallery-overlay{
+    display:none; position:fixed; inset:0; z-index:100;
+    background:rgba(15,10,6,0.94); align-items:center; justify-content:center; flex-direction:column;
+  }
+  .gallery-overlay.open{ display:flex; }
+  .gallery-main{ position:relative; width:100%; max-width:640px; padding:0 16px; display:flex; align-items:center; justify-content:center; }
+  .gallery-main img{ max-width:100%; max-height:65vh; border-radius:10px; object-fit:contain; }
+  .gallery-close{
+    position:absolute; top:16px; right:16px; z-index:2;
+    background:rgba(255,255,255,0.12); color:#fff; border:none; border-radius:50%;
+    width:36px; height:36px; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .gallery-nav{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+    background:rgba(255,255,255,0.14); color:#fff; border:none; border-radius:50%;
+    width:40px; height:40px; font-size:20px; cursor:pointer;
+  }
+  .gallery-prev{ left:8px; } .gallery-next{ right:8px; }
+  .gallery-counter{ color:#e8dabb; font-size:12.5px; font-family:'IBM Plex Mono',monospace; margin-top:14px; }
+  .gallery-thumbs{ display:flex; gap:8px; margin-top:12px; overflow-x:auto; max-width:90vw; padding:0 16px; }
+  .gallery-thumbs img{
+    width:52px; height:52px; object-fit:cover; border-radius:7px; flex-shrink:0; cursor:pointer;
+    border:2px solid transparent; opacity:0.6;
+  }
+  .gallery-thumbs img.active{ border-color:var(--marigold); opacity:1; }
+  .card-photo{ cursor:pointer; }
+  .card-photo .photo-count{
+    position:absolute; top:6px; right:6px; font-size:10px; font-weight:700;
+    background:rgba(20,14,8,0.65); color:#fff; padding:3px 7px; border-radius:5px;
+  }
+  [dir="rtl"] .card-photo .photo-count{ right:auto; left:6px; }
   .gps-btn{
     width:100%; display:flex; align-items:center; justify-content:center; gap:8px;
     background:var(--panel-2); border:1px solid var(--line); border-radius:8px;
@@ -396,7 +438,7 @@
 
 <div class="topbar">
   <div class="wrap">
-    <span data-en="Serving Swat, Dir, Buner, Malakand &amp; Shangla" data-ur="سوات، دیر، بونیر، مالاکنڈ اور شانگلہ کی خدمت میں">Serving Swat, Dir, Buner, Malakand &amp; Shangla</span>
+    <span class="topbar-serving" data-en="Serving Swat, Dir, Buner, Malakand &amp; Shangla" data-ur="سوات، دیر، بونیر، مالاکنڈ اور شانگلہ کی خدمت میں">Serving Swat, Dir, Buner, Malakand &amp; Shangla</span>
     <div class="topbar-links">
       <a href="#" data-en="Help" data-ur="مدد">Help</a>
       <a href="#">WhatsApp</a>
@@ -839,13 +881,14 @@
 
       <div class="form-row full">
         <div class="field">
-          <label data-en="Photos" data-ur="تصاویر">Photos</label>
+          <label data-en="Photos (up to 10)" data-ur="تصاویر (زیادہ سے زیادہ 10)">Photos (up to 10)</label>
           <div class="upload-box" onclick="document.getElementById('photo-input').click()">
             <span class="ic">📷</span>
-            <span data-en="Tap to choose photos" data-ur="تصاویر منتخب کرنے کے لیے دبائیں">Tap to choose photos</span>
-            <small data-en="You'll attach these directly in WhatsApp after submitting" data-ur="جمع کرانے کے بعد آپ یہ واٹس ایپ میں براہ راست لگائیں گے">You'll attach these directly in WhatsApp after submitting</small>
+            <span data-en="Tap to choose up to 10 photos" data-ur="زیادہ سے زیادہ 10 تصاویر منتخب کرنے کے لیے دبائیں">Tap to choose up to 10 photos</span>
+            <small data-en="More photos help buyers trust the listing" data-ur="زیادہ تصاویر خریداروں کا اعتماد بڑھاتی ہیں">More photos help buyers trust the listing</small>
             <input type="file" id="photo-input" accept="image/*" multiple onchange="updateFileList()">
           </div>
+          <div class="photo-preview-grid" id="photo-preview-grid"></div>
           <div class="file-list" id="file-list"></div>
         </div>
       </div>
@@ -939,6 +982,17 @@
   <a href="#how"><span class="bn-ic">ℹ️</span><span data-en="How it works" data-ur="طریقہ کار">Info</span></a>
   <a href="https://wa.me/923001234567"><span class="bn-ic">💬</span><span data-en="Chat" data-ur="چیٹ">Chat</span></a>
 </nav>
+
+<div class="gallery-overlay" id="gallery-overlay">
+  <div class="gallery-main">
+    <button class="gallery-close" onclick="closeGallery()">✕</button>
+    <button class="gallery-nav gallery-prev" onclick="galleryStep(-1)">‹</button>
+    <img id="gallery-image" src="" alt="Car photo">
+    <button class="gallery-nav gallery-next" onclick="galleryStep(1)">›</button>
+  </div>
+  <div class="gallery-counter" id="gallery-counter"></div>
+  <div class="gallery-thumbs" id="gallery-thumbs"></div>
+</div>
 
 <script>
 let capturedLat = null;
@@ -1047,9 +1101,50 @@ function toggleLang(){
 function updateFileList(){
   const input = document.getElementById('photo-input');
   const list = document.getElementById('file-list');
-  if(input.files.length === 0){ list.textContent = ''; return; }
-  const names = Array.from(input.files).map(f => f.name).join(', ');
-  list.textContent = (isUrdu ? 'منتخب شدہ: ' : 'Selected: ') + names;
+  const grid = document.getElementById('photo-preview-grid');
+
+  if(input.files.length > 10){
+    alert(isUrdu ? 'زیادہ سے زیادہ 10 تصاویر منتخب کریں۔' : 'Please choose a maximum of 10 photos.');
+    input.value = '';
+    list.textContent = '';
+    grid.innerHTML = '';
+    return;
+  }
+
+  if(input.files.length === 0){ list.textContent = ''; grid.innerHTML = ''; return; }
+
+  const urls = Array.from(input.files).map(f => URL.createObjectURL(f));
+  grid.innerHTML = urls.map((u, i) => `<img src="${u}" onclick="event.stopPropagation(); openGalleryUrls(${JSON.stringify(urls)}, ${i})">`).join('');
+  list.textContent = (isUrdu ? `${input.files.length} تصاویر منتخب کی گئیں` : `${input.files.length} photo${input.files.length > 1 ? 's' : ''} selected`);
+}
+
+// ---------- photo gallery lightbox ----------
+let galleryPhotos = [];
+let galleryIndex = 0;
+
+function openGalleryUrls(urls, startIndex){
+  if(!urls || urls.length === 0) return;
+  galleryPhotos = urls;
+  galleryIndex = startIndex || 0;
+  renderGallery();
+  document.getElementById('gallery-overlay').classList.add('open');
+}
+
+function renderGallery(){
+  document.getElementById('gallery-image').src = galleryPhotos[galleryIndex];
+  document.getElementById('gallery-counter').textContent = `${galleryIndex + 1} / ${galleryPhotos.length}`;
+  document.getElementById('gallery-thumbs').innerHTML = galleryPhotos.map((u, i) =>
+    `<img src="${u}" class="${i === galleryIndex ? 'active' : ''}" onclick="galleryIndex=${i}; renderGallery();">`
+  ).join('');
+}
+
+function galleryStep(delta){
+  galleryIndex = (galleryIndex + delta + galleryPhotos.length) % galleryPhotos.length;
+  renderGallery();
+}
+
+function closeGallery(){
+  document.getElementById('gallery-overlay').classList.remove('open');
 }
 
 // ============================================================
@@ -1091,19 +1186,23 @@ async function loadApprovedListings(){
 
   const grid = document.getElementById('listings-grid');
   grid.innerHTML = '';
-  data.forEach(row => {
-    const photo = (row.photo_urls && row.photo_urls[0]) ? `background-image:url('${row.photo_urls[0]}');background-size:cover;background-position:center;` : 'background:linear-gradient(135deg,#2c7873,#4a2e1d);';
+  data.forEach((row, rowIndex) => {
+    const photos = row.photo_urls && row.photo_urls.length > 0 ? row.photo_urls : [];
+    const photo = photos[0] ? `background-image:url('${photos[0]}');background-size:cover;background-position:center;` : 'background:linear-gradient(135deg,#2c7873,#4a2e1d);';
     const sellerPhone = (row.seller_mobile || '').replace(/[^0-9]/g,''); // digits only, e.g. 03001234567
     const intlPhone = sellerPhone.startsWith('0') ? '92' + sellerPhone.slice(1) : sellerPhone; // 03XXXXXXXXX -> 923XXXXXXXXX
     const waText = encodeURIComponent(`Hi, I'm interested in your ${row.make} ${row.model} ${row.year} on Malakand Motors.`);
     const areaLabel = row.village ? `${row.area || ''} · ${row.village}` : (row.area || '');
     const hasLocation = row.latitude && row.longitude;
+    const galleryId = `listing-gallery-${rowIndex}`;
+    window[galleryId] = photos;
     const wrap = document.createElement('div');
     wrap.className = 'card-wrap';
     wrap.innerHTML = `
       <div class="card">
-        <div class="card-photo" style="${photo}">
+        <div class="card-photo" style="${photo}" ${photos.length > 0 ? `onclick="openGalleryUrls(window['${galleryId}'], 0)"` : ''}>
           <span class="status ${statusBadgeClass(row.reg_status)}">${statusBadgeText(row.reg_status)}</span>
+          ${photos.length > 1 ? `<span class="photo-count">📷 ${photos.length}</span>` : ''}
           <div class="price-tag mono">${Number(row.price).toLocaleString()}</div>
         </div>
         <div class="card-body">
