@@ -13,6 +13,20 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Malakand Motors — NCP Cars in Swat, Dir, Buner, Malakand &amp; Shangla">
 <meta name="twitter:description" content="Buy and sell NCP and custom-paid used cars across Malakand Division.">
+<!-- ============================================================
+     Google Analytics — free traffic tracking (page views, visitor
+     count, which pages/listings get clicked, where visitors are from).
+     Get your own Measurement ID at analytics.google.com (see chat for steps),
+     then replace G-XXXXXXXXXX below with it.
+     ============================================================ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -37,7 +51,7 @@
   }
 }
 </script>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='100' y2='100'%3E%3Cstop offset='0' stop-color='%234a2e1d'/%3E%3Cstop offset='1' stop-color='%232e1b10'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='47' fill='url(%23g)' stroke='%23c9862e' stroke-width='2.5'/%3E%3Cline x1='50' y1='27' x2='50' y2='22' stroke='%23e3ab54' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='20' r='2.4' fill='%23e3ab54'/%3E%3Cpath d='M31 69 L31 47 Q31 27 50 27 Q69 27 69 47 L69 69' fill='none' stroke='%23e3ab54' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cg fill='%23f1e7d4'%3E%3Cpath d='M38 57 L41.5 48 Q43 45.5 46.5 45.5 L53.5 45.5 Q57 45.5 58.5 48 L62 57 Z'/%3E%3Crect x='34.5' y='57' width='31' height='10' rx='4.5'/%3E%3Ccircle cx='41.5' cy='68' r='4.2' fill='%232e1b10' stroke='%23f1e7d4' stroke-width='1.6'/%3E%3Ccircle cx='58.5' cy='68' r='4.2' fill='%232e1b10' stroke='%23f1e7d4' stroke-width='1.6'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='180' y2='180'%3E%3Cstop offset='0' stop-color='%234a2e1d'/%3E%3Cstop offset='1' stop-color='%232e1b10'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='90' cy='90' r='84' fill='url(%23g)' stroke='%23c9862e' stroke-width='3'/%3E%3Cpath d='M32,118 L62,52 L90,90 L118,52 L148,118' fill='none' stroke='%23e3ab54' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='118' cy='52' r='4.5' fill='%23e3ab54'/%3E%3Cpath d='M60,142 L60,133 Q60,129 64,128 L72,126 Q76,116 86,115 L94,115 Q104,116 108,126 L116,128 Q120,129 120,133 L120,142 Z' fill='%23f1e7d4'/%3E%3Crect x='72' y='130' width='36' height='4.5' rx='2' fill='%233c2415' opacity='0.85'/%3E%3Ccircle cx='65' cy='130' r='2.6' fill='%233c2415'/%3E%3Ccircle cx='115' cy='130' r='2.6' fill='%233c2415'/%3E%3Ccircle cx='72' cy='143' r='8' fill='%233c2415' stroke='%23f1e7d4' stroke-width='2.5'/%3E%3Ccircle cx='108' cy='143' r='8' fill='%233c2415' stroke='%23f1e7d4' stroke-width='2.5'/%3E%3Ccircle cx='72' cy='143' r='2.4' fill='%23f1e7d4'/%3E%3Ccircle cx='108' cy='143' r='2.4' fill='%23f1e7d4'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Mukta:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -155,18 +169,19 @@
 
   .search-panel{
     background:var(--panel); border-radius:10px; padding:8px;
-    display:flex; gap:6px; flex-wrap:wrap; align-items:center;
+    display:flex; gap:6px; flex-wrap:nowrap; align-items:center;
     max-width:680px; margin:22px auto 0; box-shadow:0 14px 30px -16px rgba(0,0,0,0.35);
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
   }
   .search-panel select, .search-panel input[type=text]{
     font-family:'Mukta',sans-serif; font-size:12.5px; padding:8px 9px;
     border:1px solid var(--line); border-radius:6px; background:var(--panel-2); color:var(--ink);
-    flex:1; min-width:100px;
+    flex:0 0 auto; width:130px;
   }
-  .search-panel input[type=text]{ flex:1.6; min-width:130px; }
+  .search-panel input[type=text]{ width:150px; }
   .search-btn{
     background:var(--marigold); color:var(--walnut-2); border:none; border-radius:6px;
-    padding:8px 16px; font-weight:700; font-size:12.5px; cursor:pointer; flex-shrink:0;
+    padding:8px 16px; font-weight:700; font-size:12.5px; cursor:pointer; flex:0 0 auto;
   }
 
   .category-row{
@@ -178,6 +193,34 @@
     border-radius:999px; padding:7px 16px; font-size:13px; font-weight:600; cursor:pointer;
   }
   .chip:hover{ background:rgba(255,255,255,0.16); }
+
+  /* ---------- featured listings banner (auto-rotating) ---------- */
+  .banner-carousel{
+    max-width:640px; margin:0 auto 6px; position:relative;
+    border-radius:14px; overflow:hidden; box-shadow:0 18px 36px -18px rgba(0,0,0,0.4);
+    display:none;
+  }
+  .banner-carousel.has-items{ display:block; }
+  .banner-track{ display:flex; transition:transform .5s ease; }
+  .banner-slide{
+    flex:0 0 100%; display:flex; align-items:center; gap:14px;
+    background:var(--panel); padding:14px 16px; cursor:pointer;
+  }
+  .banner-slide .b-photo{
+    width:64px; height:64px; border-radius:10px; flex-shrink:0; background-size:cover; background-position:center;
+  }
+  .banner-slide .b-info{ flex:1; min-width:0; text-align:left; }
+  [dir="rtl"] .banner-slide .b-info{ text-align:right; }
+  .banner-slide .b-title{ font-weight:700; font-size:14.5px; color:var(--walnut-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .banner-slide .b-meta{ font-size:12px; color:var(--ink-soft); margin-top:2px; }
+  .banner-slide .b-price{ font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--marigold); font-size:15px; flex-shrink:0; }
+  .banner-badge{
+    background:var(--marigold); color:var(--walnut-2); font-size:10.5px; font-weight:700;
+    padding:3px 9px; border-radius:999px; flex-shrink:0;
+  }
+  .banner-dots{ display:flex; justify-content:center; gap:6px; padding:8px 0; background:var(--panel); }
+  .banner-dots span{ width:6px; height:6px; border-radius:50%; background:var(--line); cursor:pointer; }
+  .banner-dots span.active{ background:var(--marigold); width:16px; border-radius:4px; transition:width .2s ease; }
 
   /* ---------- stats strip ---------- */
   .stats-strip{
@@ -415,6 +458,41 @@
     border:2px solid transparent; opacity:0.6;
   }
   .gallery-thumbs img.active{ border-color:var(--marigold); opacity:1; }
+
+  /* ---------- listing details modal ---------- */
+  .details-overlay{
+    display:none; position:fixed; inset:0; z-index:110;
+    background:rgba(15,10,6,0.7); align-items:flex-end; justify-content:center;
+  }
+  .details-overlay.open{ display:flex; }
+  .details-panel{
+    position:relative; background:var(--panel); width:100%; max-width:520px;
+    border-radius:20px 20px 0 0; padding:28px 22px 30px; max-height:88vh; overflow-y:auto;
+  }
+  @media(min-width:600px){ .details-overlay{ align-items:center; } .details-panel{ border-radius:20px; } }
+  .dt-title{ font-family:'Cinzel',serif; font-weight:600; font-size:22px; color:var(--walnut-2); margin-bottom:2px; padding-right:30px; }
+  .dt-price{ font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--marigold); font-size:22px; margin-bottom:16px; }
+  .dt-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+  .dt-item{ background:var(--panel-2); border-radius:10px; padding:10px 12px; }
+  .dt-item .dt-label{ font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em; margin-bottom:3px; }
+  .dt-item .dt-value{ font-size:14px; font-weight:700; color:var(--walnut-2); }
+  .dt-status{ display:inline-block; font-size:11.5px; font-weight:700; padding:5px 12px; border-radius:999px; color:#fff; margin-bottom:14px; }
+  .dt-desc{ font-size:13.5px; color:var(--ink-soft); line-height:1.6; margin-bottom:16px; }
+  .dt-seller{ background:var(--panel-2); border-radius:12px; padding:14px; margin-bottom:16px; }
+  .dt-seller .dt-label{ font-size:11px; color:var(--ink-soft); text-transform:uppercase; margin-bottom:4px; }
+  .dt-seller .dt-name{ font-weight:700; color:var(--walnut-2); font-size:15px; }
+  .dt-actions{ display:flex; gap:10px; margin-bottom:18px; }
+  .dt-actions a{
+    flex:1; text-align:center; padding:12px; border-radius:10px; font-weight:700; font-size:14px;
+    display:flex; align-items:center; justify-content:center; gap:6px;
+  }
+  .dt-actions .dt-whatsapp{ background:var(--ok); color:#fff; }
+  .dt-actions .dt-call{ background:var(--panel-2); color:var(--walnut-2); border:1px solid var(--line); }
+  .dt-message{
+    background:linear-gradient(155deg, var(--walnut), var(--walnut-2)); color:#f1e7d4;
+    border-radius:12px; padding:16px; font-size:13px; line-height:1.6; text-align:center;
+  }
+  .dt-message b{ display:block; color:var(--marigold-light); font-size:14.5px; margin-bottom:4px; font-family:'Cinzel',serif; }
   .card-photo{ cursor:pointer; }
   .card-photo .photo-count{
     position:absolute; top:6px; right:6px; font-size:10px; font-weight:700;
@@ -450,8 +528,6 @@
   @media(max-width:560px){
     .grid, .steps{ grid-template-columns:1fr; }
     .cta{ flex-direction:column; align-items:flex-start; }
-    .search-panel{ flex-direction:column; align-items:stretch; }
-    .search-panel select, .search-panel input[type=text]{ width:100%; }
   }
 </style>
 </head>
@@ -470,18 +546,19 @@
 <header>
   <div class="nav">
     <div class="logo">
-      <div class="logo-mark"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="logoBg" x1="0" y1="0" x2="100" y2="100"><stop offset="0" stop-color="#4a2e1d"/><stop offset="1" stop-color="#2e1b10"/></linearGradient></defs>
-        <circle cx="50" cy="50" r="47" fill="url(#logoBg)" stroke="#c9862e" stroke-width="2.5"/>
-        <line x1="50" y1="27" x2="50" y2="22" stroke="#e3ab54" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="50" cy="20" r="2.4" fill="#e3ab54"/>
-        <path d="M31 69 L31 47 Q31 27 50 27 Q69 27 69 47 L69 69" fill="none" stroke="#e3ab54" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        <g fill="#f1e7d4">
-          <path d="M38 57 L41.5 48 Q43 45.5 46.5 45.5 L53.5 45.5 Q57 45.5 58.5 48 L62 57 Z"/>
-          <rect x="34.5" y="57" width="31" height="10" rx="4.5"/>
-          <circle cx="41.5" cy="68" r="4.2" fill="#2e1b10" stroke="#f1e7d4" stroke-width="1.6"/>
-          <circle cx="58.5" cy="68" r="4.2" fill="#2e1b10" stroke="#f1e7d4" stroke-width="1.6"/>
-        </g>
+      <div class="logo-mark"><svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="logoBg" x1="0" y1="0" x2="180" y2="180"><stop offset="0" stop-color="#4a2e1d"/><stop offset="1" stop-color="#2e1b10"/></linearGradient></defs>
+        <circle cx="90" cy="90" r="84" fill="url(#logoBg)" stroke="#c9862e" stroke-width="3"/>
+        <path d="M32,118 L62,52 L90,90 L118,52 L148,118" fill="none" stroke="#e3ab54" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="118" cy="52" r="4.5" fill="#e3ab54"/>
+        <path d="M60,142 L60,133 Q60,129 64,128 L72,126 Q76,116 86,115 L94,115 Q104,116 108,126 L116,128 Q120,129 120,133 L120,142 Z" fill="#f1e7d4"/>
+        <rect x="72" y="130" width="36" height="4.5" rx="2" fill="#3c2415" opacity="0.85"/>
+        <circle cx="65" cy="130" r="2.6" fill="#3c2415"/>
+        <circle cx="115" cy="130" r="2.6" fill="#3c2415"/>
+        <circle cx="72" cy="143" r="8" fill="#3c2415" stroke="#f1e7d4" stroke-width="2.5"/>
+        <circle cx="108" cy="143" r="8" fill="#3c2415" stroke="#f1e7d4" stroke-width="2.5"/>
+        <circle cx="72" cy="143" r="2.4" fill="#f1e7d4"/>
+        <circle cx="108" cy="143" r="2.4" fill="#f1e7d4"/>
       </svg></div>
       <div class="logo-text">Malakand Motors<small data-en="NCP &amp; Used Cars" data-ur="این سی پی اور استعمال شدہ گاڑیاں">NCP &amp; Used Cars</small></div>
     </div>
@@ -521,9 +598,7 @@
     </g>
   </svg>
   <div class="hero-inner wrap">
-    <div class="heritage-tag" data-en="Land of ancient Gandhara civilization" data-ur="قدیم تہذیب گندھارا کی سرزمین">Land of ancient Gandhara civilization</div>
-    <h1 data-en='Buy and sell <span>NCP</span> &amp; used cars in Swat' data-ur='سوات میں <span>این سی پی</span> اور استعمال شدہ گاڑیاں خریدیں اور بیچیں'>Buy and sell <span>NCP</span> &amp; used cars in Swat</h1>
-    <p data-en="Search listings across Swat, Dir, Buner, Malakand &amp; Shangla. Status is reported by the seller — always confirm documents yourself." data-ur="سوات، دیر، بونیر، مالاکنڈ اور شانگلہ بھر میں اشتہارات تلاش کریں۔ حیثیت فروخت کنندہ کی جانب سے بتائی جاتی ہے — کاغذات کی خود تصدیق ضرور کریں۔">Search listings across Swat, Dir, Buner, Malakand &amp; Shangla. Status is reported by the seller — always confirm documents yourself.</p>
+    <h1 data-en="Buy and sell your NCP &amp; used cars" data-ur="اپنی این سی پی اور استعمال شدہ گاڑیاں خریدیں اور بیچیں">Buy and sell your NCP &amp; used cars</h1>
 
     <div class="search-panel">
       <input type="text" data-en-ph="Search make or model…" data-ur-ph="گاڑی کا نام تلاش کریں…" placeholder="Search make or model…">
@@ -577,12 +652,9 @@
       <button class="search-btn" data-en="Search" data-ur="تلاش کریں">Search</button>
     </div>
 
-    <div class="category-row">
-      <span class="chip" data-en="Sedans" data-ur="سیڈان">Sedans</span>
-      <span class="chip" data-en="SUVs &amp; 4x4" data-ur="ایس یو وی اور 4x4">SUVs &amp; 4x4</span>
-      <span class="chip" data-en="Hatchbacks" data-ur="ہیچ بیک">Hatchbacks</span>
-      <span class="chip" data-en="Pickups" data-ur="پک اپ">Pickups</span>
-      <span class="chip" data-en="Under 10L" data-ur="10 لاکھ سے کم">Under 10L</span>
+    <div class="banner-carousel" id="banner-carousel">
+      <div class="banner-track" id="banner-track"></div>
+      <div class="banner-dots" id="banner-dots"></div>
     </div>
   </div>
 </section>
@@ -612,7 +684,6 @@
       <div class="card-wrap">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#2c7873,#4a2e1d);">
-            <span class="status status-custom" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span>
             <div class="price-tag mono">6.8L</div>
           </div>
           <div class="card-body">
@@ -622,6 +693,7 @@
           </div>
         </div>
         <div class="card-actions">
+          <a onclick="openDetails({make:'Suzuki',model:'Mehran',price:680000,mileage:72000,transmission:'Automatic',area:'Babuzai',village:'',color:'White',reg_status:'Custom Paid',description:'Well maintained, single owner, all original parts.',seller_name:'Rahim Khan',seller_mobile:'03001234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Suzuki%20Mehran%202015%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -630,7 +702,6 @@
       <div class="card-wrap">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#c9862e,#4a2e1d);">
-            <span class="status status-profiled" data-en="NCP · Profiled" data-ur="این سی پی · پروفائل شدہ">NCP · Profiled</span>
             <div class="price-tag mono">21.5L</div>
           </div>
           <div class="card-body">
@@ -640,6 +711,7 @@
           </div>
         </div>
         <div class="card-actions">
+          <a onclick="openDetails({make:'Toyota',model:'Hilux',price:2150000,mileage:140000,transmission:'Manual',area:'Kabal',village:'',color:'Silver',reg_status:'NCP - Profiled',description:'Strong engine, used for farm work, minor scratches.',seller_name:'Sher Ali',seller_mobile:'03011234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Hilux%202012%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -648,7 +720,6 @@
       <div class="card-wrap">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#4a2e1d,#2e1b10);">
-            <span class="status status-custom" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span>
             <div class="price-tag mono">17.9L</div>
           </div>
           <div class="card-body">
@@ -658,6 +729,7 @@
           </div>
         </div>
         <div class="card-actions">
+          <a onclick="openDetails({make:'Honda',model:'City',price:1790000,mileage:38000,transmission:'Automatic',area:'Matta',village:'',color:'Black',reg_status:'Custom Paid',description:'Low mileage, showroom condition, no accidents.',seller_name:'Naveed Iqbal',seller_mobile:'03021234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Honda%20City%202019%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -666,7 +738,6 @@
       <div class="card-wrap">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#a13327,#2e1b10);">
-            <span class="status status-unregistered" data-en="NCP · Not registered" data-ur="این سی پی · غیر رجسٹرڈ">NCP · Not registered</span>
             <div class="price-tag mono">34.0L</div>
           </div>
           <div class="card-body">
@@ -676,6 +747,7 @@
           </div>
         </div>
         <div class="card-actions">
+          <a onclick="openDetails({make:'Toyota',model:'Prado',price:3400000,mileage:98000,transmission:'Automatic',area:'Khwazakhela',village:'',color:'Grey',reg_status:'NCP - Not registered',description:'Imported unit, full option, needs registration.',seller_name:'Bakht Zaman',seller_mobile:'03031234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Prado%202010%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -684,7 +756,6 @@
       <div class="card-wrap">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#2c7873,#2e1b10);">
-            <span class="status status-profiled" data-en="NCP · Profiled" data-ur="این سی پی · پروفائل شدہ">NCP · Profiled</span>
             <div class="price-tag mono">9.4L</div>
           </div>
           <div class="card-body">
@@ -694,6 +765,7 @@
           </div>
         </div>
         <div class="card-actions">
+          <a onclick="openDetails({make:'Suzuki',model:'Bolan',price:940000,mileage:55000,transmission:'Manual',area:'Bahrain',village:'',color:'White',reg_status:'NCP - Profiled',description:'Good for family use, AC working, recently serviced.',seller_name:'Fazal Rabi',seller_mobile:'03041234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Suzuki%20Bolan%202017%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -702,7 +774,6 @@
       <div class="card-wrap">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#c9862e,#2e1b10);">
-            <span class="status status-custom" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span>
             <div class="price-tag mono">14.2L</div>
           </div>
           <div class="card-body">
@@ -712,6 +783,7 @@
           </div>
         </div>
         <div class="card-actions">
+          <a onclick="openDetails({make:'Toyota',model:'Corolla',price:1420000,mileage:61000,transmission:'Automatic',area:'Babuzai',village:'',color:'Blue',reg_status:'Custom Paid',description:'Excellent condition, genuine mileage, first owner.',seller_name:'Saeed Ullah',seller_mobile:'03051234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Corolla%202018%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -867,6 +939,23 @@
             </optgroup>
           </select>
         </div>
+        <div class="field">
+          <label data-en="Color" data-ur="رنگ">Color</label>
+          <select id="f-color">
+            <option data-en="White" data-ur="سفید">White</option>
+            <option data-en="Black" data-ur="کالا">Black</option>
+            <option data-en="Silver" data-ur="چاندی">Silver</option>
+            <option data-en="Grey" data-ur="گرے">Grey</option>
+            <option data-en="Red" data-ur="لال">Red</option>
+            <option data-en="Blue" data-ur="نیلا">Blue</option>
+            <option data-en="Green" data-ur="سبز">Green</option>
+            <option data-en="Maroon" data-ur="مرون">Maroon</option>
+            <option data-en="Gold" data-ur="سنہری">Gold</option>
+            <option data-en="Brown" data-ur="بھورا">Brown</option>
+            <option data-en="Beige" data-ur="بیج">Beige</option>
+            <option data-en="Other" data-ur="دیگر">Other</option>
+          </select>
+        </div>
       </div>
 
       <div class="form-row">
@@ -969,18 +1058,19 @@
   <div class="wrap foot-grid">
     <div>
       <div class="logo" style="margin-bottom:12px;">
-        <div class="logo-mark"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="logoBg" x1="0" y1="0" x2="100" y2="100"><stop offset="0" stop-color="#4a2e1d"/><stop offset="1" stop-color="#2e1b10"/></linearGradient></defs>
-        <circle cx="50" cy="50" r="47" fill="url(#logoBg)" stroke="#c9862e" stroke-width="2.5"/>
-        <line x1="50" y1="27" x2="50" y2="22" stroke="#e3ab54" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="50" cy="20" r="2.4" fill="#e3ab54"/>
-        <path d="M31 69 L31 47 Q31 27 50 27 Q69 27 69 47 L69 69" fill="none" stroke="#e3ab54" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        <g fill="#f1e7d4">
-          <path d="M38 57 L41.5 48 Q43 45.5 46.5 45.5 L53.5 45.5 Q57 45.5 58.5 48 L62 57 Z"/>
-          <rect x="34.5" y="57" width="31" height="10" rx="4.5"/>
-          <circle cx="41.5" cy="68" r="4.2" fill="#2e1b10" stroke="#f1e7d4" stroke-width="1.6"/>
-          <circle cx="58.5" cy="68" r="4.2" fill="#2e1b10" stroke="#f1e7d4" stroke-width="1.6"/>
-        </g>
+        <div class="logo-mark"><svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="logoBg" x1="0" y1="0" x2="180" y2="180"><stop offset="0" stop-color="#4a2e1d"/><stop offset="1" stop-color="#2e1b10"/></linearGradient></defs>
+        <circle cx="90" cy="90" r="84" fill="url(#logoBg)" stroke="#c9862e" stroke-width="3"/>
+        <path d="M32,118 L62,52 L90,90 L118,52 L148,118" fill="none" stroke="#e3ab54" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="118" cy="52" r="4.5" fill="#e3ab54"/>
+        <path d="M60,142 L60,133 Q60,129 64,128 L72,126 Q76,116 86,115 L94,115 Q104,116 108,126 L116,128 Q120,129 120,133 L120,142 Z" fill="#f1e7d4"/>
+        <rect x="72" y="130" width="36" height="4.5" rx="2" fill="#3c2415" opacity="0.85"/>
+        <circle cx="65" cy="130" r="2.6" fill="#3c2415"/>
+        <circle cx="115" cy="130" r="2.6" fill="#3c2415"/>
+        <circle cx="72" cy="143" r="8" fill="#3c2415" stroke="#f1e7d4" stroke-width="2.5"/>
+        <circle cx="108" cy="143" r="8" fill="#3c2415" stroke="#f1e7d4" stroke-width="2.5"/>
+        <circle cx="72" cy="143" r="2.4" fill="#f1e7d4"/>
+        <circle cx="108" cy="143" r="2.4" fill="#f1e7d4"/>
       </svg></div>
         <div class="logo-text">Malakand Motors</div>
       </div>
@@ -1025,6 +1115,13 @@
   </div>
   <div class="gallery-counter" id="gallery-counter"></div>
   <div class="gallery-thumbs" id="gallery-thumbs"></div>
+</div>
+
+<div class="details-overlay" id="details-overlay" onclick="if(event.target===this) closeDetails()">
+  <div class="details-panel">
+    <button class="gallery-close" style="position:absolute;top:14px;right:14px;background:var(--panel-2);color:var(--walnut-2);" onclick="closeDetails()">✕</button>
+    <div id="details-content"></div>
+  </div>
 </div>
 
 <script>
@@ -1259,6 +1356,48 @@ function closeGallery(){
   document.getElementById('gallery-overlay').classList.remove('open');
 }
 
+// ---------- listing details modal ----------
+function openDetails(listing){
+  const statusClass = statusBadgeClass(listing.reg_status);
+  const statusText = statusBadgeText(listing.reg_status);
+  const areaLine = listing.village ? `${listing.area || ''} · ${listing.village}` : (listing.area || '—');
+  const sellerPhone = (listing.seller_mobile || '').replace(/[^0-9]/g,'');
+  const intlPhone = sellerPhone.startsWith('0') ? '92' + sellerPhone.slice(1) : sellerPhone;
+  const waText = encodeURIComponent(`Hi, I'm interested in your ${listing.make} ${listing.model} on Malakand Motors.`);
+
+  document.getElementById('details-content').innerHTML = `
+    <div class="dt-title">${listing.make} ${listing.model}</div>
+    <div class="dt-price">PKR ${Number(listing.price).toLocaleString()}</div>
+    <span class="dt-status ${statusClass}">${statusText}</span>
+    <div class="dt-grid">
+      <div class="dt-item"><div class="dt-label">${isUrdu ? 'رنگ' : 'Color'}</div><div class="dt-value">${listing.color || '—'}</div></div>
+      <div class="dt-item"><div class="dt-label">${isUrdu ? 'مائلیج' : 'Mileage'}</div><div class="dt-value">${Number(listing.mileage).toLocaleString()} km</div></div>
+      <div class="dt-item"><div class="dt-label">${isUrdu ? 'ٹرانسمیشن' : 'Transmission'}</div><div class="dt-value">${listing.transmission || '—'}</div></div>
+      <div class="dt-item"><div class="dt-label">${isUrdu ? 'علاقہ' : 'Area'}</div><div class="dt-value">${areaLine}</div></div>
+    </div>
+    ${listing.description ? `<div class="dt-desc">${listing.description}</div>` : ''}
+    <div class="dt-seller">
+      <div class="dt-label">${isUrdu ? 'فروخت کنندہ' : 'Seller'}</div>
+      <div class="dt-name">${listing.seller_name || '—'}</div>
+    </div>
+    <div class="dt-actions">
+      <a class="dt-whatsapp" target="_blank" href="https://wa.me/${intlPhone}?text=${waText}">💬 WhatsApp</a>
+      <a class="dt-call" href="tel:+${intlPhone}">📞 ${isUrdu ? 'کال کریں' : 'Call'}</a>
+    </div>
+    <div class="dt-message">
+      <b data-en-inline="1">${isUrdu ? 'ملاکنڈ موٹرز' : 'Malakand Motors'}</b>
+      ${isUrdu
+        ? 'ہم یہاں آپ کی گاڑی بیچنے یا صحیح گاڑی ڈھونڈنے میں مدد کے لیے موجود ہیں — پورے ملاکنڈ ڈویژن میں اعتماد کے ساتھ خریدیں اور بیچیں۔'
+        : "We're here to help you sell your car or find the right one — buy and sell with confidence across all of Malakand Division."}
+    </div>
+  `;
+  document.getElementById('details-overlay').classList.add('open');
+}
+
+function closeDetails(){
+  document.getElementById('details-overlay').classList.remove('open');
+}
+
 // ============================================================
 // TODO — fill these in after creating your Supabase project:
 // Supabase dashboard → Project Settings → API
@@ -1299,14 +1438,14 @@ function statusBadgeText(reg){
 }
 
 async function loadApprovedListings(){
-  if(!supabaseConfigured) return; // keep the static demo cards as a placeholder
+  if(!supabaseConfigured){ renderBanner(DEMO_BANNER_ITEMS); return; } // demo banner as a placeholder
   const { data, error } = await supabaseClient
     .from('listings')
     .select('*')
     .eq('status', 'approved')
     .order('created_at', { ascending: false })
     .limit(12);
-  if(error || !data || data.length === 0) return;
+  if(error || !data || data.length === 0){ renderBanner(DEMO_BANNER_ITEMS); return; }
 
   const grid = document.getElementById('listings-grid');
   grid.innerHTML = '';
@@ -1319,13 +1458,14 @@ async function loadApprovedListings(){
     const areaLabel = row.village ? `${row.area || ''} · ${row.village}` : (row.area || '');
     const hasLocation = row.latitude && row.longitude;
     const galleryId = `listing-gallery-${rowIndex}`;
+    const detailId = `listing-detail-${rowIndex}`;
     window[galleryId] = photos;
+    window[detailId] = row;
     const wrap = document.createElement('div');
     wrap.className = 'card-wrap';
     wrap.innerHTML = `
       <div class="card">
         <div class="card-photo" style="${photo}" ${photos.length > 0 ? `onclick="openGalleryUrls(window['${galleryId}'], 0)"` : ''}>
-          <span class="status ${statusBadgeClass(row.reg_status)}">${statusBadgeText(row.reg_status)}</span>
           ${photos.length > 1 ? `<span class="photo-count">📷 ${photos.length}</span>` : ''}
           <div class="price-tag mono">${Number(row.price).toLocaleString()}</div>
         </div>
@@ -1336,12 +1476,74 @@ async function loadApprovedListings(){
         </div>
       </div>
       <div class="card-actions">
+        <a onclick="openDetails(window['${detailId}'])"><span>ℹ️</span><span>${isUrdu ? 'تفصیل' : 'Details'}</span></a>
         ${hasLocation ? `<a class="act-call" target="_blank" href="https://maps.google.com/?q=${row.latitude},${row.longitude}"><span>📍</span><span>${isUrdu ? 'مقام' : 'Map'}</span></a>` : ''}
         <a class="act-whatsapp" target="_blank" href="https://wa.me/${intlPhone}?text=${waText}"><span>💬</span><span>${isUrdu ? 'واٹس ایپ' : 'WhatsApp'}</span></a>
         <a class="act-call" href="tel:+${intlPhone}"><span>📞</span><span>${isUrdu ? 'کال کریں' : 'Call'}</span></a>
       </div>`;
     grid.appendChild(wrap);
   });
+
+  // Feed the same real data into the rotating banner (newest 6)
+  renderBanner(data.slice(0, 6).map(row => ({
+    photo: (row.photo_urls && row.photo_urls[0]) || null,
+    title: `${row.make} ${row.model}`,
+    meta: `${row.area || ''}${row.village ? ' · ' + row.village : ''}`,
+    price: Number(row.price).toLocaleString(),
+    badge: statusBadgeText(row.reg_status)
+  })));
+}
+
+const DEMO_BANNER_ITEMS = [
+  { photo:null, title:'Suzuki Mehran', meta:'Babuzai', price:'6.8L', badge:'Custom Paid' },
+  { photo:null, title:'Toyota Hilux', meta:'Kabal', price:'21.5L', badge:'NCP · Profiled' },
+  { photo:null, title:'Honda City', meta:'Matta', price:'17.9L', badge:'Custom Paid' },
+  { photo:null, title:'Toyota Prado', meta:'Khwazakhela', price:'34.0L', badge:'NCP · Not registered' },
+  { photo:null, title:'Toyota Corolla', meta:'Babuzai', price:'14.2L', badge:'Custom Paid' }
+];
+
+let bannerTimer = null;
+let bannerIndex = 0;
+
+function renderBanner(items){
+  const carousel = document.getElementById('banner-carousel');
+  const track = document.getElementById('banner-track');
+  const dots = document.getElementById('banner-dots');
+  if(!items || items.length === 0){ carousel.classList.remove('has-items'); return; }
+
+  track.innerHTML = items.map(item => `
+    <div class="banner-slide" onclick="document.getElementById('listings').scrollIntoView({behavior:'smooth'})">
+      <div class="b-photo" style="${item.photo ? `background-image:url('${item.photo}')` : 'background:linear-gradient(135deg,#2c7873,#4a2e1d);'}"></div>
+      <div class="b-info">
+        <div class="b-title">${item.title}</div>
+        <div class="b-meta">${item.meta}</div>
+      </div>
+      <span class="banner-badge">${item.badge}</span>
+      <div class="b-price">${item.price}</div>
+    </div>`).join('');
+
+  dots.innerHTML = items.map((_, i) => `<span onclick="goToBannerSlide(${i})"></span>`).join('');
+  carousel.classList.add('has-items');
+  bannerIndex = 0;
+  updateBannerPosition(items.length);
+
+  if(bannerTimer) clearInterval(bannerTimer);
+  bannerTimer = setInterval(() => {
+    bannerIndex = (bannerIndex + 1) % items.length;
+    updateBannerPosition(items.length);
+  }, 4000);
+}
+
+function goToBannerSlide(i){
+  bannerIndex = i;
+  const count = document.querySelectorAll('.banner-slide').length;
+  updateBannerPosition(count);
+}
+
+function updateBannerPosition(count){
+  const track = document.getElementById('banner-track');
+  track.style.transform = `translateX(-${bannerIndex * 100}%)`;
+  document.querySelectorAll('.banner-dots span').forEach((d, i) => d.classList.toggle('active', i === bannerIndex));
 }
 loadApprovedListings();
 
@@ -1365,6 +1567,7 @@ document.getElementById('listing-form').addEventListener('submit', async functio
   const areaSelect = document.getElementById('f-area');
   const area = areaSelect.options[areaSelect.selectedIndex].text;
   const village = document.getElementById('f-village').value.trim();
+  const color = document.getElementById('f-color').value;
   const regStatusInput = document.querySelector('input[name="status"]:checked');
   const regStatus = regStatusInput.value;
   const regStatusLabel = regStatusInput.nextElementSibling.textContent;
@@ -1389,6 +1592,7 @@ document.getElementById('listing-form').addEventListener('submit', async functio
       `Price: PKR ${price}`,
       `Transmission: ${transmission}`,
       `Area: ${area}`,
+      `Color: ${color}`,
       village ? `Village: ${village}` : null,
       `Status: ${regStatusLabel}`,
       desc ? `Notes: ${desc}` : null,
@@ -1428,6 +1632,7 @@ document.getElementById('listing-form').addEventListener('submit', async functio
       transmission,
       area,
       village,
+      color,
       reg_status: regStatus,
       description: desc,
       latitude: capturedLat,
