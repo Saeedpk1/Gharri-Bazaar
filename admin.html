@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gaari Bazaar — Admin</title>
+<title>Malakand Motors — Admin</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Mukta:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -77,7 +77,7 @@
 <header>
   <div class="wrap">
     <div>
-      <h1>Gaari Bazaar — Admin</h1>
+      <h1>Malakand Motors — Admin</h1>
       <small>Review, approve, or edit listings before they go live</small>
     </div>
     <button id="logout-btn" onclick="logout()">Log out</button>
@@ -185,12 +185,14 @@ function renderTab(){
 
 function listingCardHTML(l){
   const photos = (l.photo_urls || []).map(u => `<img src="${u}">`).join('');
+  const locationLine = l.village ? `${l.area || '—'} · ${l.village}` : (l.area || '—');
+  const mapLink = (l.latitude && l.longitude) ? ` · <a href="https://maps.google.com/?q=${l.latitude},${l.longitude}" target="_blank" style="color:var(--turquoise);">View on map</a>` : '';
   return `
   <div class="listing-card" id="card-${l.id}">
     <div class="lc-top">
       <div>
         <div class="lc-title">${l.make} ${l.model} ${l.year}</div>
-        <div class="lc-meta">${l.seller_name} · ${l.seller_mobile} · ${l.area || '—'}</div>
+        <div class="lc-meta">${l.seller_name} · ${l.seller_mobile} · ${locationLine}${mapLink}</div>
         <div class="lc-badges">
           ${badgeForStatus(l.status)}
           <span class="badge b-reg">${labelForReg(l.reg_status)}</span>
@@ -237,6 +239,7 @@ function toggleEdit(id){
       <div><label>Mileage (km)</label><input id="e-mileage-${id}" type="number" value="${l.mileage}"></div>
       <div><label>Price (PKR)</label><input id="e-price-${id}" type="number" value="${l.price}"></div>
       <div><label>Area</label><input id="e-area-${id}" value="${l.area || ''}"></div>
+      <div><label>Village / locality</label><input id="e-village-${id}" value="${l.village || ''}"></div>
       <div><label>Chassis #</label><input id="e-chassis-${id}" value="${l.chassis || ''}"></div>
       <div><label>Registration status</label>
         <select id="e-reg-${id}">
@@ -260,6 +263,7 @@ async function saveEdit(id){
     mileage: parseInt(document.getElementById(`e-mileage-${id}`).value),
     price: parseFloat(document.getElementById(`e-price-${id}`).value),
     area: document.getElementById(`e-area-${id}`).value.trim(),
+    village: document.getElementById(`e-village-${id}`).value.trim(),
     chassis: document.getElementById(`e-chassis-${id}`).value.trim(),
     reg_status: document.getElementById(`e-reg-${id}`).value,
     description: document.getElementById(`e-desc-${id}`).value.trim(),

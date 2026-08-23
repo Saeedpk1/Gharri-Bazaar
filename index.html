@@ -3,7 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gaari Bazaar — Buy & Sell Cars in Swat</title>
+<title>Malakand Motors — NCP Cars &amp; Used Cars in Swat, Dir, Buner, Malakand &amp; Shangla</title>
+<meta name="description" content="Buy and sell NCP (non-custom-paid) and custom-paid used cars across Swat, Dir, Buner, Malakand &amp; Shangla. Free to list, seller-reported registration status, direct WhatsApp and call contact with the seller.">
+<meta name="keywords" content="NCP cars Swat, NCP cars Dir, NCP cars Buner, NCP cars Malakand, NCP cars Shangla, non custom paid cars Swat, used cars Malakand Division, gaari bazaar Swat">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Malakand Motors">
+<meta property="og:title" content="Malakand Motors — NCP Cars &amp; Used Cars in Swat, Dir, Buner, Malakand &amp; Shangla">
+<meta property="og:description" content="Buy and sell NCP and custom-paid used cars across Malakand Division. Free to list, seller-reported status, direct contact with sellers.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Malakand Motors — NCP Cars in Swat, Dir, Buner, Malakand &amp; Shangla">
+<meta name="twitter:description" content="Buy and sell NCP and custom-paid used cars across Malakand Division.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutomotiveBusiness",
+  "name": "Malakand Motors",
+  "description": "Online marketplace for NCP (non-custom-paid) and custom-paid used cars across Malakand Division, Pakistan.",
+  "areaServed": [
+    {"@type": "AdministrativeArea", "name": "Swat"},
+    {"@type": "AdministrativeArea", "name": "Bar Swat"},
+    {"@type": "AdministrativeArea", "name": "Dir"},
+    {"@type": "AdministrativeArea", "name": "Buner"},
+    {"@type": "AdministrativeArea", "name": "Malakand"},
+    {"@type": "AdministrativeArea", "name": "Shangla"}
+  ],
+  "priceRange": "PKR",
+  "makesOffer": {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Product",
+      "name": "NCP and custom-paid used cars"
+    }
+  }
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='100' y2='100'%3E%3Cstop offset='0' stop-color='%234a2e1d'/%3E%3Cstop offset='1' stop-color='%232e1b10'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='47' fill='url(%23g)' stroke='%23c9862e' stroke-width='2.5'/%3E%3Cline x1='50' y1='27' x2='50' y2='22' stroke='%23e3ab54' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='20' r='2.4' fill='%23e3ab54'/%3E%3Cpath d='M31 69 L31 47 Q31 27 50 27 Q69 27 69 47 L69 69' fill='none' stroke='%23e3ab54' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cg fill='%23f1e7d4'%3E%3Cpath d='M38 57 L41.5 48 Q43 45.5 46.5 45.5 L53.5 45.5 Q57 45.5 58.5 48 L62 57 Z'/%3E%3Crect x='34.5' y='57' width='31' height='10' rx='4.5'/%3E%3Ccircle cx='41.5' cy='68' r='4.2' fill='%232e1b10' stroke='%23f1e7d4' stroke-width='1.6'/%3E%3Ccircle cx='58.5' cy='68' r='4.2' fill='%232e1b10' stroke='%23f1e7d4' stroke-width='1.6'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Mukta:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -60,11 +94,10 @@
   .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1180px; margin:0 auto; gap:24px; }
   .logo{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
   .logo-mark{
-    width:34px; height:34px; border-radius:8px;
-    background:linear-gradient(155deg, var(--walnut), var(--walnut-2));
-    display:flex; align-items:center; justify-content:center;
-    color:var(--marigold-light); font-family:'Cinzel',serif; font-weight:700; font-size:17px;
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
   }
+  .logo-mark svg{ width:100%; height:100%; display:block; }
   .logo-text{ font-family:'Cinzel',serif; font-weight:700; font-size:18px; color:var(--walnut-2); line-height:1.1; }
   .logo-text small{ display:block; font-family:'Mukta',sans-serif; font-weight:500; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); }
   .nav-links{ display:flex; gap:26px; font-size:14.5px; font-weight:600; }
@@ -86,27 +119,49 @@
   /* ---------- hero with functional search ---------- */
   .hero{
     background: linear-gradient(180deg, var(--walnut-2) 0%, var(--walnut) 100%);
-    padding:52px 0 0;
+    padding:32px 0 0;
   }
-  .hero-inner{ text-align:center; padding-bottom:44px; }
+  @media(min-width:760px){ .hero{ padding:52px 0 0; } }
+  .hero-motif{
+    position:absolute; bottom:0; right:0; width:60%; max-width:520px; height:auto;
+    pointer-events:none; z-index:0;
+  }
+  .heritage-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--marigold-light);
+    border:1px solid rgba(227,171,84,0.4); border-radius:999px; padding:5px 14px; margin-bottom:14px;
+  }
+  .heritage-tag::before{ content:"◈"; font-size:11px; }
+  .hero-inner{ position:relative; z-index:1; }
+
+  /* relief-carving strip motif, evoking Gandhara stone friezes */
+  .relief-divider{
+    height:20px; width:100%;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='20' viewBox='0 0 60 20'%3E%3Cg fill='none' stroke='%23c9862e' stroke-width='1.3' opacity='0.55'%3E%3Ccircle cx='10' cy='10' r='5'/%3E%3Ccircle cx='10' cy='10' r='1.4' fill='%23c9862e' stroke='none'/%3E%3Cpath d='M20 10 Q30 2 40 10 Q30 18 20 10 Z'/%3E%3Ccircle cx='50' cy='10' r='5'/%3E%3Ccircle cx='50' cy='10' r='1.4' fill='%23c9862e' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat:repeat-x; background-position:center;
+  }
+
+  .hero-inner{ text-align:center; padding-bottom:28px; }
+  @media(min-width:760px){ .hero-inner{ padding-bottom:44px; } }
   .hero h1{ color:#fbf7ee; font-size:clamp(28px,4vw,40px); line-height:1.2; }
   .hero h1 span{ color:var(--marigold-light); }
   .hero p{ color:#d8c6a8; font-size:15.5px; margin-top:10px; max-width:52ch; margin-left:auto; margin-right:auto; }
 
   .search-panel{
-    background:var(--panel); border-radius:var(--radius); padding:18px;
-    display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-    max-width:900px; margin:26px auto 0; box-shadow:0 20px 40px -18px rgba(0,0,0,0.35);
+    background:var(--panel); border-radius:10px; padding:8px;
+    display:flex; gap:6px; flex-wrap:wrap; align-items:center;
+    max-width:680px; margin:22px auto 0; box-shadow:0 14px 30px -16px rgba(0,0,0,0.35);
   }
   .search-panel select, .search-panel input[type=text]{
-    font-family:'Mukta',sans-serif; font-size:14px; padding:11px 12px;
-    border:1px solid var(--line); border-radius:8px; background:var(--panel-2); color:var(--ink);
-    flex:1; min-width:140px;
+    font-family:'Mukta',sans-serif; font-size:12.5px; padding:8px 9px;
+    border:1px solid var(--line); border-radius:6px; background:var(--panel-2); color:var(--ink);
+    flex:1; min-width:100px;
   }
-  .search-panel input[type=text]{ flex:2; min-width:180px; }
+  .search-panel input[type=text]{ flex:1.6; min-width:130px; }
   .search-btn{
-    background:var(--marigold); color:var(--walnut-2); border:none; border-radius:8px;
-    padding:11px 22px; font-weight:700; font-size:14px; cursor:pointer; flex-shrink:0;
+    background:var(--marigold); color:var(--walnut-2); border:none; border-radius:6px;
+    padding:8px 16px; font-weight:700; font-size:12.5px; cursor:pointer; flex-shrink:0;
   }
 
   .category-row{
@@ -132,38 +187,65 @@
   @media(max-width:700px){ .stats-strip .wrap{ grid-template-columns:repeat(2,1fr); gap:16px; } }
 
   /* ---------- sections ---------- */
-  section{ padding:52px 0; }
+  section{ padding:32px 0; }
+  @media(min-width:760px){ section{ padding:52px 0; } }
+  body{ padding-bottom:64px; }
+  @media(min-width:760px){ body{ padding-bottom:0; } }
   .section-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:26px; gap:20px; flex-wrap:wrap; }
   .section-head h2{ font-size:24px; }
   .section-head p{ color:var(--ink-soft); font-size:14px; margin-top:4px; }
   .view-all{ font-size:13.5px; font-weight:700; color:var(--turquoise); white-space:nowrap; }
 
-  /* ---------- listing grid ---------- */
-  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
-  .card{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    overflow:hidden; transition:box-shadow .15s ease, transform .15s ease; cursor:pointer;
+  /* ---------- listing list (mobile-first: horizontal rows) ---------- */
+  .grid{ display:flex; flex-direction:column; gap:10px; }
+  .card-wrap{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    overflow:hidden; transition:box-shadow .15s ease;
   }
-  .card:hover{ box-shadow:0 14px 28px -18px rgba(34,26,18,0.28); transform:translateY(-2px); }
-  .card-photo{ height:150px; position:relative; }
+  .card-wrap:hover{ box-shadow:0 10px 22px -16px rgba(34,26,18,0.28); }
+  .card{
+    display:flex; flex-direction:row-reverse; align-items:stretch; cursor:default;
+  }
+  .card-photo{ position:relative; width:112px; min-width:112px; flex-shrink:0; }
   .card-photo .status{
-    position:absolute; top:10px; left:10px; font-size:10.5px; font-weight:700;
-    padding:4px 9px; border-radius:6px; color:var(--white,#fff);
+    position:absolute; top:6px; left:6px; font-size:9.5px; font-weight:700;
+    padding:3px 7px; border-radius:5px; color:#fff; line-height:1.3;
   }
   .status-custom{ background:var(--ok); color:#fff; }
   .status-profiled{ background:var(--warn); color:#fff; }
   .status-unregistered{ background:var(--danger); color:#fff; }
   .card-photo .price-tag{
     position:absolute; bottom:0; left:0; right:0;
-    background:linear-gradient(0deg, rgba(20,14,8,0.75), transparent);
-    padding:22px 12px 8px; color:#fff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:16px;
+    background:linear-gradient(0deg, rgba(20,14,8,0.8), transparent);
+    padding:16px 8px 6px; color:#fff; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13px;
   }
-  .card-body{ padding:14px 14px 16px; }
-  .card-title{ font-weight:700; font-size:15px; margin-bottom:2px; }
-  .card-sub{ font-size:12.5px; color:var(--ink-soft); margin-bottom:10px; }
-  .card-foot{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:10px; }
-  .card-area{ font-size:12px; color:var(--turquoise); font-weight:600; }
-  .card-mi{ font-size:11.5px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; }
+  .card-body{ padding:10px 12px; flex:1; display:flex; flex-direction:column; justify-content:center; min-width:0; }
+  .card-title{ font-weight:700; font-size:14.5px; margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .card-sub{ font-size:12px; color:var(--ink-soft); margin-bottom:8px; }
+  .card-foot{ display:flex; justify-content:space-between; align-items:center; }
+  .card-area{ font-size:11.5px; color:var(--turquoise); font-weight:600; }
+  .card-mi{ font-size:11px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; }
+
+  .card-actions{ display:flex; border-top:1px solid var(--line); }
+  .card-actions a{
+    flex:1; display:flex; align-items:center; justify-content:center; gap:6px;
+    padding:9px 6px; font-size:12px; font-weight:700; text-decoration:none;
+  }
+  .card-actions a:not(:last-child){ border-right:1px solid var(--line); }
+  [dir="rtl"] .card-actions a:not(:last-child){ border-right:none; border-left:1px solid var(--line); }
+  .card-actions a.act-whatsapp{ color:var(--ok); }
+  .card-actions a.act-call{ color:var(--walnut-2); }
+  .card-actions a:active{ background:var(--panel-2); }
+
+  @media(min-width:760px){
+    .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .card{ flex-direction:column; }
+    .card-photo{ width:auto; height:150px; }
+    .card-photo .price-tag{ padding:22px 12px 8px; font-size:16px; }
+    .card-body{ padding:14px 14px 16px; }
+    .card-title{ font-size:15px; }
+    .card-foot{ border-top:1px solid var(--line); padding-top:10px; }
+  }
 
   /* ---------- how it works ---------- */
   .how-panel{ background:var(--panel-2); }
@@ -194,6 +276,14 @@
   .cta h2{ font-size:22px; }
   .cta p{ color:var(--ink-soft); margin-top:6px; font-size:13.5px; max-width:42ch; }
 
+  .seo-links{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px; }
+  .seo-links a{
+    background:var(--panel); border:1px solid var(--line); border-radius:999px;
+    padding:8px 16px; font-size:13px; font-weight:600; color:var(--walnut-2);
+  }
+  .seo-links a:hover{ border-color:var(--marigold); color:var(--marigold); }
+  .seo-note{ font-size:13px; color:var(--ink-soft); line-height:1.7; max-width:74ch; }
+
   /* ---------- footer ---------- */
   footer{ background:var(--walnut-2); color:#c9baa2; padding:44px 0 26px; margin-top:20px; }
   .foot-grid{ display:flex; justify-content:space-between; align-items:flex-start; gap:32px; flex-wrap:wrap; }
@@ -207,6 +297,31 @@
 
   [dir="rtl"] .search-panel, [dir="rtl"] .nav-actions, [dir="rtl"] .nav-links, [dir="rtl"] .foot-cols{ flex-direction:row-reverse; }
 
+  /* ---------- bottom nav bar (mobile only) ---------- */
+  .bottom-nav{
+    position:fixed; bottom:0; left:0; right:0; z-index:50;
+    background:var(--panel); border-top:1px solid var(--line);
+    display:flex; justify-content:space-around; align-items:center;
+    height:60px; box-shadow:0 -6px 16px -12px rgba(34,26,18,0.25);
+  }
+  .bottom-nav a{
+    display:flex; flex-direction:column; align-items:center; gap:2px;
+    font-size:10.5px; font-weight:600; color:var(--ink-soft); flex:1; text-align:center;
+  }
+  .bottom-nav a .bn-ic{ font-size:19px; line-height:1; }
+  .bottom-nav a.active{ color:var(--walnut-2); }
+  .bottom-nav a.bn-sell{
+    background:var(--marigold); color:var(--walnut-2);
+    width:52px; height:52px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex:none;
+    margin-top:-24px; box-shadow:0 6px 14px -6px rgba(0,0,0,0.4); border:3px solid var(--panel);
+  }
+  .bottom-nav a.bn-sell .bn-ic{ font-size:24px; }
+  .bottom-nav a.bn-sell span:last-child{ display:none; }
+  @media(min-width:760px){ .bottom-nav{ display:none; } }
+
+  #sell.hidden{ display:none; }
+
   /* ---------- listing form ---------- */
   .form-panel{
     background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
@@ -219,6 +334,9 @@
     display:block; font-size:13px; font-weight:700; color:var(--walnut-2); margin-bottom:6px;
   }
   .field .hint{ font-weight:500; color:var(--ink-soft); font-size:12px; margin-left:4px; }
+  .field-hint{ display:block; font-size:11.5px; margin-top:4px; min-height:14px; font-weight:600; }
+  .field-hint.ok{ color:var(--ok); }
+  .field-hint.err{ color:var(--danger); }
   .field input[type=text], .field input[type=number], .field input[type=tel],
   .field select, .field textarea{
     width:100%; font-family:'Mukta',sans-serif; font-size:14.5px; padding:11px 12px;
@@ -240,6 +358,18 @@
   .upload-box small{ display:block; color:var(--ink-soft); font-size:12px; margin-top:4px; }
   #photo-input{ display:none; }
   .file-list{ margin-top:10px; font-size:12.5px; color:var(--ink-soft); }
+  .gps-btn{
+    width:100%; display:flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--panel-2); border:1px solid var(--line); border-radius:8px;
+    padding:11px 12px; font-family:'Mukta',sans-serif; font-size:13.5px; font-weight:700;
+    color:var(--walnut-2); cursor:pointer;
+  }
+  .gps-btn:active{ background:var(--line); }
+  .gps-btn.gps-added{ background:rgba(44,120,115,0.12); border-color:var(--ok); color:var(--ok); }
+  .gps-status{ font-size:11.5px; color:var(--ink-soft); margin-top:6px; line-height:1.5; }
+  .gps-status.ok{ color:var(--ok); font-weight:600; }
+  .gps-status.err{ color:var(--danger); font-weight:600; }
+
   .form-submit{
     width:100%; background:var(--marigold); color:var(--walnut-2); border:none; border-radius:8px;
     padding:14px; font-weight:700; font-size:15.5px; cursor:pointer; margin-top:6px;
@@ -266,7 +396,7 @@
 
 <div class="topbar">
   <div class="wrap">
-    <span data-en="Serving Swat &amp; Bar Swat districts" data-ur="ضلع سوات اور بر سوات کی خدمت میں">Serving Swat &amp; Bar Swat districts</span>
+    <span data-en="Serving Swat, Dir, Buner, Malakand &amp; Shangla" data-ur="سوات، دیر، بونیر، مالاکنڈ اور شانگلہ کی خدمت میں">Serving Swat, Dir, Buner, Malakand &amp; Shangla</span>
     <div class="topbar-links">
       <a href="#" data-en="Help" data-ur="مدد">Help</a>
       <a href="#">WhatsApp</a>
@@ -277,8 +407,20 @@
 <header>
   <div class="nav">
     <div class="logo">
-      <div class="logo-mark">G</div>
-      <div class="logo-text">Gaari Bazaar<small data-en="Swat &amp; Malakand" data-ur="سوات اور مالاکنڈ">Swat &amp; Malakand</small></div>
+      <div class="logo-mark"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="logoBg" x1="0" y1="0" x2="100" y2="100"><stop offset="0" stop-color="#4a2e1d"/><stop offset="1" stop-color="#2e1b10"/></linearGradient></defs>
+        <circle cx="50" cy="50" r="47" fill="url(#logoBg)" stroke="#c9862e" stroke-width="2.5"/>
+        <line x1="50" y1="27" x2="50" y2="22" stroke="#e3ab54" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="50" cy="20" r="2.4" fill="#e3ab54"/>
+        <path d="M31 69 L31 47 Q31 27 50 27 Q69 27 69 47 L69 69" fill="none" stroke="#e3ab54" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <g fill="#f1e7d4">
+          <path d="M38 57 L41.5 48 Q43 45.5 46.5 45.5 L53.5 45.5 Q57 45.5 58.5 48 L62 57 Z"/>
+          <rect x="34.5" y="57" width="31" height="10" rx="4.5"/>
+          <circle cx="41.5" cy="68" r="4.2" fill="#2e1b10" stroke="#f1e7d4" stroke-width="1.6"/>
+          <circle cx="58.5" cy="68" r="4.2" fill="#2e1b10" stroke="#f1e7d4" stroke-width="1.6"/>
+        </g>
+      </svg></div>
+      <div class="logo-text">Malakand Motors<small data-en="NCP &amp; Used Cars" data-ur="این سی پی اور استعمال شدہ گاڑیاں">NCP &amp; Used Cars</small></div>
     </div>
     <nav class="nav-links">
       <a href="#listings" data-en="Browse" data-ur="دیکھیں">Browse</a>
@@ -288,15 +430,37 @@
     </nav>
     <div class="nav-actions">
       <button class="lang-toggle" onclick="toggleLang()">اردو / EN</button>
-      <a href="#sell" class="btn btn-primary" data-en="+ Sell your car" data-ur="+ گاڑی فروخت کریں" style="display:inline-block;">+ Sell your car</a>
+      <a href="#sell" onclick="openSellForm(event)" class="btn btn-primary sell-trigger" data-en="+ Sell your car" data-ur="+ گاڑی فروخت کریں" style="display:inline-block;">+ Sell your car</a>
     </div>
   </div>
 </header>
 
-<section class="hero" style="padding:0;">
+<section class="hero" style="padding:0;position:relative;overflow:hidden;">
+  <svg class="hero-motif" viewBox="0 0 400 200" preserveAspectRatio="xMaxYMax meet" aria-hidden="true">
+    <g fill="none" stroke="#e3ab54" stroke-width="1.4" opacity="0.22">
+      <!-- distant stupa -->
+      <line x1="60" y1="150" x2="60" y2="115" stroke-width="1"/>
+      <circle cx="60" cy="112" r="3"/>
+      <path d="M40 150 Q40 120 60 118 Q80 120 80 150 Z"/>
+      <line x1="20" y1="150" x2="100" y2="150"/>
+      <!-- main stupa -->
+      <line x1="230" y1="150" x2="230" y2="70" stroke-width="1.6"/>
+      <circle cx="230" cy="66" r="4"/>
+      <circle cx="230" cy="80" r="8" opacity="0.6"/>
+      <rect x="210" y="95" width="40" height="16" rx="2"/>
+      <path d="M180 150 Q180 100 230 96 Q280 100 280 150 Z" stroke-width="1.8"/>
+      <rect x="195" y="150" width="70" height="10"/>
+      <line x1="150" y1="160" x2="310" y2="160"/>
+      <!-- smaller stupa -->
+      <line x1="330" y1="150" x2="330" y2="128" stroke-width="1"/>
+      <circle cx="330" cy="125" r="2.5"/>
+      <path d="M312 150 Q312 130 330 129 Q348 130 348 150 Z"/>
+    </g>
+  </svg>
   <div class="hero-inner wrap">
-    <h1 data-en='Buy and sell cars across <span>Swat</span>' data-ur='<span>سوات</span> بھر میں گاڑیاں خریدیں اور بیچیں'>Buy and sell cars across <span>Swat</span></h1>
-    <p data-en="Search listings from Babuzai to Bahrain. Status is reported by the seller — always confirm documents yourself." data-ur="بابوزئی سے بحرین تک اشتہارات تلاش کریں۔ حیثیت فروخت کنندہ کی جانب سے بتائی جاتی ہے — کاغذات کی خود تصدیق ضرور کریں۔">Search listings from Babuzai to Bahrain. Status is reported by the seller — always confirm documents yourself.</p>
+    <div class="heritage-tag" data-en="Land of ancient Gandhara civilization" data-ur="قدیم تہذیب گندھارا کی سرزمین">Land of ancient Gandhara civilization</div>
+    <h1 data-en='Buy and sell <span>NCP</span> &amp; used cars in Swat' data-ur='سوات میں <span>این سی پی</span> اور استعمال شدہ گاڑیاں خریدیں اور بیچیں'>Buy and sell <span>NCP</span> &amp; used cars in Swat</h1>
+    <p data-en="Search listings across Swat, Dir, Buner, Malakand &amp; Shangla. Status is reported by the seller — always confirm documents yourself." data-ur="سوات، دیر، بونیر، مالاکنڈ اور شانگلہ بھر میں اشتہارات تلاش کریں۔ حیثیت فروخت کنندہ کی جانب سے بتائی جاتی ہے — کاغذات کی خود تصدیق ضرور کریں۔">Search listings across Swat, Dir, Buner, Malakand &amp; Shangla. Status is reported by the seller — always confirm documents yourself.</p>
 
     <div class="search-panel">
       <input type="text" data-en-ph="Search make or model…" data-ur-ph="گاڑی کا نام تلاش کریں…" placeholder="Search make or model…">
@@ -312,6 +476,33 @@
           <option data-en="Matta" data-ur="متہ">Matta</option>
           <option data-en="Khwazakhela" data-ur="خوازہ خیلہ">Khwazakhela</option>
           <option data-en="Bahrain" data-ur="بحرین">Bahrain</option>
+        </optgroup>
+        <optgroup label="Malakand District" data-en-label="Malakand District" data-ur-label="ضلع مالاکنڈ">
+          <option data-en="Batkhela" data-ur="بٹ خیلہ">Batkhela</option>
+          <option data-en="Dargai" data-ur="درگئی">Dargai</option>
+          <option data-en="Malakand" data-ur="مالاکنڈ">Malakand</option>
+        </optgroup>
+        <optgroup label="Buner District" data-en-label="Buner District" data-ur-label="ضلع بونیر">
+          <option data-en="Daggar" data-ur="دگر">Daggar</option>
+          <option data-en="Gagra" data-ur="گگرہ">Gagra</option>
+          <option data-en="Chagharzai" data-ur="چغرزئی">Chagharzai</option>
+          <option data-en="Chamla" data-ur="چملہ">Chamla</option>
+        </optgroup>
+        <optgroup label="Shangla District" data-en-label="Shangla District" data-ur-label="ضلع شانگلہ">
+          <option data-en="Alpuri" data-ur="الپوری">Alpuri</option>
+          <option data-en="Puran" data-ur="پورن">Puran</option>
+          <option data-en="Besham" data-ur="بشام">Besham</option>
+          <option data-en="Chakesar" data-ur="چاکیسر">Chakesar</option>
+        </optgroup>
+        <optgroup label="Lower Dir District" data-en-label="Lower Dir District" data-ur-label="ضلع لوئر دیر">
+          <option data-en="Timergara" data-ur="تیمرگرہ">Timergara</option>
+          <option data-en="Adenzai" data-ur="عدن زئی">Adenzai</option>
+          <option data-en="Lal Qilla" data-ur="لعل قلعہ">Lal Qilla</option>
+        </optgroup>
+        <optgroup label="Upper Dir District" data-en-label="Upper Dir District" data-ur-label="ضلع اپر دیر">
+          <option data-en="Dir" data-ur="دیر">Dir</option>
+          <option data-en="Wari" data-ur="واری">Wari</option>
+          <option data-en="Sharingal" data-ur="شرینگل">Sharingal</option>
         </optgroup>
       </select>
       <select>
@@ -336,11 +527,13 @@
 <div class="stats-strip">
   <div class="wrap">
     <div class="stat"><b>240+</b><span data-en="Active listings" data-ur="فعال اشتہارات">Active listings</span></div>
-    <div class="stat"><b>7</b><span data-en="Tehsils covered" data-ur="تحصیلیں شامل">Tehsils covered</span></div>
+    <div class="stat"><b>7</b><span data-en="Districts covered" data-ur="اضلاع شامل">Districts covered</span></div>
     <div class="stat"><b>Free</b><span data-en="To list, for now" data-ur="فی الحال درج کرنا مفت">To list, for now</span></div>
     <div class="stat"><b>0%</b><span data-en="Commission at launch" data-ur="لانچ پر صفر کمیشن">Commission at launch</span></div>
   </div>
 </div>
+
+<div class="relief-divider"></div>
 
 <section id="listings">
   <div class="wrap">
@@ -353,82 +546,125 @@
     </div>
 
     <div class="grid" id="listings-grid">
-      <div class="card">
-        <div class="card-photo" style="background:linear-gradient(135deg,#2c7873,#4a2e1d);">
-          <span class="status status-custom" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span>
-          <div class="price-tag mono">6.8L</div>
+      <div class="card-wrap">
+        <div class="card">
+          <div class="card-photo" style="background:linear-gradient(135deg,#2c7873,#4a2e1d);">
+            <span class="status status-custom" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span>
+            <div class="price-tag mono">6.8L</div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Suzuki Mehran 2015</div>
+            <div class="card-sub mono" data-en="72,000 km" data-ur="72,000 کلومیٹر">72,000 km</div>
+            <div class="card-foot"><span class="card-area" data-en="Babuzai" data-ur="بابوزئی">Babuzai</span><span class="card-mi">CH-2291</span></div>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="card-title">Suzuki Mehran 2015</div>
-          <div class="card-sub mono" data-en="72,000 km" data-ur="72,000 کلومیٹر">72,000 km</div>
-          <div class="card-foot"><span class="card-area" data-en="Babuzai" data-ur="بابوزئی">Babuzai</span><span class="card-mi">CH-2291</span></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-photo" style="background:linear-gradient(135deg,#c9862e,#4a2e1d);">
-          <span class="status status-profiled" data-en="NCP · Profiled" data-ur="این سی پی · پروفائل شدہ">NCP · Profiled</span>
-          <div class="price-tag mono">21.5L</div>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Toyota Hilux 2012</div>
-          <div class="card-sub mono" data-en="140,000 km" data-ur="140,000 کلومیٹر">140,000 km</div>
-          <div class="card-foot"><span class="card-area" data-en="Kabal" data-ur="کبل">Kabal</span><span class="card-mi">CH-5510</span></div>
+        <div class="card-actions">
+          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Suzuki%20Mehran%202015%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
+          <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
-      <div class="card">
-        <div class="card-photo" style="background:linear-gradient(135deg,#4a2e1d,#2e1b10);">
-          <span class="status status-custom" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span>
-          <div class="price-tag mono">17.9L</div>
+
+      <div class="card-wrap">
+        <div class="card">
+          <div class="card-photo" style="background:linear-gradient(135deg,#c9862e,#4a2e1d);">
+            <span class="status status-profiled" data-en="NCP · Profiled" data-ur="این سی پی · پروفائل شدہ">NCP · Profiled</span>
+            <div class="price-tag mono">21.5L</div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Toyota Hilux 2012</div>
+            <div class="card-sub mono" data-en="140,000 km" data-ur="140,000 کلومیٹر">140,000 km</div>
+            <div class="card-foot"><span class="card-area" data-en="Kabal" data-ur="کبل">Kabal</span><span class="card-mi">CH-5510</span></div>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="card-title">Honda City 2019</div>
-          <div class="card-sub mono" data-en="38,000 km" data-ur="38,000 کلومیٹر">38,000 km</div>
-          <div class="card-foot"><span class="card-area" data-en="Matta" data-ur="متہ">Matta</span><span class="card-mi">CH-9042</span></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-photo" style="background:linear-gradient(135deg,#a13327,#2e1b10);">
-          <span class="status status-unregistered" data-en="NCP · Not registered" data-ur="این سی پی · غیر رجسٹرڈ">NCP · Not registered</span>
-          <div class="price-tag mono">34.0L</div>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Toyota Prado 2010</div>
-          <div class="card-sub mono" data-en="98,000 km" data-ur="98,000 کلومیٹر">98,000 km</div>
-          <div class="card-foot"><span class="card-area" data-en="Khwazakhela" data-ur="خوازہ خیلہ">Khwazakhela</span><span class="card-mi">CH-1187</span></div>
+        <div class="card-actions">
+          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Hilux%202012%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
+          <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
-      <div class="card">
-        <div class="card-photo" style="background:linear-gradient(135deg,#2c7873,#2e1b10);">
-          <span class="status status-profiled" data-en="NCP · Profiled" data-ur="این سی پی · پروفائل شدہ">NCP · Profiled</span>
-          <div class="price-tag mono">9.4L</div>
+
+      <div class="card-wrap">
+        <div class="card">
+          <div class="card-photo" style="background:linear-gradient(135deg,#4a2e1d,#2e1b10);">
+            <span class="status status-custom" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span>
+            <div class="price-tag mono">17.9L</div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Honda City 2019</div>
+            <div class="card-sub mono" data-en="38,000 km" data-ur="38,000 کلومیٹر">38,000 km</div>
+            <div class="card-foot"><span class="card-area" data-en="Matta" data-ur="متہ">Matta</span><span class="card-mi">CH-9042</span></div>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="card-title">Suzuki Bolan 2017</div>
-          <div class="card-sub mono" data-en="55,000 km" data-ur="55,000 کلومیٹر">55,000 km</div>
-          <div class="card-foot"><span class="card-area" data-en="Bahrain" data-ur="بحرین">Bahrain</span><span class="card-mi">CH-3364</span></div>
+        <div class="card-actions">
+          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Honda%20City%202019%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
+          <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
-      <div class="card">
-        <div class="card-photo" style="background:linear-gradient(135deg,#c9862e,#2e1b10);">
-          <span class="status status-custom" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span>
-          <div class="price-tag mono">14.2L</div>
+
+      <div class="card-wrap">
+        <div class="card">
+          <div class="card-photo" style="background:linear-gradient(135deg,#a13327,#2e1b10);">
+            <span class="status status-unregistered" data-en="NCP · Not registered" data-ur="این سی پی · غیر رجسٹرڈ">NCP · Not registered</span>
+            <div class="price-tag mono">34.0L</div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Toyota Prado 2010</div>
+            <div class="card-sub mono" data-en="98,000 km" data-ur="98,000 کلومیٹر">98,000 km</div>
+            <div class="card-foot"><span class="card-area" data-en="Khwazakhela" data-ur="خوازہ خیلہ">Khwazakhela</span><span class="card-mi">CH-1187</span></div>
+          </div>
         </div>
-        <div class="card-body">
-          <div class="card-title">Toyota Corolla 2018</div>
-          <div class="card-sub mono" data-en="61,000 km" data-ur="61,000 کلومیٹر">61,000 km</div>
-          <div class="card-foot"><span class="card-area" data-en="Babuzai" data-ur="بابوزئی">Babuzai</span><span class="card-mi">CH-7723</span></div>
+        <div class="card-actions">
+          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Prado%202010%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
+          <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
+        </div>
+      </div>
+
+      <div class="card-wrap">
+        <div class="card">
+          <div class="card-photo" style="background:linear-gradient(135deg,#2c7873,#2e1b10);">
+            <span class="status status-profiled" data-en="NCP · Profiled" data-ur="این سی پی · پروفائل شدہ">NCP · Profiled</span>
+            <div class="price-tag mono">9.4L</div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Suzuki Bolan 2017</div>
+            <div class="card-sub mono" data-en="55,000 km" data-ur="55,000 کلومیٹر">55,000 km</div>
+            <div class="card-foot"><span class="card-area" data-en="Bahrain" data-ur="بحرین">Bahrain</span><span class="card-mi">CH-3364</span></div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Suzuki%20Bolan%202017%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
+          <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
+        </div>
+      </div>
+
+      <div class="card-wrap">
+        <div class="card">
+          <div class="card-photo" style="background:linear-gradient(135deg,#c9862e,#2e1b10);">
+            <span class="status status-custom" data-en="Custom Paid" data-ur="کسٹم ادا شدہ">Custom Paid</span>
+            <div class="price-tag mono">14.2L</div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Toyota Corolla 2018</div>
+            <div class="card-sub mono" data-en="61,000 km" data-ur="61,000 کلومیٹر">61,000 km</div>
+            <div class="card-foot"><span class="card-area" data-en="Babuzai" data-ur="بابوزئی">Babuzai</span><span class="card-mi">CH-7723</span></div>
+          </div>
+        </div>
+        <div class="card-actions">
+          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Corolla%202018%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
+          <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<div class="relief-divider"></div>
+
 <section class="how-panel" id="how">
   <div class="wrap">
     <div class="section-head">
       <div>
         <h2 data-en="How it works" data-ur="یہ کیسے کام کرتا ہے">How it works</h2>
-        <p data-en="Gaari Bazaar connects buyers and sellers directly — that's it." data-ur="گاڑی بازار صرف خریداروں اور فروخت کنندگان کو ملاتا ہے — بس۔">Gaari Bazaar connects buyers and sellers directly — that's it.</p>
+        <p data-en="Malakand Motors connects buyers and sellers directly — that's it." data-ur="ملاکنڈ موٹرز صرف خریداروں اور فروخت کنندگان کو ملاتا ہے — بس۔">Malakand Motors connects buyers and sellers directly — that's it.</p>
       </div>
     </div>
     <div class="steps">
@@ -451,12 +687,12 @@
 
     <div class="disclaimer">
       <span class="ic">ⓘ</span>
-      <span data-en="Gaari Bazaar is a listing platform only. We do not verify registration status, documents, or ownership — always confirm these yourself before any payment." data-ur="گاڑی بازار صرف ایک اشتہاری پلیٹ فارم ہے۔ ہم رجسٹریشن کی حیثیت، کاغذات یا ملکیت کی تصدیق نہیں کرتے — ادائیگی سے پہلے خود تصدیق ضرور کریں۔">Gaari Bazaar is a listing platform only. We do not verify registration status, documents, or ownership — always confirm these yourself before any payment.</span>
+      <span data-en="Malakand Motors is a listing platform only. We do not verify registration status, documents, or ownership — always confirm these yourself before any payment." data-ur="ملاکنڈ موٹرز صرف ایک اشتہاری پلیٹ فارم ہے۔ ہم رجسٹریشن کی حیثیت، کاغذات یا ملکیت کی تصدیق نہیں کرتے — ادائیگی سے پہلے خود تصدیق ضرور کریں۔">Malakand Motors is a listing platform only. We do not verify registration status, documents, or ownership — always confirm these yourself before any payment.</span>
     </div>
   </div>
 </section>
 
-<section id="sell">
+<section id="sell" class="hidden">
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -471,10 +707,12 @@
         <div class="field">
           <label data-en="Your name" data-ur="آپ کا نام">Your name</label>
           <input type="text" id="f-name" required data-en-ph="e.g. Saeed Ullah" data-ur-ph="مثلاً سعید اللہ" placeholder="e.g. Saeed Ullah">
+          <span class="field-hint" id="hint-f-name"></span>
         </div>
         <div class="field">
           <label data-en="WhatsApp / mobile number" data-ur="واٹس ایپ / موبائل نمبر">WhatsApp / mobile number</label>
           <input type="tel" id="f-mobile" required data-en-ph="03XX-XXXXXXX" data-ur-ph="03XX-XXXXXXX" placeholder="03XX-XXXXXXX">
+          <span class="field-hint" id="hint-f-mobile"></span>
         </div>
       </div>
 
@@ -482,14 +720,17 @@
         <div class="field">
           <label data-en="Make" data-ur="کمپنی">Make</label>
           <input type="text" id="f-make" required data-en-ph="e.g. Toyota" data-ur-ph="مثلاً ٹویوٹا" placeholder="e.g. Toyota">
+          <span class="field-hint" id="hint-f-make"></span>
         </div>
         <div class="field">
           <label data-en="Model" data-ur="ماڈل">Model</label>
           <input type="text" id="f-model" required data-en-ph="e.g. Corolla" data-ur-ph="مثلاً کرولا" placeholder="e.g. Corolla">
+          <span class="field-hint" id="hint-f-model"></span>
         </div>
         <div class="field">
           <label data-en="Year" data-ur="سال">Year</label>
           <input type="number" id="f-year" required min="1990" max="2026" data-en-ph="e.g. 2018" data-ur-ph="مثلاً 2018" placeholder="e.g. 2018">
+          <span class="field-hint" id="hint-f-year"></span>
         </div>
       </div>
 
@@ -497,10 +738,12 @@
         <div class="field">
           <label data-en="Mileage (km)" data-ur="مائلیج (کلومیٹر)">Mileage (km)</label>
           <input type="number" id="f-mileage" required data-en-ph="e.g. 61000" data-ur-ph="مثلاً 61000" placeholder="e.g. 61000">
+          <span class="field-hint" id="hint-f-mileage"></span>
         </div>
         <div class="field">
           <label data-en="Price (PKR)" data-ur="قیمت (روپے)">Price (PKR)</label>
           <input type="number" id="f-price" required data-en-ph="e.g. 1420000" data-ur-ph="مثلاً 1420000" placeholder="e.g. 1420000">
+          <span class="field-hint" id="hint-f-price"></span>
         </div>
         <div class="field">
           <label data-en="Transmission" data-ur="ٹرانسمیشن">Transmission</label>
@@ -526,11 +769,53 @@
               <option data-en="Khwazakhela" data-ur="خوازہ خیلہ">Khwazakhela</option>
               <option data-en="Bahrain" data-ur="بحرین">Bahrain</option>
             </optgroup>
+            <optgroup label="Malakand District" data-en-label="Malakand District" data-ur-label="ضلع مالاکنڈ">
+              <option data-en="Batkhela" data-ur="بٹ خیلہ">Batkhela</option>
+              <option data-en="Dargai" data-ur="درگئی">Dargai</option>
+              <option data-en="Malakand" data-ur="مالاکنڈ">Malakand</option>
+            </optgroup>
+            <optgroup label="Buner District" data-en-label="Buner District" data-ur-label="ضلع بونیر">
+              <option data-en="Daggar" data-ur="دگر">Daggar</option>
+              <option data-en="Gagra" data-ur="گگرہ">Gagra</option>
+              <option data-en="Chagharzai" data-ur="چغرزئی">Chagharzai</option>
+              <option data-en="Chamla" data-ur="چملہ">Chamla</option>
+            </optgroup>
+            <optgroup label="Shangla District" data-en-label="Shangla District" data-ur-label="ضلع شانگلہ">
+              <option data-en="Alpuri" data-ur="الپوری">Alpuri</option>
+              <option data-en="Puran" data-ur="پورن">Puran</option>
+              <option data-en="Besham" data-ur="بشام">Besham</option>
+              <option data-en="Chakesar" data-ur="چاکیسر">Chakesar</option>
+            </optgroup>
+            <optgroup label="Lower Dir District" data-en-label="Lower Dir District" data-ur-label="ضلع لوئر دیر">
+              <option data-en="Timergara" data-ur="تیمرگرہ">Timergara</option>
+              <option data-en="Adenzai" data-ur="عدن زئی">Adenzai</option>
+              <option data-en="Lal Qilla" data-ur="لعل قلعہ">Lal Qilla</option>
+            </optgroup>
+            <optgroup label="Upper Dir District" data-en-label="Upper Dir District" data-ur-label="ضلع اپر دیر">
+              <option data-en="Dir" data-ur="دیر">Dir</option>
+              <option data-en="Wari" data-ur="واری">Wari</option>
+              <option data-en="Sharingal" data-ur="شرینگل">Sharingal</option>
+            </optgroup>
           </select>
         </div>
         <div class="field">
           <label data-en="Chassis number" data-ur="چیسس نمبر"><span>Chassis number</span> <span class="hint" data-en="(optional)" data-ur="(اختیاری)">(optional)</span></label>
           <input type="text" id="f-chassis" data-en-ph="e.g. CH-7723" data-ur-ph="مثلاً CH-7723" placeholder="e.g. CH-7723">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label data-en="Village / locality" data-ur="گاؤں / محلہ"><span>Village / locality</span> <span class="hint" data-en="(optional)" data-ur="(اختیاری)">(optional)</span></label>
+          <input type="text" id="f-village" data-en-ph="e.g. Odigram, Shakardara…" data-ur-ph="مثلاً اودیگرام، شکردرہ…" placeholder="e.g. Odigram, Shakardara…">
+        </div>
+        <div class="field">
+          <label data-en="Exact location" data-ur="درست مقام">Exact location</label>
+          <button type="button" id="gps-btn" class="gps-btn" onclick="captureGPS()">
+            <span>📍</span>
+            <span id="gps-btn-label" data-en="Add my current location" data-ur="میرا موجودہ مقام شامل کریں">Add my current location</span>
+          </button>
+          <div class="gps-status" id="gps-status" data-en="Optional — only added if you tap this button. Helps buyers find the car more easily." data-ur="اختیاری — صرف اس بٹن کو دبانے پر شامل ہوتا ہے۔ خریداروں کو گاڑی تلاش کرنے میں مدد دیتا ہے۔">Optional — only added if you tap this button. Helps buyers find the car more easily.</div>
         </div>
       </div>
 
@@ -579,8 +864,28 @@
         <h2 data-en="Selling a car in Swat?" data-ur="سوات میں گاڑی بیچ رہے ہیں؟">Selling a car in Swat?</h2>
         <p data-en="List it free in under 3 minutes. Send photos over WhatsApp and we'll help you write it up." data-ur="3 منٹ سے کم میں مفت درج کریں۔ واٹس ایپ پر تصاویر بھیجیں، ہم اشتہار لکھنے میں مدد کریں گے۔">List it free in under 3 minutes. Send photos over WhatsApp and we'll help you write it up.</p>
       </div>
-      <a href="#sell" class="btn btn-primary" style="padding:13px 26px;font-size:15px;display:inline-block;" data-en="Start listing" data-ur="اشتہار شروع کریں">Start listing</a>
+      <a href="#sell" onclick="openSellForm(event)" class="btn btn-primary sell-trigger" style="padding:13px 26px;font-size:15px;display:inline-block;" data-en="Start listing" data-ur="اشتہار شروع کریں">Start listing</a>
     </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2 data-en="NCP cars by district" data-ur="ضلع کے لحاظ سے این سی پی گاڑیاں">NCP cars by district</h2>
+        <p data-en="Malakand Motors lists NCP and custom-paid cars across every district of Malakand Division." data-ur="ملاکنڈ موٹرز ڈویژن مالاکنڈ کے ہر ضلع میں این سی پی اور کسٹم ادا شدہ گاڑیاں درج کرتا ہے۔">Malakand Motors lists NCP and custom-paid cars across every district of Malakand Division.</p>
+      </div>
+    </div>
+    <div class="seo-links">
+      <a href="#listings" data-en="NCP cars in Swat" data-ur="سوات میں این سی پی گاڑیاں">NCP cars in Swat</a>
+      <a href="#listings" data-en="NCP cars in Dir" data-ur="دیر میں این سی پی گاڑیاں">NCP cars in Dir</a>
+      <a href="#listings" data-en="NCP cars in Buner" data-ur="بونیر میں این سی پی گاڑیاں">NCP cars in Buner</a>
+      <a href="#listings" data-en="NCP cars in Malakand" data-ur="مالاکنڈ میں این سی پی گاڑیاں">NCP cars in Malakand</a>
+      <a href="#listings" data-en="NCP cars in Shangla" data-ur="شانگلہ میں این سی پی گاڑیاں">NCP cars in Shangla</a>
+      <a href="#listings" data-en="Used cars in Mingora" data-ur="مینگورہ میں استعمال شدہ گاڑیاں">Used cars in Mingora</a>
+    </div>
+    <p class="seo-note" data-en="Searching for NCP cars in Swat, NCP cars in Dir, or NCP cars in Malakand? Every listing on Malakand Motors shows the seller-reported registration status upfront — custom paid, NCP profiled, or unregistered — so you know what you're looking at before you contact the seller." data-ur="سوات میں این سی پی گاڑیاں، دیر میں این سی پی گاڑیاں، یا مالاکنڈ میں این سی پی گاڑیاں تلاش کر رہے ہیں؟ ملاکنڈ موٹرز پر ہر اشتہار میں فروخت کنندہ کی بتائی گئی رجسٹریشن کی حیثیت پہلے سے دکھائی جاتی ہے — کسٹم ادا شدہ، این سی پی پروفائل شدہ، یا غیر رجسٹرڈ — تاکہ رابطہ کرنے سے پہلے آپ کو صحیح معلومات ہوں۔">Searching for NCP cars in Swat, NCP cars in Dir, or NCP cars in Malakand? Every listing on Malakand Motors shows the seller-reported registration status upfront — custom paid, NCP profiled, or unregistered — so you know what you're looking at before you contact the seller.</p>
   </div>
 </section>
 
@@ -588,10 +893,22 @@
   <div class="wrap foot-grid">
     <div>
       <div class="logo" style="margin-bottom:12px;">
-        <div class="logo-mark">G</div>
-        <div class="logo-text">Gaari Bazaar</div>
+        <div class="logo-mark"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="logoBg" x1="0" y1="0" x2="100" y2="100"><stop offset="0" stop-color="#4a2e1d"/><stop offset="1" stop-color="#2e1b10"/></linearGradient></defs>
+        <circle cx="50" cy="50" r="47" fill="url(#logoBg)" stroke="#c9862e" stroke-width="2.5"/>
+        <line x1="50" y1="27" x2="50" y2="22" stroke="#e3ab54" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="50" cy="20" r="2.4" fill="#e3ab54"/>
+        <path d="M31 69 L31 47 Q31 27 50 27 Q69 27 69 47 L69 69" fill="none" stroke="#e3ab54" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <g fill="#f1e7d4">
+          <path d="M38 57 L41.5 48 Q43 45.5 46.5 45.5 L53.5 45.5 Q57 45.5 58.5 48 L62 57 Z"/>
+          <rect x="34.5" y="57" width="31" height="10" rx="4.5"/>
+          <circle cx="41.5" cy="68" r="4.2" fill="#2e1b10" stroke="#f1e7d4" stroke-width="1.6"/>
+          <circle cx="58.5" cy="68" r="4.2" fill="#2e1b10" stroke="#f1e7d4" stroke-width="1.6"/>
+        </g>
+      </svg></div>
+        <div class="logo-text">Malakand Motors</div>
       </div>
-      <p class="foot-note" data-en="An independent marketplace for Swat &amp; Bar Swat districts — not affiliated with Parrai Tanzeem." data-ur="سوات اور بر سوات کے لیے ایک آزاد مارکیٹ پلیس — پارڑی تنظیم سے غیر منسلک۔">An independent marketplace for Swat &amp; Bar Swat districts — not affiliated with Parrai Tanzeem.</p>
+      <p class="foot-note" data-en="An independent marketplace for Malakand Division — Swat, Dir, Buner, Malakand &amp; Shangla. Not affiliated with Parrai Tanzeem." data-ur="ڈویژن مالاکنڈ کے لیے ایک آزاد مارکیٹ پلیس — سوات، دیر، بونیر، مالاکنڈ اور شانگلہ۔ پارڑی تنظیم سے غیر منسلک۔">An independent marketplace for Malakand Division — Swat, Dir, Buner, Malakand &amp; Shangla. Not affiliated with Parrai Tanzeem.</p>
     </div>
     <div class="foot-cols">
       <div class="foot-col">
@@ -612,10 +929,104 @@
       </div>
     </div>
   </div>
-  <div class="foot-bottom" data-en="© 2026 Gaari Bazaar. All listings are seller-reported." data-ur="© 2026 گاڑی بازار۔ تمام اشتہارات فروخت کنندہ کی جانب سے بتائے گئے ہیں۔">© 2026 Gaari Bazaar. All listings are seller-reported.</div>
+  <div class="foot-bottom" data-en="© 2026 Malakand Motors. All listings are seller-reported." data-ur="© 2026 ملاکنڈ موٹرز۔ تمام اشتہارات فروخت کنندہ کی جانب سے بتائے گئے ہیں۔">© 2026 Malakand Motors. All listings are seller-reported.</div>
 </footer>
 
+<nav class="bottom-nav">
+  <a href="#" class="active"><span class="bn-ic">🏠</span><span data-en="Home" data-ur="ہوم">Home</span></a>
+  <a href="#listings"><span class="bn-ic">🔍</span><span data-en="Browse" data-ur="تلاش">Browse</span></a>
+  <a href="#sell" onclick="openSellForm(event)" class="bn-sell sell-trigger"><span class="bn-ic">＋</span><span data-en="Sell" data-ur="فروخت">Sell</span></a>
+  <a href="#how"><span class="bn-ic">ℹ️</span><span data-en="How it works" data-ur="طریقہ کار">Info</span></a>
+  <a href="https://wa.me/923001234567"><span class="bn-ic">💬</span><span data-en="Chat" data-ur="چیٹ">Chat</span></a>
+</nav>
+
 <script>
+let capturedLat = null;
+let capturedLng = null;
+
+function captureGPS(){
+  const btn = document.getElementById('gps-btn');
+  const label = document.getElementById('gps-btn-label');
+  const status = document.getElementById('gps-status');
+
+  if(!navigator.geolocation){
+    status.className = 'gps-status err';
+    status.textContent = isUrdu ? 'یہ براؤزر مقام کی سہولت فراہم نہیں کرتا۔' : 'Your browser doesn\'t support location.';
+    return;
+  }
+
+  status.className = 'gps-status';
+  status.textContent = isUrdu ? 'مقام حاصل کیا جا رہا ہے…' : 'Getting your location…';
+
+  navigator.geolocation.getCurrentPosition(
+    function(pos){
+      capturedLat = pos.coords.latitude;
+      capturedLng = pos.coords.longitude;
+      btn.classList.add('gps-added');
+      label.textContent = isUrdu ? 'مقام شامل کر دیا گیا ✓' : 'Location added ✓';
+      status.className = 'gps-status ok';
+      status.textContent = isUrdu ? 'آپ کا موجودہ مقام اس اشتہار میں شامل کر دیا گیا ہے۔' : 'Your current location has been added to this listing.';
+    },
+    function(err){
+      status.className = 'gps-status err';
+      status.textContent = isUrdu
+        ? 'مقام حاصل نہیں ہو سکا۔ یہ لازمی نہیں — بلا جھجک آگے بڑھیں۔'
+        : 'Couldn\'t get your location. This is optional — feel free to continue without it.';
+    },
+    { enableHighAccuracy:true, timeout:10000 }
+  );
+}
+
+function openSellForm(e){
+  if(e) e.preventDefault();
+  document.getElementById('sell').classList.remove('hidden');
+  document.getElementById('sell').scrollIntoView({ behavior:'smooth' });
+}
+
+document.addEventListener('click', function(e){
+  const sellSection = document.getElementById('sell');
+  if(sellSection.classList.contains('hidden')) return;
+  if(sellSection.contains(e.target)) return;
+  if(e.target.closest('.sell-trigger')) return;
+  sellSection.classList.add('hidden');
+});
+
+const fieldValidators = {
+  'f-name': v => v.trim().length >= 2
+    ? { ok:true, en:'✓ Looks good', ur:'✓ ٹھیک ہے' }
+    : { ok:false, en:'Enter your full name', ur:'اپنا پورا نام درج کریں' },
+  'f-mobile': v => /^03\d{9}$/.test(v.replace(/[\s-]/g,''))
+    ? { ok:true, en:'✓ Valid number', ur:'✓ نمبر درست ہے' }
+    : { ok:false, en:'Enter as 03XXXXXXXXX (11 digits)', ur:'03XXXXXXXXX کی صورت میں درج کریں (11 ہندسے)' },
+  'f-make': v => v.trim().length >= 2
+    ? { ok:true, en:'✓ Looks good', ur:'✓ ٹھیک ہے' }
+    : { ok:false, en:'Enter the car\'s make', ur:'گاڑی کی کمپنی درج کریں' },
+  'f-model': v => v.trim().length >= 1
+    ? { ok:true, en:'✓ Looks good', ur:'✓ ٹھیک ہے' }
+    : { ok:false, en:'Enter the model', ur:'ماڈل درج کریں' },
+  'f-year': v => (v && parseInt(v) >= 1990 && parseInt(v) <= 2026)
+    ? { ok:true, en:'✓ Valid year', ur:'✓ سال درست ہے' }
+    : { ok:false, en:'Enter a year between 1990–2026', ur:'1990 سے 2026 کے درمیان سال درج کریں' },
+  'f-mileage': v => (v && parseInt(v) >= 0)
+    ? { ok:true, en:'✓ Looks good', ur:'✓ ٹھیک ہے' }
+    : { ok:false, en:'Enter mileage in km', ur:'مائلیج کلومیٹر میں درج کریں' },
+  'f-price': v => (v && parseFloat(v) > 0)
+    ? { ok:true, en:'✓ Looks good', ur:'✓ ٹھیک ہے' }
+    : { ok:false, en:'Enter a valid price', ur:'درست قیمت درج کریں' },
+};
+
+Object.keys(fieldValidators).forEach(id => {
+  const input = document.getElementById(id);
+  const hint = document.getElementById('hint-' + id);
+  if(!input || !hint) return;
+  input.addEventListener('input', () => {
+    if(input.value.trim() === ''){ hint.textContent = ''; hint.className = 'field-hint'; return; }
+    const result = fieldValidators[id](input.value);
+    hint.textContent = isUrdu ? result.ur : result.en;
+    hint.className = 'field-hint ' + (result.ok ? 'ok' : 'err');
+  });
+});
+
 let isUrdu = false;
 function toggleLang(){
   isUrdu = !isUrdu;
@@ -682,19 +1093,31 @@ async function loadApprovedListings(){
   grid.innerHTML = '';
   data.forEach(row => {
     const photo = (row.photo_urls && row.photo_urls[0]) ? `background-image:url('${row.photo_urls[0]}');background-size:cover;background-position:center;` : 'background:linear-gradient(135deg,#2c7873,#4a2e1d);';
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <div class="card-photo" style="${photo}">
-        <span class="status ${statusBadgeClass(row.reg_status)}">${statusBadgeText(row.reg_status)}</span>
-        <div class="price-tag mono">${Number(row.price).toLocaleString()}</div>
+    const sellerPhone = (row.seller_mobile || '').replace(/[^0-9]/g,''); // digits only, e.g. 03001234567
+    const intlPhone = sellerPhone.startsWith('0') ? '92' + sellerPhone.slice(1) : sellerPhone; // 03XXXXXXXXX -> 923XXXXXXXXX
+    const waText = encodeURIComponent(`Hi, I'm interested in your ${row.make} ${row.model} ${row.year} on Malakand Motors.`);
+    const areaLabel = row.village ? `${row.area || ''} · ${row.village}` : (row.area || '');
+    const hasLocation = row.latitude && row.longitude;
+    const wrap = document.createElement('div');
+    wrap.className = 'card-wrap';
+    wrap.innerHTML = `
+      <div class="card">
+        <div class="card-photo" style="${photo}">
+          <span class="status ${statusBadgeClass(row.reg_status)}">${statusBadgeText(row.reg_status)}</span>
+          <div class="price-tag mono">${Number(row.price).toLocaleString()}</div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">${row.make} ${row.model} ${row.year}</div>
+          <div class="card-sub mono">${Number(row.mileage).toLocaleString()} km</div>
+          <div class="card-foot"><span class="card-area">${areaLabel}</span><span class="card-mi">${row.chassis || ''}</span></div>
+        </div>
       </div>
-      <div class="card-body">
-        <div class="card-title">${row.make} ${row.model} ${row.year}</div>
-        <div class="card-sub mono">${Number(row.mileage).toLocaleString()} km</div>
-        <div class="card-foot"><span class="card-area">${row.area || ''}</span><span class="card-mi">${row.chassis || ''}</span></div>
+      <div class="card-actions">
+        ${hasLocation ? `<a class="act-call" target="_blank" href="https://maps.google.com/?q=${row.latitude},${row.longitude}"><span>📍</span><span>${isUrdu ? 'مقام' : 'Map'}</span></a>` : ''}
+        <a class="act-whatsapp" target="_blank" href="https://wa.me/${intlPhone}?text=${waText}"><span>💬</span><span>${isUrdu ? 'واٹس ایپ' : 'WhatsApp'}</span></a>
+        <a class="act-call" href="tel:+${intlPhone}"><span>📞</span><span>${isUrdu ? 'کال کریں' : 'Call'}</span></a>
       </div>`;
-    grid.appendChild(card);
+    grid.appendChild(wrap);
   });
 }
 loadApprovedListings();
@@ -713,6 +1136,7 @@ document.getElementById('listing-form').addEventListener('submit', async functio
   const areaSelect = document.getElementById('f-area');
   const area = areaSelect.options[areaSelect.selectedIndex].text;
   const chassis = document.getElementById('f-chassis').value.trim();
+  const village = document.getElementById('f-village').value.trim();
   const regStatusInput = document.querySelector('input[name="status"]:checked');
   const regStatus = regStatusInput.value;
   const regStatusLabel = regStatusInput.nextElementSibling.textContent;
@@ -730,7 +1154,7 @@ document.getElementById('listing-form').addEventListener('submit', async functio
   // Fallback: Supabase not set up yet — use WhatsApp so submissions still work today
   if(!supabaseConfigured){
     const lines = [
-      "🚗 New listing — Gaari Bazaar",
+      "🚗 New listing — Malakand Motors",
       "",
       `Seller: ${name} (${mobile})`,
       `Car: ${make} ${model} ${year}`,
@@ -738,9 +1162,11 @@ document.getElementById('listing-form').addEventListener('submit', async functio
       `Price: PKR ${price}`,
       `Transmission: ${transmission}`,
       `Area: ${area}`,
+      village ? `Village: ${village}` : null,
       `Status: ${regStatusLabel}`,
       chassis ? `Chassis #: ${chassis}` : null,
       desc ? `Notes: ${desc}` : null,
+      (capturedLat && capturedLng) ? `Location: https://maps.google.com/?q=${capturedLat},${capturedLng}` : null,
       "",
       "📷 Photos attached below."
     ].filter(Boolean).join("\n");
@@ -776,9 +1202,12 @@ document.getElementById('listing-form').addEventListener('submit', async functio
       price: parseFloat(price),
       transmission,
       area,
+      village,
       chassis,
       reg_status: regStatus,
       description: desc,
+      latitude: capturedLat,
+      longitude: capturedLng,
       photo_urls: photoUrls
     });
 
@@ -790,6 +1219,13 @@ document.getElementById('listing-form').addEventListener('submit', async functio
       : 'Thanks! Your listing has been submitted for review.';
     document.getElementById('listing-form').reset();
     document.getElementById('file-list').textContent = '';
+    capturedLat = null;
+    capturedLng = null;
+    const gpsBtn = document.getElementById('gps-btn');
+    gpsBtn.classList.remove('gps-added');
+    document.getElementById('gps-btn-label').textContent = isUrdu ? 'میرا موجودہ مقام شامل کریں' : 'Add my current location';
+    document.getElementById('gps-status').className = 'gps-status';
+    document.getElementById('gps-status').textContent = isUrdu ? 'اختیاری — صرف اس بٹن کو دبانے پر شامل ہوتا ہے۔ خریداروں کو گاڑی تلاش کرنے میں مدد دیتا ہے۔' : 'Optional — only added if you tap this button. Helps buyers find the car more easily.';
   }catch(err){
     statusEl.style.color = 'var(--danger)';
     statusEl.textContent = isUrdu ? 'کچھ غلط ہو گیا، دوبارہ کوشش کریں۔' : 'Something went wrong — please try again.';
