@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaari Bazaar — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Mukta:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root{
+    --walnut:#4a2e1d; --walnut-2:#2e1b10; --turquoise:#2c7873;
+    --marigold:#c9862e; --bg:#faf8f3; --panel:#fff; --panel-2:#f4f0e6;
+    --ink:#221a12; --ink-soft:#6b5744; --line:#e5ddc9;
+    --danger:#a13327; --ok:#2c7873; --warn:#b3781d; --radius:12px;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:'Mukta',sans-serif; }
+  h1,h2{ font-family:'Cinzel',serif; color:var(--walnut-2); margin:0; }
+  .mono{ font-family:'IBM Plex Mono',monospace; }
+  .wrap{ max-width:1000px; margin:0 auto; padding:0 20px; }
+
+  header{ background:var(--walnut-2); color:#fbf7ee; padding:18px 0; }
+  header .wrap{ display:flex; justify-content:space-between; align-items:center; }
+  header h1{ color:#fbf7ee; font-size:20px; }
+  header small{ color:#c9baa2; display:block; font-size:12px; }
+  #logout-btn{ background:transparent; border:1px solid rgba(255,255,255,0.3); color:#fbf7ee; padding:8px 14px; border-radius:8px; cursor:pointer; font-size:13px; display:none; }
+
+  /* ---- login ---- */
+  #login-screen{ max-width:380px; margin:80px auto; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:30px; }
+  #login-screen h2{ font-size:20px; margin-bottom:6px; }
+  #login-screen p{ color:var(--ink-soft); font-size:13.5px; margin:0 0 20px; }
+  #login-screen input{ width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:8px; background:var(--panel-2); font-size:14.5px; margin-bottom:12px; font-family:'Mukta',sans-serif; }
+  #login-screen button{ width:100%; padding:12px; border:none; border-radius:8px; background:var(--marigold); color:var(--walnut-2); font-weight:700; font-size:15px; cursor:pointer; }
+  #login-error{ color:var(--danger); font-size:13px; margin-top:10px; display:none; }
+
+  /* ---- dashboard ---- */
+  #dashboard{ display:none; padding:28px 0 60px; }
+  .tabs{ display:flex; gap:8px; margin-bottom:20px; }
+  .tab{ padding:9px 16px; border-radius:999px; font-size:13.5px; font-weight:700; cursor:pointer; background:var(--panel); border:1px solid var(--line); color:var(--ink-soft); }
+  .tab.active{ background:var(--walnut-2); color:#fbf7ee; border-color:var(--walnut-2); }
+  .count{ background:var(--marigold); color:var(--walnut-2); border-radius:999px; padding:1px 7px; font-size:11px; margin-left:6px; }
+
+  .empty{ text-align:center; color:var(--ink-soft); padding:50px 0; font-size:14.5px; }
+
+  .listing-card{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px; margin-bottom:16px; }
+  .lc-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; }
+  .lc-title{ font-weight:700; font-size:17px; }
+  .lc-meta{ font-size:13px; color:var(--ink-soft); margin-top:3px; }
+  .lc-price{ font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:17px; color:var(--walnut-2); }
+  .lc-badges{ display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+  .badge{ font-size:11px; font-weight:700; padding:4px 9px; border-radius:6px; color:#fff; }
+  .b-pending{ background:var(--warn); }
+  .b-approved{ background:var(--ok); }
+  .b-rejected{ background:var(--danger); }
+  .b-reg{ background:var(--panel-2); color:var(--ink-soft); }
+
+  .lc-photos{ display:flex; gap:8px; margin-top:12px; overflow-x:auto; }
+  .lc-photos img{ height:80px; width:110px; object-fit:cover; border-radius:8px; border:1px solid var(--line); }
+
+  .lc-desc{ font-size:13.5px; color:var(--ink-soft); margin-top:10px; line-height:1.5; }
+
+  .lc-actions{ display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+  .lc-actions button{ border:none; border-radius:8px; padding:9px 16px; font-size:13.5px; font-weight:700; cursor:pointer; }
+  .btn-approve{ background:var(--ok); color:#fff; }
+  .btn-reject{ background:var(--danger); color:#fff; }
+  .btn-edit{ background:var(--panel-2); color:var(--ink); border:1px solid var(--line) !important; }
+  .btn-delete{ background:transparent; color:var(--danger); border:1px solid var(--danger) !important; }
+
+  .edit-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; }
+  .edit-grid input, .edit-grid select, .edit-grid textarea{ padding:9px 10px; border:1px solid var(--line); border-radius:7px; font-size:13.5px; font-family:'Mukta',sans-serif; background:var(--panel-2); }
+  .edit-grid textarea{ grid-column:1/-1; min-height:60px; }
+  .edit-grid label{ font-size:11.5px; font-weight:700; color:var(--ink-soft); display:block; margin-bottom:3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div>
+      <h1>Gaari Bazaar — Admin</h1>
+      <small>Review, approve, or edit listings before they go live</small>
+    </div>
+    <button id="logout-btn" onclick="logout()">Log out</button>
+  </div>
+</header>
+
+<div id="login-screen">
+  <h2>Admin login</h2>
+  <p>Use the email &amp; password you created in Supabase → Authentication → Users.</p>
+  <input type="email" id="login-email" placeholder="admin@example.com">
+  <input type="password" id="login-password" placeholder="Password">
+  <button onclick="login()">Log in</button>
+  <div id="login-error">Incorrect email or password.</div>
+</div>
+
+<div id="dashboard" class="wrap">
+  <div class="tabs">
+    <div class="tab active" data-tab="pending" onclick="switchTab('pending')">Pending <span class="count" id="count-pending">0</span></div>
+    <div class="tab" data-tab="approved" onclick="switchTab('approved')">Approved <span class="count" id="count-approved">0</span></div>
+    <div class="tab" data-tab="rejected" onclick="switchTab('rejected')">Rejected <span class="count" id="count-rejected">0</span></div>
+  </div>
+  <div id="listing-container"></div>
+</div>
+
+<script>
+// ============================================================
+// Fill these in — same values as in index.html
+// ============================================================
+const SUPABASE_URL = "https://oaldjhlllwacpwcqrspi.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_ahnp3jBYRz_nuINiNRF_pQ_0r-rs8k2";
+
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let allListings = [];
+let activeTab = 'pending';
+
+async function login(){
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+  if(error){
+    document.getElementById('login-error').style.display = 'block';
+    return;
+  }
+  showDashboard();
+}
+
+async function logout(){
+  await supabaseClient.auth.signOut();
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'block';
+  document.getElementById('logout-btn').style.display = 'none';
+}
+
+async function showDashboard(){
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('logout-btn').style.display = 'inline-block';
+  await loadListings();
+}
+
+async function loadListings(){
+  const { data, error } = await supabaseClient
+    .from('listings')
+    .select('*')
+    .order('created_at', { ascending: false });
+  if(error){ console.error(error); return; }
+  allListings = data || [];
+  renderCounts();
+  renderTab();
+}
+
+function renderCounts(){
+  document.getElementById('count-pending').textContent = allListings.filter(l => l.status === 'pending').length;
+  document.getElementById('count-approved').textContent = allListings.filter(l => l.status === 'approved').length;
+  document.getElementById('count-rejected').textContent = allListings.filter(l => l.status === 'rejected').length;
+}
+
+function switchTab(tab){
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  renderTab();
+}
+
+function badgeForStatus(s){
+  if(s === 'pending') return '<span class="badge b-pending">Pending</span>';
+  if(s === 'approved') return '<span class="badge b-approved">Approved</span>';
+  return '<span class="badge b-rejected">Rejected</span>';
+}
+function labelForReg(r){
+  if(r === 'Custom Paid') return 'Custom paid';
+  if(r === 'NCP - Profiled') return 'NCP — profiled';
+  return 'NCP — not registered';
+}
+
+function renderTab(){
+  const container = document.getElementById('listing-container');
+  const items = allListings.filter(l => l.status === activeTab);
+  if(items.length === 0){
+    container.innerHTML = `<div class="empty">No ${activeTab} listings.</div>`;
+    return;
+  }
+  container.innerHTML = items.map(l => listingCardHTML(l)).join('');
+}
+
+function listingCardHTML(l){
+  const photos = (l.photo_urls || []).map(u => `<img src="${u}">`).join('');
+  return `
+  <div class="listing-card" id="card-${l.id}">
+    <div class="lc-top">
+      <div>
+        <div class="lc-title">${l.make} ${l.model} ${l.year}</div>
+        <div class="lc-meta">${l.seller_name} · ${l.seller_mobile} · ${l.area || '—'}</div>
+        <div class="lc-badges">
+          ${badgeForStatus(l.status)}
+          <span class="badge b-reg">${labelForReg(l.reg_status)}</span>
+          <span class="badge b-reg mono">${Number(l.mileage).toLocaleString()} km</span>
+          <span class="badge b-reg mono">${l.chassis || 'no chassis #'}</span>
+        </div>
+      </div>
+      <div class="lc-price mono">PKR ${Number(l.price).toLocaleString()}</div>
+    </div>
+    ${photos ? `<div class="lc-photos">${photos}</div>` : ''}
+    ${l.description ? `<div class="lc-desc">${l.description}</div>` : ''}
+    <div class="lc-actions">
+      ${l.status !== 'approved' ? `<button class="btn-approve" onclick="setStatus('${l.id}','approved')">Approve</button>` : ''}
+      ${l.status !== 'rejected' ? `<button class="btn-reject" onclick="setStatus('${l.id}','rejected')">Reject</button>` : ''}
+      <button class="btn-edit" onclick="toggleEdit('${l.id}')">Edit</button>
+      <button class="btn-delete" onclick="deleteListing('${l.id}')">Delete</button>
+    </div>
+    <div id="edit-${l.id}"></div>
+  </div>`;
+}
+
+async function setStatus(id, status){
+  const { error } = await supabaseClient.from('listings').update({ status }).eq('id', id);
+  if(error){ alert('Failed to update: ' + error.message); return; }
+  await loadListings();
+}
+
+async function deleteListing(id){
+  if(!confirm('Delete this listing permanently?')) return;
+  const { error } = await supabaseClient.from('listings').delete().eq('id', id);
+  if(error){ alert('Failed to delete: ' + error.message); return; }
+  await loadListings();
+}
+
+function toggleEdit(id){
+  const l = allListings.find(x => x.id === id);
+  const box = document.getElementById(`edit-${id}`);
+  if(box.innerHTML !== ''){ box.innerHTML = ''; return; }
+  box.innerHTML = `
+    <div class="edit-grid">
+      <div><label>Make</label><input id="e-make-${id}" value="${l.make}"></div>
+      <div><label>Model</label><input id="e-model-${id}" value="${l.model}"></div>
+      <div><label>Year</label><input id="e-year-${id}" type="number" value="${l.year}"></div>
+      <div><label>Mileage (km)</label><input id="e-mileage-${id}" type="number" value="${l.mileage}"></div>
+      <div><label>Price (PKR)</label><input id="e-price-${id}" type="number" value="${l.price}"></div>
+      <div><label>Area</label><input id="e-area-${id}" value="${l.area || ''}"></div>
+      <div><label>Chassis #</label><input id="e-chassis-${id}" value="${l.chassis || ''}"></div>
+      <div><label>Registration status</label>
+        <select id="e-reg-${id}">
+          <option value="Custom Paid" ${l.reg_status==='Custom Paid'?'selected':''}>Custom paid</option>
+          <option value="NCP - Profiled" ${l.reg_status==='NCP - Profiled'?'selected':''}>NCP — profiled</option>
+          <option value="NCP - Not registered" ${l.reg_status==='NCP - Not registered'?'selected':''}>NCP — not registered</option>
+        </select>
+      </div>
+      <div style="grid-column:1/-1;"><label>Description</label><textarea id="e-desc-${id}">${l.description || ''}</textarea></div>
+      <div style="grid-column:1/-1;">
+        <button class="btn-approve" onclick="saveEdit('${id}')" style="width:100%;">Save changes</button>
+      </div>
+    </div>`;
+}
+
+async function saveEdit(id){
+  const updated = {
+    make: document.getElementById(`e-make-${id}`).value.trim(),
+    model: document.getElementById(`e-model-${id}`).value.trim(),
+    year: parseInt(document.getElementById(`e-year-${id}`).value),
+    mileage: parseInt(document.getElementById(`e-mileage-${id}`).value),
+    price: parseFloat(document.getElementById(`e-price-${id}`).value),
+    area: document.getElementById(`e-area-${id}`).value.trim(),
+    chassis: document.getElementById(`e-chassis-${id}`).value.trim(),
+    reg_status: document.getElementById(`e-reg-${id}`).value,
+    description: document.getElementById(`e-desc-${id}`).value.trim(),
+  };
+  const { error } = await supabaseClient.from('listings').update(updated).eq('id', id);
+  if(error){ alert('Failed to save: ' + error.message); return; }
+  await loadListings();
+}
+
+// Auto-login if a session already exists (so you don't re-login every visit)
+supabaseClient.auth.getSession().then(({ data }) => {
+  if(data.session) showDashboard();
+});
+</script>
+
+</body>
+</html>
