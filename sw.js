@@ -1,4 +1,4 @@
-const CACHE_NAME = 'malakand-motors-v1';
+const CACHE_NAME = 'malakand-motors-v2';
 const APP_SHELL = [
   './index.html',
   './manifest.json',
