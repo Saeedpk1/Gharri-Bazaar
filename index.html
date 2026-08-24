@@ -1089,21 +1089,15 @@
 
 <section>
   <div class="wrap">
-    <div class="section-head">
-      <div>
-        <h2 data-en="NCP cars by district" data-ur="ضلع کے لحاظ سے این سی پی گاڑیاں">NCP cars by district</h2>
-        <p data-en="Malakand Motors lists NCP and custom-paid cars across every district of Malakand Division." data-ur="ملاکنڈ موٹرز ڈویژن مالاکنڈ کے ہر ضلع میں این سی پی اور کسٹم ادا شدہ گاڑیاں درج کرتا ہے۔">Malakand Motors lists NCP and custom-paid cars across every district of Malakand Division.</p>
-      </div>
-    </div>
+    <h2 style="margin-bottom:16px;" data-en="Browse by district" data-ur="ضلع کے لحاظ سے دیکھیں">Browse by district</h2>
     <div class="seo-links">
-      <a href="#listings" data-en="NCP cars in Swat" data-ur="سوات میں این سی پی گاڑیاں">NCP cars in Swat</a>
-      <a href="#listings" data-en="NCP cars in Dir" data-ur="دیر میں این سی پی گاڑیاں">NCP cars in Dir</a>
-      <a href="#listings" data-en="NCP cars in Buner" data-ur="بونیر میں این سی پی گاڑیاں">NCP cars in Buner</a>
-      <a href="#listings" data-en="NCP cars in Malakand" data-ur="مالاکنڈ میں این سی پی گاڑیاں">NCP cars in Malakand</a>
-      <a href="#listings" data-en="NCP cars in Shangla" data-ur="شانگلہ میں این سی پی گاڑیاں">NCP cars in Shangla</a>
-      <a href="#listings" data-en="Used cars in Mingora" data-ur="مینگورہ میں استعمال شدہ گاڑیاں">Used cars in Mingora</a>
+      <a href="#" onclick="filterByDistrict(event, ['Babuzai','Kabal','Charbagh','Barikot','Matta','Khwazakhela','Bahrain'])" data-en="Cars in Swat" data-ur="سوات میں گاڑیاں">Cars in Swat</a>
+      <a href="#" onclick="filterByDistrict(event, ['Timergara','Adenzai','Lal Qilla','Dir','Wari','Sharingal'])" data-en="Cars in Dir" data-ur="دیر میں گاڑیاں">Cars in Dir</a>
+      <a href="#" onclick="filterByDistrict(event, ['Daggar','Gagra','Chagharzai','Chamla'])" data-en="Cars in Buner" data-ur="بونیر میں گاڑیاں">Cars in Buner</a>
+      <a href="#" onclick="filterByDistrict(event, ['Batkhela','Dargai','Malakand'])" data-en="Cars in Malakand" data-ur="مالاکنڈ میں گاڑیاں">Cars in Malakand</a>
+      <a href="#" onclick="filterByDistrict(event, ['Alpuri','Puran','Besham','Chakesar'])" data-en="Cars in Shangla" data-ur="شانگلہ میں گاڑیاں">Cars in Shangla</a>
+      <a href="#" onclick="filterByDistrict(event, ['Babuzai'])" data-en="Cars in Mingora" data-ur="مینگورہ میں گاڑیاں">Cars in Mingora</a>
     </div>
-    <p class="seo-note" data-en="Searching for NCP cars in Swat, NCP cars in Dir, or NCP cars in Malakand? Every listing on Malakand Motors shows the seller-reported registration status upfront — custom paid, NCP profiled, or unregistered — so you know what you're looking at before you contact the seller." data-ur="سوات میں این سی پی گاڑیاں، دیر میں این سی پی گاڑیاں، یا مالاکنڈ میں این سی پی گاڑیاں تلاش کر رہے ہیں؟ ملاکنڈ موٹرز پر ہر اشتہار میں فروخت کنندہ کی بتائی گئی رجسٹریشن کی حیثیت پہلے سے دکھائی جاتی ہے — کسٹم ادا شدہ، این سی پی پروفائل شدہ، یا غیر رجسٹرڈ — تاکہ رابطہ کرنے سے پہلے آپ کو صحیح معلومات ہوں۔">Searching for NCP cars in Swat, NCP cars in Dir, or NCP cars in Malakand? Every listing on Malakand Motors shows the seller-reported registration status upfront — custom paid, NCP profiled, or unregistered — so you know what you're looking at before you contact the seller.</p>
   </div>
 </section>
 
@@ -1243,6 +1237,31 @@ function runSearch(){
     const matchesStatus = !statusFilter || status === statusFilter;
 
     const show = matchesQuery && matchesArea && matchesMake && matchesStatus;
+    card.style.display = show ? '' : 'none';
+    if(show) visibleCount++;
+  });
+
+  document.getElementById('listings').scrollIntoView({ behavior:'smooth' });
+
+  const emptyMsg = document.getElementById('no-results-msg');
+  if(emptyMsg) emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+}
+
+function filterByDistrict(e, tehsils){
+  if(e) e.preventDefault();
+
+  // Reset the search box and dropdowns so it's clear a fresh district filter is active
+  document.getElementById('main-search-input').value = '';
+  document.getElementById('filter-area').value = '';
+  document.getElementById('filter-make').value = '';
+  document.getElementById('filter-status').value = '';
+
+  const cards = document.querySelectorAll('#listings-grid .card-wrap');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const area = card.dataset.area || '';
+    const show = tehsils.includes(area);
     card.style.display = show ? '' : 'none';
     if(show) visibleCount++;
   });
