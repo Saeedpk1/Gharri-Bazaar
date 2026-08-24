@@ -55,3 +55,5 @@ self.addEventListener('fetch', (event) => {
   }
   // Cross-origin requests (Supabase, fonts, CDN) go straight to the network as normal.
 });
+
+  
