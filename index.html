@@ -290,7 +290,6 @@
   }
   .status-custom{ background:var(--ok); color:#fff; }
   .status-profiled{ background:var(--warn); color:#fff; }
-  .status-unregistered{ background:var(--danger); color:#fff; }
   .card-photo .price-tag{
     position:absolute; bottom:0; left:0; right:0;
     background:linear-gradient(0deg, rgba(20,14,8,0.8), transparent);
@@ -688,9 +687,8 @@
       </select>
       <select id="filter-status">
         <option value="" data-en="All statuses" data-ur="تمام حیثیتیں">All statuses</option>
-        <option value="Custom Paid" data-en="Custom paid" data-ur="کسٹم ادا شدہ">Custom paid</option>
-        <option value="NCP - Profiled" data-en="NCP — profiled" data-ur="این سی پی — پروفائل شدہ">NCP — profiled</option>
-        <option value="NCP - Not registered" data-en="NCP — not registered" data-ur="این سی پی — غیر رجسٹرڈ">NCP — not registered</option>
+        <option value="Numbari" data-en="Numbari" data-ur="نمبری">Numbari</option>
+        <option value="NCP" data-en="NCP" data-ur="این سی پی">NCP</option>
       </select>
     </div>
 
@@ -725,7 +723,7 @@
     <div id="no-results-msg" style="display:none; text-align:center; padding:30px; color:var(--ink-soft); font-size:14px;" data-en="No cars match your search. Try a different keyword or filter." data-ur="آپ کی تلاش سے کوئی گاڑی نہیں ملی۔ کوئی اور لفظ یا فلٹر آزمائیں۔">No cars match your search. Try a different keyword or filter.</div>
 
     <div class="grid" id="listings-grid">
-      <div class="card-wrap" data-make="Suzuki" data-model="Mehran" data-area="Babuzai" data-status="Custom Paid">
+      <div class="card-wrap" data-make="Suzuki" data-model="Mehran" data-area="Babuzai" data-status="Numbari">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#2c7873,#4a2e1d);">
             <div class="price-tag mono">6.8L</div>
@@ -737,13 +735,13 @@
           </div>
         </div>
         <div class="card-actions">
-          <a onclick="openDetails({make:'Suzuki',model:'Mehran',price:680000,mileage:72000,transmission:'Automatic',area:'Babuzai',village:'',color:'White',reg_status:'Custom Paid',description:'Well maintained, single owner, all original parts.',seller_name:'Rahim Khan',seller_mobile:'03001234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
+          <a onclick="openDetails({make:'Suzuki',model:'Mehran',price:680000,mileage:72000,transmission:'Automatic',area:'Babuzai',village:'',color:'White',reg_status:'Numbari',description:'Well maintained, single owner, all original parts.',seller_name:'Rahim Khan',seller_mobile:'03001234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Suzuki%20Mehran%202015%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
 
-      <div class="card-wrap" data-make="Toyota" data-model="Hilux" data-area="Kabal" data-status="NCP - Profiled">
+      <div class="card-wrap" data-make="Toyota" data-model="Hilux" data-area="Kabal" data-status="NCP">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#c9862e,#4a2e1d);">
             <div class="price-tag mono">21.5L</div>
@@ -755,13 +753,13 @@
           </div>
         </div>
         <div class="card-actions">
-          <a onclick="openDetails({make:'Toyota',model:'Hilux',price:2150000,mileage:140000,transmission:'Manual',area:'Kabal',village:'',color:'Silver',reg_status:'NCP - Profiled',description:'Strong engine, used for farm work, minor scratches.',seller_name:'Sher Ali',seller_mobile:'03011234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
+          <a onclick="openDetails({make:'Toyota',model:'Hilux',price:2150000,mileage:140000,transmission:'Manual',area:'Kabal',village:'',color:'Silver',reg_status:'NCP',description:'Strong engine, used for farm work, minor scratches.',seller_name:'Sher Ali',seller_mobile:'03011234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Hilux%202012%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
 
-      <div class="card-wrap" data-make="Honda" data-model="City" data-area="Matta" data-status="Custom Paid">
+      <div class="card-wrap" data-make="Honda" data-model="City" data-area="Matta" data-status="Numbari">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#4a2e1d,#2e1b10);">
             <div class="price-tag mono">17.9L</div>
@@ -773,13 +771,13 @@
           </div>
         </div>
         <div class="card-actions">
-          <a onclick="openDetails({make:'Honda',model:'City',price:1790000,mileage:38000,transmission:'Automatic',area:'Matta',village:'',color:'Black',reg_status:'Custom Paid',description:'Low mileage, showroom condition, no accidents.',seller_name:'Naveed Iqbal',seller_mobile:'03021234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
+          <a onclick="openDetails({make:'Honda',model:'City',price:1790000,mileage:38000,transmission:'Automatic',area:'Matta',village:'',color:'Black',reg_status:'Numbari',description:'Low mileage, showroom condition, no accidents.',seller_name:'Naveed Iqbal',seller_mobile:'03021234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Honda%20City%202019%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
 
-      <div class="card-wrap" data-make="Toyota" data-model="Prado" data-area="Khwazakhela" data-status="NCP - Not registered">
+      <div class="card-wrap" data-make="Toyota" data-model="Prado" data-area="Khwazakhela" data-status="NCP">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#a13327,#2e1b10);">
             <div class="price-tag mono">34.0L</div>
@@ -791,13 +789,13 @@
           </div>
         </div>
         <div class="card-actions">
-          <a onclick="openDetails({make:'Toyota',model:'Prado',price:3400000,mileage:98000,transmission:'Automatic',area:'Khwazakhela',village:'',color:'Grey',reg_status:'NCP - Not registered',description:'Imported unit, full option, needs registration.',seller_name:'Bakht Zaman',seller_mobile:'03031234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
+          <a onclick="openDetails({make:'Toyota',model:'Prado',price:3400000,mileage:98000,transmission:'Automatic',area:'Khwazakhela',village:'',color:'Grey',reg_status:'NCP',description:'Imported unit, full option, needs registration.',seller_name:'Bakht Zaman',seller_mobile:'03031234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Prado%202010%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
 
-      <div class="card-wrap" data-make="Suzuki" data-model="Bolan" data-area="Bahrain" data-status="NCP - Profiled">
+      <div class="card-wrap" data-make="Suzuki" data-model="Bolan" data-area="Bahrain" data-status="NCP">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#2c7873,#2e1b10);">
             <div class="price-tag mono">9.4L</div>
@@ -809,13 +807,13 @@
           </div>
         </div>
         <div class="card-actions">
-          <a onclick="openDetails({make:'Suzuki',model:'Bolan',price:940000,mileage:55000,transmission:'Manual',area:'Bahrain',village:'',color:'White',reg_status:'NCP - Profiled',description:'Good for family use, AC working, recently serviced.',seller_name:'Fazal Rabi',seller_mobile:'03041234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
+          <a onclick="openDetails({make:'Suzuki',model:'Bolan',price:940000,mileage:55000,transmission:'Manual',area:'Bahrain',village:'',color:'White',reg_status:'NCP',description:'Good for family use, AC working, recently serviced.',seller_name:'Fazal Rabi',seller_mobile:'03041234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Suzuki%20Bolan%202017%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
 
-      <div class="card-wrap" data-make="Toyota" data-model="Corolla" data-area="Babuzai" data-status="Custom Paid">
+      <div class="card-wrap" data-make="Toyota" data-model="Corolla" data-area="Babuzai" data-status="Numbari">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#c9862e,#2e1b10);">
             <div class="price-tag mono">14.2L</div>
@@ -827,7 +825,7 @@
           </div>
         </div>
         <div class="card-actions">
-          <a onclick="openDetails({make:'Toyota',model:'Corolla',price:1420000,mileage:61000,transmission:'Automatic',area:'Babuzai',village:'',color:'Blue',reg_status:'Custom Paid',description:'Excellent condition, genuine mileage, first owner.',seller_name:'Saeed Ullah',seller_mobile:'03051234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
+          <a onclick="openDetails({make:'Toyota',model:'Corolla',price:1420000,mileage:61000,transmission:'Automatic',area:'Babuzai',village:'',color:'Blue',reg_status:'Numbari',description:'Excellent condition, genuine mileage, first owner.',seller_name:'Saeed Ullah',seller_mobile:'03051234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Corolla%202018%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -1033,9 +1031,8 @@
         <div class="field">
           <label data-en="Registration status (as you report it)" data-ur="رجسٹریشن کی حیثیت (جیسا آپ بتائیں)">Registration status (as you report it)</label>
           <div class="status-options">
-            <label><input type="radio" name="status" value="Custom Paid" checked> <span data-en="Custom paid" data-ur="کسٹم ادا شدہ">Custom paid</span></label>
-            <label><input type="radio" name="status" value="NCP - Profiled"> <span data-en="NCP — profiled" data-ur="این سی پی — پروفائل شدہ">NCP — profiled</span></label>
-            <label><input type="radio" name="status" value="NCP - Not registered"> <span data-en="NCP — not registered" data-ur="این سی پی — غیر رجسٹرڈ">NCP — not registered</span></label>
+            <label><input type="radio" name="status" value="Numbari" checked> <span data-en="Numbari (has legal number plate)" data-ur="نمبری (قانونی نمبر پلیٹ کے ساتھ)">Numbari (has legal number plate)</span></label>
+            <label><input type="radio" name="status" value="NCP"> <span data-en="NCP" data-ur="این سی پی">NCP</span></label>
           </div>
         </div>
       </div>
@@ -1580,14 +1577,12 @@ const supabaseConfigured = SUPABASE_URL !== "YOUR_SUPABASE_PROJECT_URL" && SUPAB
 const supabaseClient = supabaseConfigured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
 function statusBadgeClass(reg){
-  if(reg === 'Custom Paid') return 'status-custom';
-  if(reg === 'NCP - Profiled') return 'status-profiled';
-  return 'status-unregistered';
+  if(reg === 'Numbari') return 'status-custom';
+  return 'status-profiled';
 }
 function statusBadgeText(reg){
-  if(reg === 'Custom Paid') return isUrdu ? 'کسٹم ادا شدہ' : 'Custom Paid';
-  if(reg === 'NCP - Profiled') return isUrdu ? 'این سی پی · پروفائل شدہ' : 'NCP · Profiled';
-  return isUrdu ? 'این سی پی · غیر رجسٹرڈ' : 'NCP · Not registered';
+  if(reg === 'Numbari') return isUrdu ? 'نمبری' : 'Numbari';
+  return isUrdu ? 'این سی پی' : 'NCP';
 }
 
 async function loadApprovedListings(){
@@ -1665,11 +1660,11 @@ async function loadApprovedListings(){
 }
 
 const DEMO_BANNER_ITEMS = [
-  { photo:null, title:'Suzuki Mehran', meta:'Babuzai', price:'6.8L', badge:'Custom Paid' },
-  { photo:null, title:'Toyota Hilux', meta:'Kabal', price:'21.5L', badge:'NCP · Profiled' },
-  { photo:null, title:'Honda City', meta:'Matta', price:'17.9L', badge:'Custom Paid' },
-  { photo:null, title:'Toyota Prado', meta:'Khwazakhela', price:'34.0L', badge:'NCP · Not registered' },
-  { photo:null, title:'Toyota Corolla', meta:'Babuzai', price:'14.2L', badge:'Custom Paid' }
+  { photo:null, title:'Suzuki Mehran', meta:'Babuzai', price:'6.8L', badge:'Numbari' },
+  { photo:null, title:'Toyota Hilux', meta:'Kabal', price:'21.5L', badge:'NCP' },
+  { photo:null, title:'Honda City', meta:'Matta', price:'17.9L', badge:'Numbari' },
+  { photo:null, title:'Toyota Prado', meta:'Khwazakhela', price:'34.0L', badge:'NCP' },
+  { photo:null, title:'Toyota Corolla', meta:'Babuzai', price:'14.2L', badge:'Numbari' }
 ];
 
 let bannerTimer = null;

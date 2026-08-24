@@ -217,9 +217,8 @@ function badgeForStatus(s){
   return '<span class="badge b-rejected">Rejected</span>';
 }
 function labelForReg(r){
-  if(r === 'Custom Paid') return 'Custom paid';
-  if(r === 'NCP - Profiled') return 'NCP — profiled';
-  return 'NCP — not registered';
+  if(r === 'Numbari') return 'Numbari';
+  return 'NCP';
 }
 
 function renderTab(){
@@ -295,9 +294,8 @@ function toggleEdit(id){
       <div><label>Color</label><input id="e-color-${id}" value="${l.color || ''}"></div>
       <div><label>Registration status</label>
         <select id="e-reg-${id}">
-          <option value="Custom Paid" ${l.reg_status==='Custom Paid'?'selected':''}>Custom paid</option>
-          <option value="NCP - Profiled" ${l.reg_status==='NCP - Profiled'?'selected':''}>NCP — profiled</option>
-          <option value="NCP - Not registered" ${l.reg_status==='NCP - Not registered'?'selected':''}>NCP — not registered</option>
+          <option value="Numbari" ${l.reg_status==='Numbari'?'selected':''}>Numbari</option>
+          <option value="NCP" ${l.reg_status==='NCP'?'selected':''}>NCP</option>
         </select>
       </div>
       <div style="grid-column:1/-1;"><label>Description</label><textarea id="e-desc-${id}">${l.description || ''}</textarea></div>
