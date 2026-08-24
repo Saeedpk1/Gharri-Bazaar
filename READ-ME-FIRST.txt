@@ -1,0 +1,21 @@
+MALAKAND MOTORS — today's files
+================================
+
+FOLDER: website/
+  Upload ALL of these files to your GitHub repo root (same level
+  as your existing index.html) — this REPLACES your old files:
+    - index.html
+    - admin.html
+    - manifest.json
+    - sw.js
+    - icon-16.png through icon-512.png (12 icon files)
+
+FOLDER: sql-migrations/
+  These go into Supabase, NOT GitHub. Run them in order in your
+  Supabase project's SQL Editor (SQL Editor -> New query -> paste
+  -> Run). If you've already run any of these earlier today, you
+  can skip that one — running it again is safe either way, it
+  won't break anything or duplicate data.
+
+That's it — once website/ is uploaded and any new SQL migrations
+are run, everything from today's session is live.
