@@ -182,26 +182,35 @@
   .hero p{ color:#d8c6a8; font-size:15.5px; margin-top:10px; max-width:52ch; margin-left:auto; margin-right:auto; }
 
   .search-panel{
-    background:var(--panel); border-radius:10px; padding:10px;
-    display:grid; grid-template-columns:1fr 1fr; gap:8px;
-    max-width:680px; margin:22px auto 0; box-shadow:0 14px 30px -16px rgba(0,0,0,0.35);
+    background:var(--panel); border-radius:10px; padding:8px;
+    display:flex; gap:8px; align-items:stretch;
+    max-width:560px; margin:22px auto 0; box-shadow:0 14px 30px -16px rgba(0,0,0,0.35);
   }
-  .search-panel input[type=text]{ grid-column:1 / -1; }
-  .search-btn{ grid-column:1 / -1; }
-  .search-panel select, .search-panel input[type=text]{
-    font-family:'Mukta',sans-serif; font-size:13px; padding:10px 9px;
+  .search-panel input[type=text]{ flex:1; min-width:0; }
+  .search-panel input[type=text]{
+    font-family:'Mukta',sans-serif; font-size:14px; padding:11px 12px;
     border:1px solid var(--line); border-radius:6px; background:var(--panel-2); color:var(--ink);
-    width:100%; min-width:0;
   }
   .search-btn{
     background:var(--marigold); color:var(--walnut-2); border:none; border-radius:6px;
-    padding:10px 16px; font-weight:700; font-size:13px; cursor:pointer; width:100%;
+    padding:10px 20px; font-weight:700; font-size:13.5px; cursor:pointer; flex-shrink:0;
   }
-  @media(min-width:640px){
-    .search-panel{ grid-template-columns:1.6fr 1fr 1fr auto; align-items:center; }
-    .search-panel input[type=text]{ grid-column:auto; }
-    .search-btn{ grid-column:auto; width:auto; padding:10px 22px; }
+
+  .filters-toggle{
+    display:block; margin:12px auto 0; background:none; border:none; color:#e3ab54;
+    font-size:12.5px; font-weight:700; cursor:pointer; text-align:center;
   }
+  .filters-row{
+    display:none; grid-template-columns:1fr 1fr; gap:8px;
+    max-width:560px; margin:10px auto 0; background:var(--panel); border-radius:10px; padding:10px;
+  }
+  .filters-row.open{ display:grid; }
+  .filters-row select{
+    font-family:'Mukta',sans-serif; font-size:13px; padding:9px;
+    border:1px solid var(--line); border-radius:6px; background:var(--panel-2); color:var(--ink);
+    width:100%; min-width:0;
+  }
+  #filter-status{ grid-column:1 / -1; }
 
   .category-row{
     display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
@@ -624,9 +633,17 @@
     <h1 data-en="Buy and sell your NCP &amp; used cars" data-ur="اپنی این سی پی اور استعمال شدہ گاڑیاں خریدیں اور بیچیں">Buy and sell your NCP &amp; used cars</h1>
 
     <div class="search-panel">
-      <input type="text" data-en-ph="Search make or model…" data-ur-ph="گاڑی کا نام تلاش کریں…" placeholder="Search make or model…">
-      <select>
-        <option data-en="All tehsils" data-ur="تمام تحصیلیں">All tehsils</option>
+      <input type="text" id="main-search-input" data-en-ph="Search make or model — e.g. Corolla" data-ur-ph="گاڑی کا نام تلاش کریں — مثلاً کرولا" placeholder="Search make or model — e.g. Corolla">
+      <button class="search-btn" onclick="runSearch()" data-en="Search" data-ur="تلاش کریں">Search</button>
+    </div>
+
+    <button class="filters-toggle" onclick="toggleFilters()">
+      <span data-en="Filters" data-ur="فلٹرز">Filters</span> <span id="filters-arrow">▾</span>
+    </button>
+
+    <div class="filters-row" id="filters-row">
+      <select id="filter-area">
+        <option value="" data-en="All tehsils" data-ur="تمام تحصیلیں">All tehsils</option>
         <optgroup label="Swat District" data-en-label="Swat District" data-ur-label="ضلع سوات">
           <option data-en="Babuzai (Mingora)" data-ur="بابوزئی (مینگورہ)">Babuzai (Mingora)</option>
           <option data-en="Kabal" data-ur="کبل">Kabal</option>
@@ -666,13 +683,15 @@
           <option data-en="Sharingal" data-ur="شرینگل">Sharingal</option>
         </optgroup>
       </select>
-      <select>
-        <option data-en="All statuses" data-ur="تمام حیثیتیں">All statuses</option>
-        <option data-en="Custom paid" data-ur="کسٹم ادا شدہ">Custom paid</option>
-        <option data-en="NCP — profiled" data-ur="این سی پی — پروفائل شدہ">NCP — profiled</option>
-        <option data-en="NCP — not registered" data-ur="این سی پی — غیر رجسٹرڈ">NCP — not registered</option>
+      <select id="filter-make">
+        <option value="" data-en="All makes" data-ur="تمام کمپنیاں">All makes</option>
       </select>
-      <button class="search-btn" data-en="Search" data-ur="تلاش کریں">Search</button>
+      <select id="filter-status">
+        <option value="" data-en="All statuses" data-ur="تمام حیثیتیں">All statuses</option>
+        <option value="Custom Paid" data-en="Custom paid" data-ur="کسٹم ادا شدہ">Custom paid</option>
+        <option value="NCP - Profiled" data-en="NCP — profiled" data-ur="این سی پی — پروفائل شدہ">NCP — profiled</option>
+        <option value="NCP - Not registered" data-en="NCP — not registered" data-ur="این سی پی — غیر رجسٹرڈ">NCP — not registered</option>
+      </select>
     </div>
 
     <div class="banner-carousel" id="banner-carousel">
@@ -684,7 +703,7 @@
 
 <div class="stats-strip">
   <div class="wrap">
-    <div class="stat"><b>240+</b><span data-en="Active listings" data-ur="فعال اشتہارات">Active listings</span></div>
+    <div class="stat"><b id="stat-listings-count">240+</b><span data-en="Active listings" data-ur="فعال اشتہارات">Active listings</span></div>
     <div class="stat"><b>7</b><span data-en="Districts covered" data-ur="اضلاع شامل">Districts covered</span></div>
     <div class="stat"><b>Free</b><span data-en="To list, for now" data-ur="فی الحال درج کرنا مفت">To list, for now</span></div>
     <div class="stat"><b>0%</b><span data-en="Commission at launch" data-ur="لانچ پر صفر کمیشن">Commission at launch</span></div>
@@ -703,8 +722,10 @@
       <a href="#" class="view-all" data-en="View all listings →" data-ur="تمام اشتہارات دیکھیں ←">View all listings →</a>
     </div>
 
+    <div id="no-results-msg" style="display:none; text-align:center; padding:30px; color:var(--ink-soft); font-size:14px;" data-en="No cars match your search. Try a different keyword or filter." data-ur="آپ کی تلاش سے کوئی گاڑی نہیں ملی۔ کوئی اور لفظ یا فلٹر آزمائیں۔">No cars match your search. Try a different keyword or filter.</div>
+
     <div class="grid" id="listings-grid">
-      <div class="card-wrap">
+      <div class="card-wrap" data-make="Suzuki" data-model="Mehran" data-area="Babuzai" data-status="Custom Paid">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#2c7873,#4a2e1d);">
             <div class="price-tag mono">6.8L</div>
@@ -722,7 +743,7 @@
         </div>
       </div>
 
-      <div class="card-wrap">
+      <div class="card-wrap" data-make="Toyota" data-model="Hilux" data-area="Kabal" data-status="NCP - Profiled">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#c9862e,#4a2e1d);">
             <div class="price-tag mono">21.5L</div>
@@ -740,7 +761,7 @@
         </div>
       </div>
 
-      <div class="card-wrap">
+      <div class="card-wrap" data-make="Honda" data-model="City" data-area="Matta" data-status="Custom Paid">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#4a2e1d,#2e1b10);">
             <div class="price-tag mono">17.9L</div>
@@ -758,7 +779,7 @@
         </div>
       </div>
 
-      <div class="card-wrap">
+      <div class="card-wrap" data-make="Toyota" data-model="Prado" data-area="Khwazakhela" data-status="NCP - Not registered">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#a13327,#2e1b10);">
             <div class="price-tag mono">34.0L</div>
@@ -776,7 +797,7 @@
         </div>
       </div>
 
-      <div class="card-wrap">
+      <div class="card-wrap" data-make="Suzuki" data-model="Bolan" data-area="Bahrain" data-status="NCP - Profiled">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#2c7873,#2e1b10);">
             <div class="price-tag mono">9.4L</div>
@@ -794,7 +815,7 @@
         </div>
       </div>
 
-      <div class="card-wrap">
+      <div class="card-wrap" data-make="Toyota" data-model="Corolla" data-area="Babuzai" data-status="Custom Paid">
         <div class="card">
           <div class="card-photo" style="background:linear-gradient(135deg,#c9862e,#2e1b10);">
             <div class="price-tag mono">14.2L</div>
@@ -884,7 +905,7 @@
         </div>
         <div class="field">
           <label data-en="Model" data-ur="ماڈل">Model</label>
-          <select id="f-model">
+          <select id="f-model" onchange="handleModelChange()">
             <option value="" data-en="Select make first" data-ur="پہلے کمپنی منتخب کریں">Select make first</option>
           </select>
           <span class="field-hint" id="hint-f-model"></span>
@@ -893,8 +914,8 @@
 
       <div class="form-row full" id="other-model-row" style="display:none;">
         <div class="field">
-          <label data-en="Enter make &amp; model" data-ur="کمپنی اور ماڈل درج کریں">Enter make &amp; model</label>
-          <input type="text" id="f-model-other" data-en-ph="e.g. Toyota Aqua" data-ur-ph="مثلاً ٹویوٹا ایکوا" placeholder="e.g. Toyota Aqua">
+          <label data-en="Model not listed? Type it here" data-ur="ماڈل فہرست میں نہیں؟ یہاں لکھیں">Model not listed? Type it here</label>
+          <input type="text" id="f-model-other" data-en-ph="e.g. Cast, Wake, or Toyota Aqua" data-ur-ph="مثلاً کاسٹ، ویک، یا ٹویوٹا ایکوا" placeholder="e.g. Cast, Wake, or Toyota Aqua">
         </div>
       </div>
 
@@ -966,16 +987,28 @@
           <label data-en="Color" data-ur="رنگ">Color</label>
           <select id="f-color">
             <option data-en="White" data-ur="سفید">White</option>
+            <option data-en="Pearl White" data-ur="پرل وائٹ">Pearl White</option>
             <option data-en="Black" data-ur="کالا">Black</option>
             <option data-en="Silver" data-ur="چاندی">Silver</option>
             <option data-en="Grey" data-ur="گرے">Grey</option>
+            <option data-en="Charcoal" data-ur="چارکول">Charcoal</option>
             <option data-en="Red" data-ur="لال">Red</option>
-            <option data-en="Blue" data-ur="نیلا">Blue</option>
-            <option data-en="Green" data-ur="سبز">Green</option>
             <option data-en="Maroon" data-ur="مرون">Maroon</option>
+            <option data-en="Wine" data-ur="شرابی">Wine</option>
+            <option data-en="Blue" data-ur="نیلا">Blue</option>
+            <option data-en="Navy Blue" data-ur="گہرا نیلا">Navy Blue</option>
+            <option data-en="Sky Blue" data-ur="آسمانی">Sky Blue</option>
+            <option data-en="Green" data-ur="سبز">Green</option>
+            <option data-en="Turquoise" data-ur="فیروزی">Turquoise</option>
             <option data-en="Gold" data-ur="سنہری">Gold</option>
+            <option data-en="Champagne" data-ur="شیمپین">Champagne</option>
+            <option data-en="Bronze" data-ur="کانسی">Bronze</option>
             <option data-en="Brown" data-ur="بھورا">Brown</option>
             <option data-en="Beige" data-ur="بیج">Beige</option>
+            <option data-en="Cream" data-ur="کریمی">Cream</option>
+            <option data-en="Orange" data-ur="نارنجی">Orange</option>
+            <option data-en="Yellow" data-ur="پیلا">Yellow</option>
+            <option data-en="Purple" data-ur="جامنی">Purple</option>
             <option data-en="Other" data-ur="دیگر">Other</option>
           </select>
         </div>
@@ -1149,33 +1182,86 @@
 
 <script>
 const CAR_MODELS = {
-  "Toyota": ["Corolla", "Yaris", "Vitz", "Passo", "Aqua", "Prius", "Camry", "Premio", "Allion", "Fortuner", "Hilux", "Prado", "Land Cruiser", "Hiace", "Probox", "Raum", "Sienta", "Vigo"],
-  "Honda": ["City", "Civic", "Accord", "BR-V", "Vezel", "HR-V", "Fit / Jazz", "N-Box", "N-WGN", "Freed"],
-  "Suzuki": ["Mehran", "Alto", "Cultus", "Swift", "Wagon R", "Bolan", "Ravi", "Every", "Liana", "Baleno", "Hustler", "Spacia"],
-  "Daihatsu": ["Mira", "Move", "Cuore", "Hijet"],
-  "Hyundai": ["Tucson", "Elantra", "Sonata", "Santro", "Porter", "Ioniq"],
-  "KIA": ["Sportage", "Picanto", "Stonic", "Sorento", "Grand Carnival"],
-  "Changan": ["Alsvin", "Karvaan", "Oshan X7"],
-  "MG": ["HS", "ZS"],
-  "Nissan": ["Dayz", "Note", "X-Trail", "Roox", "Moco", "Clipper"],
-  "Mitsubishi": ["Lancer", "Pajero", "Mirage", "eK Wagon"],
-  "FAW": ["V2", "X-PV", "Carrier"],
-  "Prince": ["Pearl"],
-  "Mercedes-Benz": ["C-Class", "E-Class", "S-Class"],
-  "BMW": ["3 Series", "5 Series", "X1", "X5"],
+  "Toyota": ["Corolla", "Corolla Axio", "Yaris", "Vitz", "Passo", "Aqua", "Prius", "Camry", "Premio", "Allion", "Fortuner", "Hilux", "Prado", "Land Cruiser", "Hiace", "Probox", "Raum", "Sienta", "Vigo", "Pixis Epoch", "Other"],
+  "Honda": ["City", "Civic", "Accord", "BR-V", "Vezel", "HR-V", "Fit / Jazz", "N-Box", "N-WGN", "N-One", "Life", "Zest", "Freed", "Other"],
+  "Suzuki": ["Mehran", "Alto", "Alto Lapin", "Cultus", "Swift", "Wagon R", "Bolan", "Ravi", "Every", "Liana", "Baleno", "Hustler", "Spacia", "Other"],
+  "Daihatsu": ["Mira", "Mira e:S", "Move", "Cuore", "Hijet", "Cast", "Tanto", "Wake", "Other"],
+  "Hyundai": ["Tucson", "Elantra", "Sonata", "Santro", "Porter", "Ioniq", "Other"],
+  "KIA": ["Sportage", "Picanto", "Stonic", "Sorento", "Grand Carnival", "Other"],
+  "Changan": ["Alsvin", "Karvaan", "Oshan X7", "Other"],
+  "MG": ["HS", "ZS", "Other"],
+  "Nissan": ["Dayz", "Note", "X-Trail", "Roox", "Moco", "Clipper", "Other"],
+  "Mitsubishi": ["Lancer", "Pajero", "Mirage", "eK Wagon", "eK Custom", "Minica", "Other"],
+  "FAW": ["V2", "X-PV", "Carrier", "Other"],
+  "Prince": ["Pearl", "Other"],
+  "Mercedes-Benz": ["C-Class", "E-Class", "S-Class", "Other"],
+  "BMW": ["3 Series", "5 Series", "X1", "X5", "Other"],
   "Other": []
 };
 
 function populateMakeOptions(){
   const makeSelect = document.getElementById('f-make');
+  const filterMakeSelect = document.getElementById('filter-make');
   Object.keys(CAR_MODELS).forEach(make => {
     const opt = document.createElement('option');
     opt.value = make;
     opt.textContent = make;
     makeSelect.appendChild(opt);
+
+    if(filterMakeSelect && make !== 'Other'){
+      const opt2 = document.createElement('option');
+      opt2.value = make;
+      opt2.textContent = make;
+      filterMakeSelect.appendChild(opt2);
+    }
   });
 }
 populateMakeOptions();
+
+function toggleFilters(){
+  const row = document.getElementById('filters-row');
+  const arrow = document.getElementById('filters-arrow');
+  row.classList.toggle('open');
+  arrow.textContent = row.classList.contains('open') ? '▴' : '▾';
+}
+
+function runSearch(){
+  const query = document.getElementById('main-search-input').value.trim().toLowerCase();
+  const areaFilter = document.getElementById('filter-area').value;
+  const makeFilter = document.getElementById('filter-make').value;
+  const statusFilter = document.getElementById('filter-status').value;
+
+  const cards = document.querySelectorAll('#listings-grid .card-wrap');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const make = (card.dataset.make || '').toLowerCase();
+    const model = (card.dataset.model || '').toLowerCase();
+    const area = card.dataset.area || '';
+    const status = card.dataset.status || '';
+
+    const matchesQuery = !query || make.includes(query) || model.includes(query) || (make + ' ' + model).includes(query);
+    const matchesArea = !areaFilter || area === areaFilter;
+    const matchesMake = !makeFilter || card.dataset.make === makeFilter;
+    const matchesStatus = !statusFilter || status === statusFilter;
+
+    const show = matchesQuery && matchesArea && matchesMake && matchesStatus;
+    card.style.display = show ? '' : 'none';
+    if(show) visibleCount++;
+  });
+
+  document.getElementById('listings').scrollIntoView({ behavior:'smooth' });
+
+  const emptyMsg = document.getElementById('no-results-msg');
+  if(emptyMsg) emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+}
+
+document.getElementById('main-search-input').addEventListener('keydown', (e) => {
+  if(e.key === 'Enter') runSearch();
+});
+document.getElementById('filter-area').addEventListener('change', runSearch);
+document.getElementById('filter-make').addEventListener('change', runSearch);
+document.getElementById('filter-status').addEventListener('change', runSearch);
 
 function updateModelOptions(){
   const make = document.getElementById('f-make').value;
@@ -1197,6 +1283,19 @@ function updateModelOptions(){
   }
   modelSelect.innerHTML = `<option value="">${isUrdu ? 'ماڈل منتخب کریں' : 'Select model'}</option>` +
     models.map(m => `<option value="${m}">${m}</option>`).join('');
+}
+
+function handleModelChange(){
+  const make = document.getElementById('f-make').value;
+  const model = document.getElementById('f-model').value;
+  const otherRow = document.getElementById('other-model-row');
+  // Show the free-text box if the model itself is "Other" (make already known),
+  // in addition to the case where the make is "Other" (handled in updateModelOptions).
+  if(make !== 'Other' && model === 'Other'){
+    otherRow.style.display = 'block';
+  }else if(make !== 'Other'){
+    otherRow.style.display = 'none';
+  }
 }
 
 let capturedLat = null;
@@ -1492,7 +1591,20 @@ function statusBadgeText(reg){
 }
 
 async function loadApprovedListings(){
-  if(!supabaseConfigured){ renderBanner(DEMO_BANNER_ITEMS); return; } // demo banner as a placeholder
+  const countEl = document.getElementById('stat-listings-count');
+  if(!supabaseConfigured){
+    if(countEl) countEl.textContent = '0'; // honest — no backend connected yet, nothing is really live
+    renderBanner(DEMO_BANNER_ITEMS);
+    return;
+  }
+
+  // Real count of approved listings, for the stats strip
+  const { count } = await supabaseClient
+    .from('listings')
+    .select('*', { count: 'exact', head: true })
+    .eq('status', 'approved');
+  if(countEl) countEl.textContent = (count || 0).toLocaleString();
+
   const { data, error } = await supabaseClient
     .from('listings')
     .select('*')
@@ -1517,6 +1629,10 @@ async function loadApprovedListings(){
     window[detailId] = row;
     const wrap = document.createElement('div');
     wrap.className = 'card-wrap';
+    wrap.dataset.make = row.make;
+    wrap.dataset.model = row.model;
+    wrap.dataset.area = row.area || '';
+    wrap.dataset.status = row.reg_status || '';
     wrap.innerHTML = `
       <div class="card">
         <div class="card-photo" style="${photo}" ${photos.length > 0 ? `onclick="openGalleryUrls(window['${galleryId}'], 0)"` : ''}>
@@ -1607,13 +1723,16 @@ document.getElementById('listing-form').addEventListener('submit', async functio
   const name = document.getElementById('f-name').value.trim();
   const mobile = document.getElementById('f-mobile').value.trim();
   const makeSelect = document.getElementById('f-make').value;
+  const modelSelect = document.getElementById('f-model').value;
   let make = makeSelect;
-  let model = document.getElementById('f-model').value;
+  let model = modelSelect;
   if(makeSelect === 'Other'){
     const otherText = document.getElementById('f-model-other').value.trim();
     const parts = otherText.split(' ');
     make = parts.shift() || otherText;
     model = parts.join(' ') || otherText;
+  }else if(modelSelect === 'Other'){
+    model = document.getElementById('f-model-other').value.trim();
   }
   const mileage = document.getElementById('f-mileage').value.trim();
   const price = document.getElementById('f-price').value.trim();

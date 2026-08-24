@@ -98,8 +98,10 @@
     <div class="tab active" data-tab="pending" onclick="switchTab('pending')">Pending <span class="count" id="count-pending">0</span></div>
     <div class="tab" data-tab="approved" onclick="switchTab('approved')">Approved <span class="count" id="count-approved">0</span></div>
     <div class="tab" data-tab="rejected" onclick="switchTab('rejected')">Rejected <span class="count" id="count-rejected">0</span></div>
+    <div class="tab" data-tab="log" onclick="switchTab('log')">Vehicle Log</div>
   </div>
   <div id="listing-container"></div>
+  <div id="log-container" style="display:none;"></div>
 </div>
 
 <script>
@@ -159,12 +161,59 @@ function renderCounts(){
 function switchTab(tab){
   activeTab = tab;
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
-  renderTab();
+
+  if(tab === 'log'){
+    document.getElementById('listing-container').style.display = 'none';
+    document.getElementById('log-container').style.display = 'block';
+    renderLog();
+  }else{
+    document.getElementById('listing-container').style.display = 'block';
+    document.getElementById('log-container').style.display = 'none';
+    renderTab();
+  }
+}
+
+function formatDate(iso){
+  if(!iso) return '—';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+}
+
+function renderLog(){
+  const container = document.getElementById('log-container');
+  const sorted = [...allListings].sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+  if(sorted.length === 0){
+    container.innerHTML = '<div class="empty">No vehicles listed yet.</div>';
+    return;
+  }
+  container.innerHTML = `
+    <div style="overflow-x:auto;">
+    <table style="width:100%; border-collapse:collapse; background:var(--panel); border-radius:12px; overflow:hidden;">
+      <thead>
+        <tr style="background:var(--panel-2); text-align:left;">
+          <th style="padding:10px 12px; font-size:12px; text-transform:uppercase; color:var(--ink-soft);">Vehicle</th>
+          <th style="padding:10px 12px; font-size:12px; text-transform:uppercase; color:var(--ink-soft);">Status</th>
+          <th style="padding:10px 12px; font-size:12px; text-transform:uppercase; color:var(--ink-soft);">Listed Date</th>
+          <th style="padding:10px 12px; font-size:12px; text-transform:uppercase; color:var(--ink-soft);">Removed Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${sorted.map(l => `
+          <tr style="border-top:1px solid var(--line);">
+            <td style="padding:10px 12px; font-weight:700;">${l.make} ${l.model}</td>
+            <td style="padding:10px 12px;">${badgeForStatus(l.status)}</td>
+            <td style="padding:10px 12px; font-family:'IBM Plex Mono',monospace; font-size:12.5px;">${formatDate(l.created_at)}</td>
+            <td style="padding:10px 12px; font-family:'IBM Plex Mono',monospace; font-size:12.5px;">${formatDate(l.removed_at)}</td>
+          </tr>`).join('')}
+      </tbody>
+    </table>
+    </div>`;
 }
 
 function badgeForStatus(s){
   if(s === 'pending') return '<span class="badge b-pending">Pending</span>';
   if(s === 'approved') return '<span class="badge b-approved">Approved</span>';
+  if(s === 'removed') return '<span class="badge b-rejected" style="background:var(--ink-soft);">Removed</span>';
   return '<span class="badge b-rejected">Rejected</span>';
 }
 function labelForReg(r){
@@ -198,6 +247,7 @@ function listingCardHTML(l){
           <span class="badge b-reg">${labelForReg(l.reg_status)}</span>
           <span class="badge b-reg mono">${Number(l.mileage).toLocaleString()} km</span>
           <span class="badge b-reg mono">${l.transmission || ''}</span>
+          ${l.color ? `<span class="badge b-reg">${l.color}</span>` : ''}
         </div>
       </div>
       <div class="lc-price mono">PKR ${Number(l.price).toLocaleString()}</div>
@@ -208,7 +258,7 @@ function listingCardHTML(l){
       ${l.status !== 'approved' ? `<button class="btn-approve" onclick="setStatus('${l.id}','approved')">Approve</button>` : ''}
       ${l.status !== 'rejected' ? `<button class="btn-reject" onclick="setStatus('${l.id}','rejected')">Reject</button>` : ''}
       <button class="btn-edit" onclick="toggleEdit('${l.id}')">Edit</button>
-      <button class="btn-delete" onclick="deleteListing('${l.id}')">Delete</button>
+      <button class="btn-delete" onclick="deleteListing('${l.id}')">Remove</button>
     </div>
     <div id="edit-${l.id}"></div>
   </div>`;
@@ -221,9 +271,12 @@ async function setStatus(id, status){
 }
 
 async function deleteListing(id){
-  if(!confirm('Delete this listing permanently?')) return;
-  const { error } = await supabaseClient.from('listings').delete().eq('id', id);
-  if(error){ alert('Failed to delete: ' + error.message); return; }
+  if(!confirm('Remove this listing from the site? It will be hidden but kept in the Vehicle Log with a removal date.')) return;
+  const { error } = await supabaseClient.from('listings').update({
+    status: 'removed',
+    removed_at: new Date().toISOString()
+  }).eq('id', id);
+  if(error){ alert('Failed to remove: ' + error.message); return; }
   await loadListings();
 }
 
@@ -239,6 +292,7 @@ function toggleEdit(id){
       <div><label>Price (PKR)</label><input id="e-price-${id}" type="number" value="${l.price}"></div>
       <div><label>Area</label><input id="e-area-${id}" value="${l.area || ''}"></div>
       <div><label>Village / locality</label><input id="e-village-${id}" value="${l.village || ''}"></div>
+      <div><label>Color</label><input id="e-color-${id}" value="${l.color || ''}"></div>
       <div><label>Registration status</label>
         <select id="e-reg-${id}">
           <option value="Custom Paid" ${l.reg_status==='Custom Paid'?'selected':''}>Custom paid</option>
@@ -261,6 +315,7 @@ async function saveEdit(id){
     price: parseFloat(document.getElementById(`e-price-${id}`).value),
     area: document.getElementById(`e-area-${id}`).value.trim(),
     village: document.getElementById(`e-village-${id}`).value.trim(),
+    color: document.getElementById(`e-color-${id}`).value.trim(),
     reg_status: document.getElementById(`e-reg-${id}`).value,
     description: document.getElementById(`e-desc-${id}`).value.trim(),
   };
