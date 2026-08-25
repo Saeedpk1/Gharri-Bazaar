@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Malakand Motors — NCP Cars &amp; Used Cars in Swat, Dir, Buner, Malakand &amp; Shangla</title>
+<title>Bazira Motors — NCP Cars &amp; Used Cars in Swat, Dir, Buner, Malakand &amp; Shangla</title>
 <meta name="description" content="Buy and sell NCP (non-custom-paid) and custom-paid used cars across Swat, Dir, Buner, Malakand &amp; Shangla. Free to list, seller-reported registration status, direct WhatsApp and call contact with the seller.">
 <meta name="keywords" content="NCP cars Swat, NCP cars Dir, NCP cars Buner, NCP cars Malakand, NCP cars Shangla, non custom paid cars Swat, used cars Malakand Division, gaari bazaar Swat">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Malakand Motors">
-<meta property="og:title" content="Malakand Motors — NCP Cars &amp; Used Cars in Swat, Dir, Buner, Malakand &amp; Shangla">
+<meta property="og:site_name" content="Bazira Motors">
+<meta property="og:title" content="Bazira Motors — NCP Cars &amp; Used Cars in Swat, Dir, Buner, Malakand &amp; Shangla">
 <meta property="og:description" content="Buy and sell NCP and custom-paid used cars across Malakand Division. Free to list, seller-reported status, direct contact with sellers.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Malakand Motors — NCP Cars in Swat, Dir, Buner, Malakand &amp; Shangla">
+<meta name="twitter:title" content="Bazira Motors — NCP Cars in Swat, Dir, Buner, Malakand &amp; Shangla">
 <meta name="twitter:description" content="Buy and sell NCP and custom-paid used cars across Malakand Division.">
 <!-- ============================================================
      Google Analytics — free traffic tracking (page views, visitor
@@ -31,7 +31,7 @@
 {
   "@context": "https://schema.org",
   "@type": "AutomotiveBusiness",
-  "name": "Malakand Motors",
+  "name": "Bazira Motors",
   "description": "Online marketplace for NCP (non-custom-paid) and custom-paid used cars across Malakand Division, Pakistan.",
   "areaServed": [
     {"@type": "AdministrativeArea", "name": "Swat"},
@@ -65,27 +65,30 @@
 <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Malakand Motors">
+<meta name="apple-mobile-web-app-title" content="Bazira Motors">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Mukta:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Mukta:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   :root{
-    --walnut:#4a2e1d;
-    --walnut-2:#2e1b10;
-    --turquoise:#2c7873;
-    --marigold:#c9862e;
-    --marigold-light:#e3ab54;
-    --bg:#faf8f3;
+    --walnut:#2b1810;
+    --walnut-2:#160c07;
+    --turquoise:#0ea89a;
+    --turquoise-light:#2dd4c4;
+    --marigold:#f2a93c;
+    --marigold-light:#ffcb6b;
+    --coral:#ff6b5b;
+    --bg:#faf9fc;
     --panel:#ffffff;
-    --panel-2:#f4f0e6;
-    --ink:#221a12;
-    --ink-soft:#6b5744;
-    --line:#e5ddc9;
-    --danger:#a13327;
-    --ok:#2c7873;
-    --warn:#b3781d;
-    --radius:12px;
+    --panel-2:#f4f2fb;
+    --ink:#181321;
+    --ink-soft:#6e6a7c;
+    --line:#eae7f2;
+    --danger:#ef4444;
+    --ok:#0ea89a;
+    --warn:#f59e0b;
+    --radius:16px;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth; overflow-x:hidden; max-width:100vw;}
@@ -99,7 +102,7 @@
     overflow-x:hidden; max-width:100vw;
   }
   [dir="rtl"] body{ font-family:'Noto Nastaliq Urdu','Mukta',sans-serif; }
-  h1,h2,h3{ font-family:'Cinzel',serif; font-weight:600; color:var(--walnut-2); margin:0; }
+  h1,h2,h3{ font-family:'Sora',sans-serif; font-weight:600; color:var(--walnut-2); margin:0; }
   .mono{ font-family:'IBM Plex Mono',monospace; }
   a{ color:inherit; text-decoration:none; }
   img{max-width:100%;display:block;}
@@ -132,17 +135,22 @@
     display:flex; align-items:center; justify-content:center; flex-shrink:0;
   }
   .logo-mark svg{ width:100%; height:100%; display:block; }
-  .logo-text{ font-family:'Cinzel',serif; font-weight:700; font-size:18px; color:var(--walnut-2); line-height:1.1; }
+  .logo-text{ font-family:'Sora',sans-serif; font-weight:700; font-size:18px; color:var(--walnut-2); line-height:1.1; }
   .logo-text small{ display:block; font-family:'Mukta',sans-serif; font-weight:500; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-soft); }
   .nav-links{ display:flex; gap:26px; font-size:14.5px; font-weight:600; }
   .nav-links a:hover{ color:var(--marigold); }
   .nav-actions{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
   .btn{
-    border:none; cursor:pointer; font-weight:600; font-size:14px;
-    padding:10px 18px; border-radius:8px; transition:opacity .15s ease;
+    border:none; cursor:pointer; font-weight:700; font-size:14px;
+    padding:10px 18px; border-radius:999px; transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
   }
-  .btn:hover{ opacity:.88; }
-  .btn-primary{ background:var(--marigold); color:var(--walnut-2); }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:active{ transform:translateY(0); }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--marigold-light), var(--marigold));
+    color:var(--walnut-2); box-shadow:0 6px 16px -6px rgba(242,169,60,0.55);
+  }
+  .btn-primary:hover{ box-shadow:0 10px 22px -8px rgba(242,169,60,0.7); }
   .btn-ghost{ background:transparent; color:var(--walnut-2); border:1.5px solid var(--line); }
   .lang-toggle{
     font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;
@@ -158,7 +166,7 @@
 
   /* ---------- hero with functional search ---------- */
   .hero{
-    background: linear-gradient(180deg, var(--walnut-2) 0%, var(--walnut) 100%);
+    background: linear-gradient(135deg, var(--walnut-2) 0%, var(--walnut) 55%, #3a1f2e 100%);
     padding:32px 0 0;
   }
   @media(min-width:760px){ .hero{ padding:52px 0 0; } }
@@ -189,7 +197,7 @@
   .hero p{ color:#d8c6a8; font-size:15.5px; margin-top:10px; max-width:52ch; margin-left:auto; margin-right:auto; }
 
   .search-panel{
-    background:var(--panel); border-radius:10px; padding:8px;
+    background:var(--panel); border-radius:14px; padding:8px;
     display:flex; gap:8px; align-items:stretch;
     max-width:560px; margin:22px auto 0; box-shadow:0 14px 30px -16px rgba(0,0,0,0.35);
   }
@@ -209,7 +217,7 @@
   }
   .filters-row{
     display:none; grid-template-columns:1fr 1fr; gap:8px;
-    max-width:560px; margin:10px auto 0; background:var(--panel); border-radius:10px; padding:10px;
+    max-width:560px; margin:10px auto 0; background:var(--panel); border-radius:14px; padding:10px;
   }
   .filters-row.open{ display:grid; }
   .filters-row select{
@@ -266,7 +274,11 @@
     display:grid; grid-template-columns:repeat(4,1fr); text-align:center;
     padding:22px 24px;
   }
-  .stat b{ display:block; font-family:'Cinzel',serif; font-size:22px; color:var(--walnut-2); }
+  .stat b{ display:block; font-family:'Sora',sans-serif; font-size:24px; color:var(--walnut-2); font-weight:700; }
+  .stat:nth-child(1) b{ color:var(--marigold); }
+  .stat:nth-child(2) b{ color:var(--turquoise); }
+  .stat:nth-child(3) b{ color:var(--coral); }
+  .stat:nth-child(4) b{ color:var(--marigold); }
   .stat span{ font-size:12.5px; color:var(--ink-soft); }
   @media(max-width:700px){ .stats-strip .wrap{ grid-template-columns:repeat(2,1fr); gap:16px; } }
 
@@ -281,12 +293,12 @@
   .view-all{ font-size:13.5px; font-weight:700; color:var(--turquoise); white-space:nowrap; }
 
   /* ---------- listing list (mobile-first: horizontal rows) ---------- */
-  .grid{ display:flex; flex-direction:column; gap:10px; }
+  .grid{ display:flex; flex-direction:column; gap:12px; }
   .card-wrap{
-    background:var(--panel); border:1px solid var(--line); border-radius:10px;
-    overflow:hidden; transition:box-shadow .15s ease;
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    overflow:hidden; transition:box-shadow .2s ease, transform .2s ease;
   }
-  .card-wrap:hover{ box-shadow:0 10px 22px -16px rgba(34,26,18,0.28); }
+  .card-wrap:hover{ box-shadow:0 16px 32px -18px rgba(24,19,33,0.25); transform:translateY(-3px); }
   .card{
     display:flex; flex-direction:row-reverse; align-items:stretch; cursor:default;
   }
@@ -346,7 +358,7 @@
   .step p{ font-size:13.5px; line-height:1.55; color:var(--ink-soft); margin:0; }
 
   .disclaimer{
-    margin-top:18px; background:#fff8ea; border:1px solid #ecd9a8; border-radius:10px;
+    margin-top:18px; background:#fff8ea; border:1px solid #ecd9a8; border-radius:14px;
     padding:14px 16px; font-size:13px; color:#6b5230; display:flex; gap:10px; align-items:flex-start;
   }
   .disclaimer .ic{ font-size:16px; flex-shrink:0; }
@@ -433,7 +445,7 @@
   }
   .status-options input{ accent-color: var(--marigold); }
   .upload-box{
-    border:2px dashed var(--line); border-radius:10px; padding:24px; text-align:center;
+    border:2px dashed var(--line); border-radius:14px; padding:24px; text-align:center;
     background:var(--panel-2); cursor:pointer; position:relative;
   }
   .upload-box:hover{ border-color:var(--marigold); }
@@ -474,7 +486,7 @@
   }
   .gallery-overlay.open{ display:flex; }
   .gallery-main{ position:relative; width:100%; max-width:640px; padding:0 16px; display:flex; align-items:center; justify-content:center; }
-  .gallery-main img{ max-width:100%; max-height:65vh; border-radius:10px; object-fit:contain; }
+  .gallery-main img{ max-width:100%; max-height:65vh; border-radius:14px; object-fit:contain; }
   .gallery-close{
     position:absolute; top:16px; right:16px; z-index:2;
     background:rgba(255,255,255,0.12); color:#fff; border:none; border-radius:50%;
@@ -505,29 +517,29 @@
     border-radius:20px 20px 0 0; padding:28px 22px 30px; max-height:88vh; overflow-y:auto;
   }
   @media(min-width:600px){ .details-overlay{ align-items:center; } .details-panel{ border-radius:20px; } }
-  .dt-title{ font-family:'Cinzel',serif; font-weight:600; font-size:22px; color:var(--walnut-2); margin-bottom:2px; padding-right:30px; }
+  .dt-title{ font-family:'Sora',sans-serif; font-weight:600; font-size:22px; color:var(--walnut-2); margin-bottom:2px; padding-right:30px; }
   .dt-price{ font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--marigold); font-size:22px; margin-bottom:16px; }
   .dt-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
-  .dt-item{ background:var(--panel-2); border-radius:10px; padding:10px 12px; }
+  .dt-item{ background:var(--panel-2); border-radius:14px; padding:10px 12px; }
   .dt-item .dt-label{ font-size:11px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em; margin-bottom:3px; }
   .dt-item .dt-value{ font-size:14px; font-weight:700; color:var(--walnut-2); }
   .dt-status{ display:inline-block; font-size:11.5px; font-weight:700; padding:5px 12px; border-radius:999px; color:#fff; margin-bottom:14px; }
   .dt-desc{ font-size:13.5px; color:var(--ink-soft); line-height:1.6; margin-bottom:16px; }
-  .dt-seller{ background:var(--panel-2); border-radius:12px; padding:14px; margin-bottom:16px; }
+  .dt-seller{ background:var(--panel-2); border-radius:16px; padding:14px; margin-bottom:16px; }
   .dt-seller .dt-label{ font-size:11px; color:var(--ink-soft); text-transform:uppercase; margin-bottom:4px; }
   .dt-seller .dt-name{ font-weight:700; color:var(--walnut-2); font-size:15px; }
   .dt-actions{ display:flex; gap:10px; margin-bottom:18px; }
   .dt-actions a{
-    flex:1; text-align:center; padding:12px; border-radius:10px; font-weight:700; font-size:14px;
+    flex:1; text-align:center; padding:12px; border-radius:14px; font-weight:700; font-size:14px;
     display:flex; align-items:center; justify-content:center; gap:6px;
   }
   .dt-actions .dt-whatsapp{ background:var(--ok); color:#fff; }
   .dt-actions .dt-call{ background:var(--panel-2); color:var(--walnut-2); border:1px solid var(--line); }
   .dt-message{
     background:linear-gradient(155deg, var(--walnut), var(--walnut-2)); color:#f1e7d4;
-    border-radius:12px; padding:16px; font-size:13px; line-height:1.6; text-align:center;
+    border-radius:16px; padding:16px; font-size:13px; line-height:1.6; text-align:center;
   }
-  .dt-message b{ display:block; color:var(--marigold-light); font-size:14.5px; margin-bottom:4px; font-family:'Cinzel',serif; }
+  .dt-message b{ display:block; color:var(--marigold-light); font-size:14.5px; margin-bottom:4px; font-family:'Sora',sans-serif; }
   .card-photo{ cursor:pointer; }
   .card-photo .photo-count{
     position:absolute; top:6px; right:6px; font-size:10px; font-weight:700;
@@ -595,7 +607,7 @@
         <circle cx="72" cy="143" r="2.4" fill="#f1e7d4"/>
         <circle cx="108" cy="143" r="2.4" fill="#f1e7d4"/>
       </svg></div>
-      <div class="logo-text">Malakand Motors<small data-en="NCP &amp; Used Cars" data-ur="این سی پی اور استعمال شدہ گاڑیاں">NCP &amp; Used Cars</small></div>
+      <div class="logo-text">Bazira Motors<small data-en="NCP &amp; Used Cars" data-ur="این سی پی اور استعمال شدہ گاڑیاں">NCP &amp; Used Cars</small></div>
     </div>
     <nav class="nav-links">
       <a href="#listings" data-en="Browse" data-ur="دیکھیں">Browse</a>
@@ -743,7 +755,7 @@
         </div>
         <div class="card-actions">
           <a onclick="openDetails({make:'Suzuki',model:'Mehran',price:680000,mileage:72000,transmission:'Automatic',area:'Babuzai',village:'',color:'White',reg_status:'Numbari',description:'Well maintained, single owner, all original parts.',seller_name:'Rahim Khan',seller_mobile:'03001234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
-          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Suzuki%20Mehran%202015%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
+          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Suzuki%20Mehran%202015%20on%20Bazira%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
@@ -761,7 +773,7 @@
         </div>
         <div class="card-actions">
           <a onclick="openDetails({make:'Toyota',model:'Hilux',price:2150000,mileage:140000,transmission:'Manual',area:'Kabal',village:'',color:'Silver',reg_status:'NCP',description:'Strong engine, used for farm work, minor scratches.',seller_name:'Sher Ali',seller_mobile:'03011234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
-          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Hilux%202012%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
+          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Hilux%202012%20on%20Bazira%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
@@ -779,7 +791,7 @@
         </div>
         <div class="card-actions">
           <a onclick="openDetails({make:'Honda',model:'City',price:1790000,mileage:38000,transmission:'Automatic',area:'Matta',village:'',color:'Black',reg_status:'Numbari',description:'Low mileage, showroom condition, no accidents.',seller_name:'Naveed Iqbal',seller_mobile:'03021234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
-          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Honda%20City%202019%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
+          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Honda%20City%202019%20on%20Bazira%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
@@ -797,7 +809,7 @@
         </div>
         <div class="card-actions">
           <a onclick="openDetails({make:'Toyota',model:'Prado',price:3400000,mileage:98000,transmission:'Automatic',area:'Khwazakhela',village:'',color:'Grey',reg_status:'NCP',description:'Imported unit, full option, needs registration.',seller_name:'Bakht Zaman',seller_mobile:'03031234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
-          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Prado%202010%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
+          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Prado%202010%20on%20Bazira%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
@@ -815,7 +827,7 @@
         </div>
         <div class="card-actions">
           <a onclick="openDetails({make:'Suzuki',model:'Bolan',price:940000,mileage:55000,transmission:'Manual',area:'Bahrain',village:'',color:'White',reg_status:'NCP',description:'Good for family use, AC working, recently serviced.',seller_name:'Fazal Rabi',seller_mobile:'03041234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
-          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Suzuki%20Bolan%202017%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
+          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Suzuki%20Bolan%202017%20on%20Bazira%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
@@ -833,7 +845,7 @@
         </div>
         <div class="card-actions">
           <a onclick="openDetails({make:'Toyota',model:'Corolla',price:1420000,mileage:61000,transmission:'Automatic',area:'Babuzai',village:'',color:'Blue',reg_status:'Numbari',description:'Excellent condition, genuine mileage, first owner.',seller_name:'Saeed Ullah',seller_mobile:'03051234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
-          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Corolla%202018%20on%20Malakand%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
+          <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Corolla%202018%20on%20Bazira%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
       </div>
@@ -848,7 +860,7 @@
     <div class="section-head">
       <div>
         <h2 data-en="How it works" data-ur="یہ کیسے کام کرتا ہے">How it works</h2>
-        <p data-en="Malakand Motors connects buyers and sellers directly — that's it." data-ur="ملاکنڈ موٹرز صرف خریداروں اور فروخت کنندگان کو ملاتا ہے — بس۔">Malakand Motors connects buyers and sellers directly — that's it.</p>
+        <p data-en="Bazira Motors connects buyers and sellers directly — that's it." data-ur="بازیرا موٹرز صرف خریداروں اور فروخت کنندگان کو ملاتا ہے — بس۔">Bazira Motors connects buyers and sellers directly — that's it.</p>
       </div>
     </div>
     <div class="steps">
@@ -871,7 +883,7 @@
 
     <div class="disclaimer">
       <span class="ic">ⓘ</span>
-      <span data-en="Malakand Motors is a listing platform only. We do not verify registration status, documents, or ownership — always confirm these yourself before any payment." data-ur="ملاکنڈ موٹرز صرف ایک اشتہاری پلیٹ فارم ہے۔ ہم رجسٹریشن کی حیثیت، کاغذات یا ملکیت کی تصدیق نہیں کرتے — ادائیگی سے پہلے خود تصدیق ضرور کریں۔">Malakand Motors is a listing platform only. We do not verify registration status, documents, or ownership — always confirm these yourself before any payment.</span>
+      <span data-en="Bazira Motors is a listing platform only. We do not verify registration status, documents, or ownership — always confirm these yourself before any payment." data-ur="بازیرا موٹرز صرف ایک اشتہاری پلیٹ فارم ہے۔ ہم رجسٹریشن کی حیثیت، کاغذات یا ملکیت کی تصدیق نہیں کرتے — ادائیگی سے پہلے خود تصدیق ضرور کریں۔">Bazira Motors is a listing platform only. We do not verify registration status, documents, or ownership — always confirm these yourself before any payment.</span>
     </div>
   </div>
 </section>
@@ -1125,11 +1137,11 @@
       <circle cx="72" cy="143" r="2.4" fill="#f1e7d4"/>
       <circle cx="108" cy="143" r="2.4" fill="#f1e7d4"/>
     </svg></div>
-      <div class="logo-text" style="margin-inline-start:10px; align-self:center;">Malakand Motors</div>
+      <div class="logo-text" style="margin-inline-start:10px; align-self:center;">Bazira Motors</div>
     </div>
     <p class="foot-note" style="max-width:52ch; margin:0 auto;" data-en="Built for the people of Malakand Division — a simple, honest place to buy and sell cars, from Swat to Shangla." data-ur="ڈویژن مالاکنڈ کے لوگوں کے لیے بنایا گیا — گاڑیاں خریدنے اور بیچنے کی ایک سادہ اور دیانتدار جگہ، سوات سے شانگلہ تک۔">Built for the people of Malakand Division — a simple, honest place to buy and sell cars, from Swat to Shangla.</p>
   </div>
-  <div class="foot-bottom" data-en="© 2026 Malakand Motors. All listings are seller-reported." data-ur="© 2026 ملاکنڈ موٹرز۔ تمام اشتہارات فروخت کنندہ کی جانب سے بتائے گئے ہیں۔">© 2026 Malakand Motors. All listings are seller-reported.</div>
+  <div class="foot-bottom" data-en="© 2026 Bazira Motors. All listings are seller-reported." data-ur="© 2026 بازیرا موٹرز۔ تمام اشتہارات فروخت کنندہ کی جانب سے بتائے گئے ہیں۔">© 2026 Bazira Motors. All listings are seller-reported.</div>
 </footer>
 
 <nav class="bottom-nav">
@@ -1519,7 +1531,7 @@ function openDetails(listing){
   const areaLine = listing.village ? `${listing.area || ''} · ${listing.village}` : (listing.area || '—');
   const sellerPhone = (listing.seller_mobile || '').replace(/[^0-9]/g,'');
   const intlPhone = sellerPhone.startsWith('0') ? '92' + sellerPhone.slice(1) : sellerPhone;
-  const waText = encodeURIComponent(`Hi, I'm interested in your ${listing.make} ${listing.model} on Malakand Motors.`);
+  const waText = encodeURIComponent(`Hi, I'm interested in your ${listing.make} ${listing.model} on Bazira Motors.`);
 
   document.getElementById('details-content').innerHTML = `
     <div class="dt-title">${listing.make} ${listing.model}</div>
@@ -1541,7 +1553,7 @@ function openDetails(listing){
       <a class="dt-call" href="tel:+${intlPhone}">📞 ${isUrdu ? 'کال کریں' : 'Call'}</a>
     </div>
     <div class="dt-message">
-      <b data-en-inline="1">${isUrdu ? 'ملاکنڈ موٹرز' : 'Malakand Motors'}</b>
+      <b data-en-inline="1">${isUrdu ? 'بازیرا موٹرز' : 'Bazira Motors'}</b>
       ${isUrdu
         ? 'ہم یہاں آپ کی گاڑی بیچنے یا صحیح گاڑی ڈھونڈنے میں مدد کے لیے موجود ہیں — پورے ملاکنڈ ڈویژن میں اعتماد کے ساتھ خریدیں اور بیچیں۔'
         : "We're here to help you sell your car or find the right one — buy and sell with confidence across all of Malakand Division."}
@@ -1568,16 +1580,28 @@ const SUPABASE_ANON_KEY = "sb_publishable_ahnp3jBYRz_nuINiNRF_pQ_0r-rs8k2";
 const SELLER_INTAKE_WHATSAPP_NUMBER = "966590900938";
 
 // ============================================================
-// TODO — automatic admin notification when a new listing comes in.
-// This uses CallMeBot (free) to WhatsApp you directly, no backend needed.
-// One-time setup (takes ~2 minutes):
-//   1. Save this number in your phone contacts: +34 644 59 71 67
-//   2. Send it a WhatsApp message with exactly this text:
-//      I allow callmebot to send me messages
-//   3. CallMeBot replies with your personal API key — paste it below.
+// TODO — automatic admin email notification when a new listing comes in.
+// Uses EmailJS (free, reliable, no backend needed). One-time setup:
+//   1. Go to emailjs.com and sign up free.
+//   2. Email Services -> Add New Service -> connect your Gmail (or any
+//      email account) -> copy the "Service ID" it gives you.
+//   3. Email Templates -> Create New Template. In the template body use
+//      variables like {{make}} {{model}} {{price}} {{seller_name}}
+//      {{seller_mobile}} {{admin_link}} -- write the email however you
+//      like using those. In the template's "To Email" field, put your
+//      own email address(es) -- separate multiple with a comma to send
+//      to more than one inbox. Copy the "Template ID".
+//   4. Account -> General -> copy your "Public Key".
+//   5. Paste all three values below.
 // ============================================================
-const ADMIN_WHATSAPP_NUMBER = "966590900938";
-const ADMIN_CALLMEBOT_APIKEY = "YOUR_CALLMEBOT_API_KEY";
+const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+
+const emailNotifyConfigured = EMAILJS_SERVICE_ID !== "YOUR_SERVICE_ID" && EMAILJS_TEMPLATE_ID !== "YOUR_TEMPLATE_ID" && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY";
+if(emailNotifyConfigured && window.emailjs){
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
 
 const supabaseConfigured = SUPABASE_URL !== "YOUR_SUPABASE_PROJECT_URL" && SUPABASE_ANON_KEY !== "YOUR_SUPABASE_ANON_KEY";
 const supabaseClient = supabaseConfigured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
@@ -1621,7 +1645,7 @@ async function loadApprovedListings(){
     const photo = photos[0] ? `background-image:url('${photos[0]}');background-size:cover;background-position:center;` : 'background:linear-gradient(135deg,#2c7873,#4a2e1d);';
     const sellerPhone = (row.seller_mobile || '').replace(/[^0-9]/g,''); // digits only, e.g. 03001234567
     const intlPhone = sellerPhone.startsWith('0') ? '92' + sellerPhone.slice(1) : sellerPhone; // 03XXXXXXXXX -> 923XXXXXXXXX
-    const waText = encodeURIComponent(`Hi, I'm interested in your ${row.make} ${row.model} on Malakand Motors.`);
+    const waText = encodeURIComponent(`Hi, I'm interested in your ${row.make} ${row.model} on Bazira Motors.`);
     const areaLabel = row.village ? `${row.area || ''} · ${row.village}` : (row.area || '');
     const hasLocation = row.latitude && row.longitude;
     const galleryId = `listing-gallery-${rowIndex}`;
@@ -1758,7 +1782,7 @@ document.getElementById('listing-form').addEventListener('submit', async functio
   // Fallback: Supabase not set up yet — use WhatsApp so submissions still work today
   if(!supabaseConfigured){
     const lines = [
-      "🚗 New listing — Malakand Motors",
+      "🚗 New listing — Bazira Motors",
       "",
       `Seller: ${name} (${mobile})`,
       `Car: ${make} ${model}`,
@@ -1816,14 +1840,20 @@ document.getElementById('listing-form').addEventListener('submit', async functio
 
     if(insertErr) throw insertErr;
 
-    // Notify admin automatically via WhatsApp (best-effort — doesn't block submission if it fails)
-    if(ADMIN_CALLMEBOT_APIKEY !== "YOUR_CALLMEBOT_API_KEY"){
-      try{
-        const notifyText = encodeURIComponent(`🚗 New listing pending approval on Malakand Motors: ${make} ${model} — PKR ${price}. Seller: ${name} (${mobile}). Review it at your admin page.`);
-        fetch(`https://api.callmebot.com/whatsapp.php?phone=${ADMIN_WHATSAPP_NUMBER}&text=${notifyText}&apikey=${ADMIN_CALLMEBOT_APIKEY}`);
-      }catch(notifyErr){
-        console.error('Admin notification failed:', notifyErr);
-      }
+    // Notify admin via email (best-effort — doesn't block submission if it fails)
+    if(emailNotifyConfigured && window.emailjs){
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        make, model,
+        price: Number(price).toLocaleString(),
+        mileage: Number(mileage).toLocaleString(),
+        transmission,
+        area, village,
+        color,
+        reg_status: regStatusLabel,
+        seller_name: name,
+        seller_mobile: mobile,
+        description: desc
+      }).catch(notifyErr => console.error('Admin email notification failed:', notifyErr));
     }
 
     statusEl.style.color = 'var(--ok)';
