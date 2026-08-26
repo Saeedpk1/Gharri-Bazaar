@@ -997,12 +997,20 @@
         </div>
       </div>
 
-      <div class="form-row three">
+      <div class="form-row">
+        <div class="field">
+          <label data-en="Manufacture year" data-ur="سال ساخت">Manufacture year</label>
+          <input type="number" id="f-year" required min="1980" max="2026" data-en-ph="e.g. 2018" data-ur-ph="مثلاً 2018" placeholder="e.g. 2018">
+          <span class="field-hint" id="hint-f-year"></span>
+        </div>
         <div class="field">
           <label data-en="Mileage (km)" data-ur="مائلیج (کلومیٹر)">Mileage (km)</label>
           <input type="number" id="f-mileage" required data-en-ph="e.g. 61000" data-ur-ph="مثلاً 61000" placeholder="e.g. 61000">
           <span class="field-hint" id="hint-f-mileage"></span>
         </div>
+      </div>
+
+      <div class="form-row three">
         <div class="field">
           <label data-en="Price (PKR)" data-ur="قیمت (روپے)">Price (PKR)</label>
           <input type="number" id="f-price" required data-en-ph="e.g. 1420000" data-ur-ph="مثلاً 1420000" placeholder="e.g. 1420000">
@@ -1441,6 +1449,9 @@ const fieldValidators = {
   'f-model': v => v.trim().length >= 1
     ? { ok:true, en:'✓ Looks good', ur:'✓ ٹھیک ہے' }
     : { ok:false, en:'Select the model', ur:'ماڈل منتخب کریں' },
+  'f-year': v => (v && parseInt(v) >= 1980 && parseInt(v) <= 2026)
+    ? { ok:true, en:'✓ Looks good', ur:'✓ ٹھیک ہے' }
+    : { ok:false, en:'Enter a valid year (1980–2026)', ur:'درست سال درج کریں (1980–2026)' },
   'f-mileage': v => (v && parseInt(v) >= 0)
     ? { ok:true, en:'✓ Looks good', ur:'✓ ٹھیک ہے' }
     : { ok:false, en:'Enter mileage in km', ur:'مائلیج کلومیٹر میں درج کریں' },
@@ -1607,7 +1618,7 @@ function openDetails(listing){
 
   document.getElementById('details-content').innerHTML = `
     ${photoHtml}
-    <div class="dt-title">${listing.make} ${listing.model}</div>
+    <div class="dt-title">${listing.make} ${listing.model}${listing.year ? ' ' + listing.year : ''}</div>
     <div class="dt-price">PKR ${Number(listing.price).toLocaleString()}</div>
     <span class="dt-status ${statusClass}">${statusText}</span>
     <div class="dt-grid">
@@ -1738,7 +1749,7 @@ async function loadApprovedListings(){
           <div class="price-tag mono">${Number(row.price).toLocaleString()}</div>
         </div>
         <div class="card-body">
-          <div class="card-title">${row.make} ${row.model}</div>
+          <div class="card-title">${row.make} ${row.model}${row.year ? ' ' + row.year : ''}</div>
           <div class="card-sub mono">${Number(row.mileage).toLocaleString()} km</div>
           <div class="card-foot"><span class="card-area">${areaLabel}</span><span class="card-mi">${row.transmission || ''}</span></div>
         </div>
@@ -1832,6 +1843,7 @@ document.getElementById('listing-form').addEventListener('submit', async functio
   }else if(modelSelect === 'Other'){
     model = document.getElementById('f-model-other').value.trim();
   }
+  const year = document.getElementById('f-year').value.trim();
   const mileage = document.getElementById('f-mileage').value.trim();
   const price = document.getElementById('f-price').value.trim();
   const transmission = document.getElementById('f-transmission').value;
@@ -1844,7 +1856,7 @@ document.getElementById('listing-form').addEventListener('submit', async functio
   const regStatusLabel = regStatusInput.nextElementSibling.textContent;
   const desc = document.getElementById('f-desc').value.trim();
 
-  if(!name || !mobile || !make || !model || !mileage || !price){
+  if(!name || !mobile || !make || !model || !year || !mileage || !price){
     alert(isUrdu ? 'براہ کرم تمام لازمی خانے پُر کریں۔' : 'Please fill in all required fields.');
     return;
   }
@@ -1858,7 +1870,7 @@ document.getElementById('listing-form').addEventListener('submit', async functio
       "🚗 New listing — Bazira Motors",
       "",
       `Seller: ${name} (${mobile})`,
-      `Car: ${make} ${model}`,
+      `Car: ${make} ${model} ${year}`,
       `Mileage: ${mileage} km`,
       `Price: PKR ${price}`,
       `Transmission: ${transmission}`,
@@ -1898,6 +1910,7 @@ document.getElementById('listing-form').addEventListener('submit', async functio
       seller_name: name,
       seller_mobile: mobile,
       make, model,
+      year: parseInt(year),
       mileage: parseInt(mileage),
       price: parseFloat(price),
       transmission,
@@ -1916,7 +1929,7 @@ document.getElementById('listing-form').addEventListener('submit', async functio
     // Notify admin via email (best-effort — doesn't block submission if it fails)
     if(emailNotifyConfigured && window.emailjs){
       emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        make, model,
+        make, model, year,
         price: Number(price).toLocaleString(),
         mileage: Number(mileage).toLocaleString(),
         transmission,

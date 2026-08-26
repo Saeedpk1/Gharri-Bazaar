@@ -281,7 +281,7 @@ function listingCardHTML(l){
   <div class="listing-card" id="card-${l.id}">
     <div class="lc-top">
       <div>
-        <div class="lc-title">${l.make} ${l.model}</div>
+        <div class="lc-title">${l.make} ${l.model}${l.year ? ' ' + l.year : ''}</div>
         <div class="lc-meta">${l.seller_name} · ${l.seller_mobile} · ${locationLine}${mapLink}</div>
         <div class="lc-badges">
           ${badgeForStatus(l.status)}
@@ -329,6 +329,7 @@ function toggleEdit(id){
     <div class="edit-grid">
       <div><label>Make</label><input id="e-make-${id}" value="${l.make}"></div>
       <div><label>Model</label><input id="e-model-${id}" value="${l.model}"></div>
+      <div><label>Year</label><input id="e-year-${id}" type="number" value="${l.year || ''}"></div>
       <div><label>Mileage (km)</label><input id="e-mileage-${id}" type="number" value="${l.mileage}"></div>
       <div><label>Price (PKR)</label><input id="e-price-${id}" type="number" value="${l.price}"></div>
       <div><label>Area</label><input id="e-area-${id}" value="${l.area || ''}"></div>
@@ -351,6 +352,7 @@ async function saveEdit(id){
   const updated = {
     make: document.getElementById(`e-make-${id}`).value.trim(),
     model: document.getElementById(`e-model-${id}`).value.trim(),
+    year: parseInt(document.getElementById(`e-year-${id}`).value) || null,
     mileage: parseInt(document.getElementById(`e-mileage-${id}`).value),
     price: parseFloat(document.getElementById(`e-price-${id}`).value),
     area: document.getElementById(`e-area-${id}`).value.trim(),
