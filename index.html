@@ -194,8 +194,21 @@
 
   .hero-inner{ text-align:center; padding-bottom:28px; }
   @media(min-width:760px){ .hero-inner{ padding-bottom:44px; } }
-  .hero h1{ font-family:'Sora',sans-serif; font-weight:700; color:#fbf7ee; font-size:clamp(20px,3vw,28px); line-height:1.35; margin:22px 0 26px; }
-  .hero h1 span{ color:var(--marigold-light); }
+  .hero-bilingual{
+    font-family:'Sora',sans-serif; font-weight:700; color:#fbf7ee;
+    font-size:clamp(20px,3.2vw,30px); line-height:1.3; margin:22px 0 26px;
+    display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:12px;
+  }
+  .hero-ur-text{
+    font-family:'Noto Nastaliq Urdu','Sora',sans-serif; font-weight:700;
+    color:var(--marigold-light);
+  }
+  .hero-car-strip{
+    display:inline-flex; align-items:center; gap:8px; color:var(--marigold-light);
+  }
+  .hero-car-strip svg{ width:22px; height:22px; }
+  .hero-car-strip svg:nth-child(2){ width:28px; height:28px; }
+  .hero-car-strip svg:nth-child(3){ width:18px; height:18px; }
   .hero p{ color:#cbd5e1; font-size:15.5px; margin-top:10px; max-width:52ch; margin-left:auto; margin-right:auto; }
 
   .search-panel{
@@ -609,7 +622,7 @@
   <div class="wrap">
     <span class="topbar-serving" data-en="Serving Swat, Dir, Buner, Malakand &amp; Shangla" data-ur="سوات، دیر، بونیر، مالاکنڈ اور شانگلہ کی خدمت میں">Serving Swat, Dir, Buner, Malakand &amp; Shangla</span>
     <div class="topbar-links">
-      <a href="#" data-en="Help" data-ur="مدد">Help</a>
+      <a href="#how" data-en="Help" data-ur="مدد">Help</a>
       <a href="https://wa.me/923429610880" target="_blank">WhatsApp</a>
     </div>
   </div>
@@ -670,7 +683,15 @@
     </g>
   </svg>
   <div class="hero-inner wrap">
-    <h1 data-en="A place for buying and selling cars" data-ur="گاڑیاں خریدنے اور بیچنے کی جگہ">A place for buying and selling cars</h1>
+    <h1 class="hero-bilingual">
+      <span class="hero-en-text">Online Bargain</span>
+      <span class="hero-car-strip" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16 4.5 10.5A2.5 2.5 0 0 1 6.9 8.7h10.2A2.5 2.5 0 0 1 19.5 10.5L21 16"/><path d="M2.5 16h19v3.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1.5H6.5V19.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/><circle cx="7" cy="16" r="1.6"/><circle cx="17" cy="16" r="1.6"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.6;"><path d="M3 16 4.5 10.5A2.5 2.5 0 0 1 6.9 8.7h10.2A2.5 2.5 0 0 1 19.5 10.5L21 16"/><path d="M2.5 16h19v3.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1.5H6.5V19.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/><circle cx="7" cy="16" r="1.6"/><circle cx="17" cy="16" r="1.6"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.35;"><path d="M3 16 4.5 10.5A2.5 2.5 0 0 1 6.9 8.7h10.2A2.5 2.5 0 0 1 19.5 10.5L21 16"/><path d="M2.5 16h19v3.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1.5H6.5V19.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/><circle cx="7" cy="16" r="1.6"/><circle cx="17" cy="16" r="1.6"/></svg>
+      </span>
+      <span class="hero-ur-text">آن لائن بارگین</span>
+    </h1>
 
     <div class="search-panel">
       <input type="text" id="main-search-input" data-en-ph="Search make or model — e.g. Corolla" data-ur-ph="گاڑی کا نام تلاش کریں — مثلاً کرولا" placeholder="Search make or model — e.g. Corolla">
@@ -887,25 +908,25 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2 data-en="How it works" data-ur="یہ کیسے کام کرتا ہے">How it works</h2>
-        <p data-en="Bazira Motors connects buyers and sellers directly — that's it." data-ur="بازیرا موٹرز صرف خریداروں اور فروخت کنندگان کو ملاتا ہے — بس۔">Bazira Motors connects buyers and sellers directly — that's it.</p>
+        <h2 data-en="How Bazira Motors works" data-ur="بازیرا موٹرز کیسے کام کرتا ہے">How Bazira Motors works</h2>
+        <p data-en="No middlemen, no hidden fees — just buyers and sellers, connected directly." data-ur="نہ کوئی درمیانی شخص، نہ کوئی چھپی ہوئی فیس — بس خریدار اور فروخت کنندہ، براہ راست جڑے ہوئے۔">No middlemen, no hidden fees — just buyers and sellers, connected directly.</p>
       </div>
     </div>
     <div class="steps">
       <div class="step">
         <span class="num">1</span>
-        <h3 data-en="Seller posts the listing" data-ur="فروخت کنندہ اشتہار درج کرتا ہے">Seller posts the listing</h3>
-        <p data-en="Photos, price, area, and the status they report — custom paid, NCP, or unregistered." data-ur="تصاویر، قیمت، علاقہ، اور بتائی گئی حیثیت — کسٹم ادا شدہ، این سی پی، یا غیر رجسٹرڈ۔">Photos, price, area, and the status they report — custom paid, NCP, or unregistered.</p>
+        <h3 data-en="List your car in minutes" data-ur="منٹوں میں اپنی گاڑی درج کریں">List your car in minutes</h3>
+        <p data-en="Add photos, price, and status — Numbari or NCP. Free, and it takes less time than a cup of chai." data-ur="تصاویر، قیمت، اور حیثیت شامل کریں — نمبری یا این سی پی۔ مفت، اور ایک کپ چائے سے بھی کم وقت لگتا ہے۔">Add photos, price, and status — Numbari or NCP. Free, and it takes less time than a cup of chai.</p>
       </div>
       <div class="step">
         <span class="num">2</span>
-        <h3 data-en="Buyer gets in touch" data-ur="خریدار رابطہ کرتا ہے">Buyer gets in touch</h3>
-        <p data-en="Interested buyers message the seller directly — no middleman, free at this stage." data-ur="دلچسپی رکھنے والے خریدار براہ راست فروخت کنندہ سے رابطہ کرتے ہیں — کوئی درمیانی شخص نہیں، مفت۔">Interested buyers message the seller directly — no middleman, free at this stage.</p>
+        <h3 data-en="We check it, then it goes live" data-ur="ہم جائزہ لیتے ہیں، پھر یہ لائیو ہو جاتا ہے">We check it, then it goes live</h3>
+        <p data-en="Every listing gets a quick human review before it's published — so buyers browse real, genuine listings." data-ur="شائع ہونے سے پہلے ہر اشتہار کا انسانی جائزہ لیا جاتا ہے — تاکہ خریدار حقیقی اور اصلی اشتہارات دیکھیں۔">Every listing gets a quick human review before it's published — so buyers browse real, genuine listings.</p>
       </div>
       <div class="step">
         <span class="num">3</span>
-        <h3 data-en="They settle it themselves" data-ur="وہ خود معاملہ طے کرتے ہیں">They settle it themselves</h3>
-        <p data-en="Buyer and seller inspect the vehicle and agree on price directly — same as any local bazaar." data-ur="خریدار اور فروخت کنندہ گاڑی دیکھ کر آپس میں قیمت طے کرتے ہیں — جیسا مقامی بازار میں ہوتا ہے۔">Buyer and seller inspect the vehicle and agree on price directly — same as any local bazaar.</p>
+        <h3 data-en="Talk directly, deal directly" data-ur="براہ راست بات کریں، براہ راست معاملہ کریں">Talk directly, deal directly</h3>
+        <p data-en="One tap opens WhatsApp or a call straight to the seller. You inspect, you decide, you deal — just like at the bazaar." data-ur="ایک ٹیپ پر براہ راست فروخت کنندہ سے واٹس ایپ یا کال۔ آپ خود دیکھیں، خود فیصلہ کریں، خود معاملہ کریں — بالکل بازار کی طرح۔">One tap opens WhatsApp or a call straight to the seller. You inspect, you decide, you deal — just like at the bazaar.</p>
       </div>
     </div>
 
