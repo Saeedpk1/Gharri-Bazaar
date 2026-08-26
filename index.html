@@ -227,21 +227,32 @@
   }
 
   .hero-quick-links{
-    text-align:center; margin-top:18px; margin-bottom:22px;
+    text-align:center; margin-top:10px; margin-bottom:10px;
   }
-  .hero-quick-links a{
-    display:inline-block; background:linear-gradient(135deg, var(--marigold-light), var(--marigold));
-    color:var(--walnut-2); font-weight:700; font-size:12.5px;
-    padding:8px 18px; border-radius:999px;
-    box-shadow:0 6px 16px -6px rgba(242,169,60,0.55);
-    transition:transform .15s ease, box-shadow .15s ease;
+  .sell-pulse-link{
+    display:inline-flex; flex-direction:row; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center;
   }
-  .hero-quick-links a:hover{
-    transform:translateY(-1px); box-shadow:0 10px 22px -8px rgba(242,169,60,0.7);
+  .sell-pulse-en{
+    font-family:'Sora',sans-serif; font-weight:700; font-size:12px;
+    color:var(--marigold-light);
+    animation:sellPulse 2s ease-in-out infinite;
+  }
+  .sell-pulse-ur{
+    font-family:'Noto Nastaliq Urdu','Sora',sans-serif; font-weight:700; font-size:12px;
+    color:var(--marigold-light);
+    animation:sellPulse 2s ease-in-out infinite;
+    animation-delay:0.1s;
+  }
+  .sell-pulse-sep{
+    font-size:9px; color:var(--marigold); opacity:0.7;
+  }
+  @keyframes sellPulse{
+    0%, 100%{ opacity:0.55; text-shadow:0 0 0 rgba(242,169,60,0); }
+    50%{ opacity:1; text-shadow:0 0 14px rgba(242,169,60,0.7); }
   }
   .filters-row{
     display:grid; grid-template-columns:1fr 1fr; gap:8px;
-    max-width:560px; margin:10px auto 0; background:var(--panel); border-radius:14px; padding:10px;
+    max-width:560px; margin:8px auto 0; background:var(--panel); border-radius:14px; padding:10px;
   }
   .filters-row select{
     font-family:'Mukta',sans-serif; font-size:13px; padding:9px;
@@ -261,7 +272,7 @@
 
   /* ---------- featured listings banner (auto-rotating) ---------- */
   .banner-carousel{
-    max-width:640px; margin:0 auto 6px; position:relative;
+    max-width:640px; margin:8px auto 6px; position:relative;
     border-radius:14px; overflow:hidden; box-shadow:0 18px 36px -18px rgba(0,0,0,0.4);
     display:none;
   }
@@ -747,7 +758,11 @@
     </div>
 
     <div class="hero-quick-links">
-      <a href="#sell" onclick="openSellForm(event)" class="sell-trigger" data-en="List your car — free" data-ur="اپنی گاڑی درج کریں — مفت">List your car — free</a>
+      <a href="#sell" onclick="openSellForm(event)" class="sell-trigger sell-pulse-link">
+        <span class="sell-pulse-en">List your car — free</span>
+        <span class="sell-pulse-sep">✿</span>
+        <span class="sell-pulse-ur">اپنی گاڑی درج کریں — مفت</span>
+      </a>
     </div>
 
     <div class="banner-carousel" id="banner-carousel">
