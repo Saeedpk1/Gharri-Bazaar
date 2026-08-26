@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bazira Motors — Admin</title>
+<link rel="manifest" href="admin-manifest.json">
+<meta name="theme-color" content="#1e293b">
+<link rel="apple-touch-icon" href="admin-icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="admin-icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Bazira Admin">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Mukta:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -80,7 +86,10 @@
       <h1>Bazira Motors — Admin</h1>
       <small>Review, approve, or edit listings before they go live</small>
     </div>
-    <button id="logout-btn" onclick="logout()">Log out</button>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <button id="install-btn" onclick="triggerInstall()" style="display:none; background:#38bdf8; color:#1e293b; border:none; padding:8px 14px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer;">⬇️ Install App</button>
+      <button id="logout-btn" onclick="logout()">Log out</button>
+    </div>
   </div>
 </header>
 
@@ -105,6 +114,39 @@
 </div>
 
 <script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log('Service worker registration failed:', err));
+  });
+}
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log('Service worker registration failed:', err));
+  });
+}
+
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const btn = document.getElementById('install-btn');
+  if(btn) btn.style.display = 'inline-block';
+});
+function triggerInstall(){
+  if(!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  deferredInstallPrompt.userChoice.finally(() => {
+    deferredInstallPrompt = null;
+    const btn = document.getElementById('install-btn');
+    if(btn) btn.style.display = 'none';
+  });
+}
+window.addEventListener('appinstalled', () => {
+  const btn = document.getElementById('install-btn');
+  if(btn) btn.style.display = 'none';
+});
+
 // ============================================================
 // Fill these in — same values as in index.html
 // ============================================================
