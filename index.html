@@ -329,16 +329,17 @@
   .card-area{ font-size:11.5px; color:var(--turquoise); font-weight:600; }
   .card-mi{ font-size:11px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; }
 
-  .card-actions{ display:flex; border-top:1px solid var(--line); }
+  .card-actions{ display:flex; gap:6px; padding:8px; background:var(--panel-2); }
   .card-actions a{
-    flex:1; display:flex; align-items:center; justify-content:center; gap:6px;
-    padding:9px 6px; font-size:12px; font-weight:700; text-decoration:none;
+    flex:1; display:flex; align-items:center; justify-content:center; gap:5px;
+    padding:9px 6px; font-size:11.5px; font-weight:700; text-decoration:none;
+    border-radius:9px; transition:transform .12s ease;
   }
-  .card-actions a:not(:last-child){ border-right:1px solid var(--line); }
-  [dir="rtl"] .card-actions a:not(:last-child){ border-right:none; border-left:1px solid var(--line); }
-  .card-actions a.act-whatsapp{ color:var(--ok); }
-  .card-actions a.act-call{ color:var(--ink); }
-  .card-actions a:active{ background:var(--panel-2); }
+  .card-actions a:active{ transform:scale(0.96); }
+  .card-actions a.act-details{ color:#2563eb; background:#dbeafe; }
+  .card-actions a.act-map{ color:#dc2626; background:#fee2e2; }
+  .card-actions a.act-whatsapp{ color:#15803d; background:#dcfce7; }
+  .card-actions a.act-call{ color:#b45309; background:#fef3c7; }
 
   @media(min-width:760px){
     .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
@@ -780,7 +781,7 @@
           </div>
         </div>
         <div class="card-actions">
-          <a onclick="openDetails({make:'Suzuki',model:'Mehran',price:680000,mileage:72000,transmission:'Automatic',area:'Babuzai',village:'',color:'White',reg_status:'Numbari',description:'Well maintained, single owner, all original parts.',seller_name:'Rahim Khan',seller_mobile:'03001234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
+          <a class="act-details" onclick="openDetails({make:'Suzuki',model:'Mehran',price:680000,mileage:72000,transmission:'Automatic',area:'Babuzai',village:'',color:'White',reg_status:'Numbari',description:'Well maintained, single owner, all original parts.',seller_name:'Rahim Khan',seller_mobile:'03001234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Suzuki%20Mehran%202015%20on%20Bazira%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -798,7 +799,7 @@
           </div>
         </div>
         <div class="card-actions">
-          <a onclick="openDetails({make:'Toyota',model:'Hilux',price:2150000,mileage:140000,transmission:'Manual',area:'Kabal',village:'',color:'Silver',reg_status:'NCP',description:'Strong engine, used for farm work, minor scratches.',seller_name:'Sher Ali',seller_mobile:'03011234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
+          <a class="act-details" onclick="openDetails({make:'Toyota',model:'Hilux',price:2150000,mileage:140000,transmission:'Manual',area:'Kabal',village:'',color:'Silver',reg_status:'NCP',description:'Strong engine, used for farm work, minor scratches.',seller_name:'Sher Ali',seller_mobile:'03011234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Hilux%202012%20on%20Bazira%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -816,7 +817,7 @@
           </div>
         </div>
         <div class="card-actions">
-          <a onclick="openDetails({make:'Honda',model:'City',price:1790000,mileage:38000,transmission:'Automatic',area:'Matta',village:'',color:'Black',reg_status:'Numbari',description:'Low mileage, showroom condition, no accidents.',seller_name:'Naveed Iqbal',seller_mobile:'03021234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
+          <a class="act-details" onclick="openDetails({make:'Honda',model:'City',price:1790000,mileage:38000,transmission:'Automatic',area:'Matta',village:'',color:'Black',reg_status:'Numbari',description:'Low mileage, showroom condition, no accidents.',seller_name:'Naveed Iqbal',seller_mobile:'03021234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Honda%20City%202019%20on%20Bazira%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -834,7 +835,7 @@
           </div>
         </div>
         <div class="card-actions">
-          <a onclick="openDetails({make:'Toyota',model:'Prado',price:3400000,mileage:98000,transmission:'Automatic',area:'Khwazakhela',village:'',color:'Grey',reg_status:'NCP',description:'Imported unit, full option, needs registration.',seller_name:'Bakht Zaman',seller_mobile:'03031234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
+          <a class="act-details" onclick="openDetails({make:'Toyota',model:'Prado',price:3400000,mileage:98000,transmission:'Automatic',area:'Khwazakhela',village:'',color:'Grey',reg_status:'NCP',description:'Imported unit, full option, needs registration.',seller_name:'Bakht Zaman',seller_mobile:'03031234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Prado%202010%20on%20Bazira%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -852,7 +853,7 @@
           </div>
         </div>
         <div class="card-actions">
-          <a onclick="openDetails({make:'Suzuki',model:'Bolan',price:940000,mileage:55000,transmission:'Manual',area:'Bahrain',village:'',color:'White',reg_status:'NCP',description:'Good for family use, AC working, recently serviced.',seller_name:'Fazal Rabi',seller_mobile:'03041234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
+          <a class="act-details" onclick="openDetails({make:'Suzuki',model:'Bolan',price:940000,mileage:55000,transmission:'Manual',area:'Bahrain',village:'',color:'White',reg_status:'NCP',description:'Good for family use, AC working, recently serviced.',seller_name:'Fazal Rabi',seller_mobile:'03041234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Suzuki%20Bolan%202017%20on%20Bazira%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -870,7 +871,7 @@
           </div>
         </div>
         <div class="card-actions">
-          <a onclick="openDetails({make:'Toyota',model:'Corolla',price:1420000,mileage:61000,transmission:'Automatic',area:'Babuzai',village:'',color:'Blue',reg_status:'Numbari',description:'Excellent condition, genuine mileage, first owner.',seller_name:'Saeed Ullah',seller_mobile:'03051234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
+          <a class="act-details" onclick="openDetails({make:'Toyota',model:'Corolla',price:1420000,mileage:61000,transmission:'Automatic',area:'Babuzai',village:'',color:'Blue',reg_status:'Numbari',description:'Excellent condition, genuine mileage, first owner.',seller_name:'Saeed Ullah',seller_mobile:'03051234567'})"><span>ℹ️</span><span data-en="Details" data-ur="تفصیل">Details</span></a>
           <a class="act-whatsapp" target="_blank" href="https://wa.me/923001234567?text=Hi%2C%20I%27m%20interested%20in%20your%20Toyota%20Corolla%202018%20on%20Bazira%20Motors."><span>💬</span><span data-en="WhatsApp" data-ur="واٹس ایپ">WhatsApp</span></a>
           <a class="act-call" href="tel:+923001234567"><span>📞</span><span data-en="Call" data-ur="کال کریں">Call</span></a>
         </div>
@@ -1702,8 +1703,8 @@ async function loadApprovedListings(){
         </div>
       </div>
       <div class="card-actions">
-        <a onclick="openDetails(window['${detailId}'])"><span>ℹ️</span><span>${isUrdu ? 'تفصیل' : 'Details'}</span></a>
-        ${hasLocation ? `<a class="act-call" target="_blank" href="https://maps.google.com/?q=${row.latitude},${row.longitude}"><span>📍</span><span>${isUrdu ? 'مقام' : 'Map'}</span></a>` : ''}
+        <a class="act-details" onclick="openDetails(window['${detailId}'])"><span>ℹ️</span><span>${isUrdu ? 'تفصیل' : 'Details'}</span></a>
+        ${hasLocation ? `<a class="act-map" target="_blank" href="https://maps.google.com/?q=${row.latitude},${row.longitude}"><span>📍</span><span>${isUrdu ? 'مقام' : 'Map'}</span></a>` : ''}
         <a class="act-whatsapp" target="_blank" href="https://wa.me/${intlPhone}?text=${waText}"><span>💬</span><span>${isUrdu ? 'واٹس ایپ' : 'WhatsApp'}</span></a>
         <a class="act-call" href="tel:+${intlPhone}"><span>📞</span><span>${isUrdu ? 'کال کریں' : 'Call'}</span></a>
       </div>`;
