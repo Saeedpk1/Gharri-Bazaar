@@ -251,13 +251,17 @@
     50%{ opacity:1; text-shadow:0 0 14px rgba(242,169,60,0.7); }
   }
   .filters-row{
-    display:grid; grid-template-columns:1fr 1fr; gap:8px;
-    max-width:560px; margin:8px auto 0; background:var(--panel); border-radius:14px; padding:10px;
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px;
+    max-width:640px; margin:8px auto 0; background:var(--panel); border-radius:12px; padding:8px;
   }
   .filters-row select{
-    font-family:'Mukta',sans-serif; font-size:13px; padding:9px;
+    font-family:'Mukta',sans-serif; font-size:11.5px; padding:7px 6px;
     border:1px solid var(--line); border-radius:6px; background:var(--panel-2); color:var(--ink);
     width:100%; min-width:0;
+  }
+  @media(max-width:480px){
+    .filters-row{ grid-template-columns:1fr 1fr; }
+    #filter-model{ grid-column:1 / -1; }
   }
 
   .category-row{
@@ -752,8 +756,11 @@
           <option data-en="Sharingal" data-ur="شرینگل">Sharingal</option>
         </optgroup>
       </select>
-      <select id="filter-make">
+      <select id="filter-make" onchange="updateFilterModelOptions()">
         <option value="" data-en="All makes" data-ur="تمام کمپنیاں">All makes</option>
+      </select>
+      <select id="filter-model">
+        <option value="" data-en="All models" data-ur="تمام ماڈل">All models</option>
       </select>
     </div>
 
@@ -1259,10 +1266,27 @@ function populateMakeOptions(){
 }
 populateMakeOptions();
 
+function updateFilterModelOptions(){
+  const make = document.getElementById('filter-make').value;
+  const modelSelect = document.getElementById('filter-model');
+  const noneLabel = isUrdu ? 'تمام ماڈل' : 'All models';
+  modelSelect.innerHTML = `<option value="">${noneLabel}</option>`;
+
+  const models = CAR_MODELS[make] || [];
+  models.filter(m => m !== 'Other').forEach(m => {
+    const opt = document.createElement('option');
+    opt.value = m;
+    opt.textContent = m;
+    modelSelect.appendChild(opt);
+  });
+  runSearch();
+}
+
 function runSearch(){
   const query = document.getElementById('main-search-input').value.trim().toLowerCase();
   const areaFilter = document.getElementById('filter-area').value;
   const makeFilter = document.getElementById('filter-make').value;
+  const modelFilter = document.getElementById('filter-model').value;
 
   const cards = document.querySelectorAll('#listings-grid .card-wrap');
   let visibleCount = 0;
@@ -1275,8 +1299,9 @@ function runSearch(){
     const matchesQuery = !query || make.includes(query) || model.includes(query) || (make + ' ' + model).includes(query);
     const matchesArea = !areaFilter || area === areaFilter;
     const matchesMake = !makeFilter || card.dataset.make === makeFilter;
+    const matchesModel = !modelFilter || card.dataset.model === modelFilter;
 
-    const show = matchesQuery && matchesArea && matchesMake;
+    const show = matchesQuery && matchesArea && matchesMake && matchesModel;
     card.style.display = show ? '' : 'none';
     if(show) visibleCount++;
   });
@@ -1294,6 +1319,7 @@ function filterByDistrict(e, tehsils){
   document.getElementById('main-search-input').value = '';
   document.getElementById('filter-area').value = '';
   document.getElementById('filter-make').value = '';
+  document.getElementById('filter-model').value = '';
 
   const cards = document.querySelectorAll('#listings-grid .card-wrap');
   let visibleCount = 0;
@@ -1315,7 +1341,7 @@ document.getElementById('main-search-input').addEventListener('keydown', (e) => 
   if(e.key === 'Enter') runSearch();
 });
 document.getElementById('filter-area').addEventListener('change', runSearch);
-document.getElementById('filter-make').addEventListener('change', runSearch);
+document.getElementById('filter-model').addEventListener('change', runSearch);
 
 function updateModelOptions(){
   const make = document.getElementById('f-make').value;
