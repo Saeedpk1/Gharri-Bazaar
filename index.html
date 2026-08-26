@@ -72,23 +72,23 @@
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   :root{
-    --walnut:#2b1810;
-    --walnut-2:#120a06;
-    --turquoise:#14c4b3;
-    --turquoise-light:#2dd4c4;
-    --marigold:#f2a93c;
-    --marigold-light:#ffcb6b;
-    --coral:#ff8066;
-    --bg:#0e0a08;
-    --panel:#1c140f;
-    --panel-2:#251b14;
-    --ink:#f3ead9;
-    --ink-soft:#b6a891;
-    --line:#3c2d20;
-    --danger:#f0655a;
-    --ok:#14c4b3;
-    --warn:#f2a93c;
-    --radius:16px;
+    --walnut:#1e40af;
+    --walnut-2:#1e293b;
+    --turquoise:#0891b2;
+    --turquoise-light:#22c3e6;
+    --marigold:#f59e0b;
+    --marigold-light:#fbbf24;
+    --coral:#ef4444;
+    --bg:#f8fafc;
+    --panel:#ffffff;
+    --panel-2:#f1f5f9;
+    --ink:#0f172a;
+    --ink-soft:#64748b;
+    --line:#e2e8f0;
+    --danger:#dc2626;
+    --ok:#0891b2;
+    --warn:#f59e0b;
+    --radius:12px;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth; overflow-x:hidden; max-width:100vw;}
@@ -112,10 +112,10 @@
 
   /* ---------- top utility bar ---------- */
   .topbar{
-    background:var(--walnut-2); color:#d8c6a8; font-size:12.5px;
+    background:var(--walnut-2); color:#cbd5e1; font-size:12.5px;
   }
   .topbar .wrap{ display:flex; justify-content:space-between; align-items:center; height:34px; gap:10px; }
-  .topbar a{ color:#d8c6a8; }
+  .topbar a{ color:#cbd5e1; }
   .topbar .topbar-links{ display:flex; gap:18px; flex-shrink:0; }
   .topbar-serving{
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;
@@ -168,7 +168,7 @@
 
   /* ---------- hero with functional search ---------- */
   .hero{
-    background: linear-gradient(135deg, var(--walnut-2) 0%, var(--walnut) 55%, #3a1f2e 100%);
+    background: linear-gradient(135deg, var(--walnut-2) 0%, var(--walnut) 100%);
     padding:32px 0 0;
   }
   @media(min-width:760px){ .hero{ padding:52px 0 0; } }
@@ -196,7 +196,7 @@
   @media(min-width:760px){ .hero-inner{ padding-bottom:44px; } }
   .hero h1{ font-family:'Mukta',sans-serif; font-weight:700; color:#fbf7ee; font-size:clamp(20px,3vw,28px); line-height:1.3; }
   .hero h1 span{ color:var(--marigold-light); }
-  .hero p{ color:#d8c6a8; font-size:15.5px; margin-top:10px; max-width:52ch; margin-left:auto; margin-right:auto; }
+  .hero p{ color:#cbd5e1; font-size:15.5px; margin-top:10px; max-width:52ch; margin-left:auto; margin-right:auto; }
 
   .search-panel{
     background:var(--panel); border-radius:14px; padding:8px;
@@ -366,8 +366,8 @@
   .step p{ font-size:13.5px; line-height:1.55; color:var(--ink-soft); margin:0; }
 
   .disclaimer{
-    margin-top:18px; background:#2a2114; border:1px solid #4a3a24; border-radius:14px;
-    padding:14px 16px; font-size:13px; color:#e0c988; display:flex; gap:10px; align-items:flex-start;
+    margin-top:18px; background:#fef3c7; border:1px solid #fde68a; border-radius:14px;
+    padding:14px 16px; font-size:13px; color:#78350f; display:flex; gap:10px; align-items:flex-start;
   }
   .disclaimer .ic{ font-size:16px; flex-shrink:0; }
 
@@ -388,15 +388,15 @@
   .seo-note{ font-size:13px; color:var(--ink-soft); line-height:1.7; max-width:74ch; }
 
   /* ---------- footer ---------- */
-  footer{ background:var(--walnut-2); color:#c9baa2; padding:44px 0 26px; margin-top:20px; }
+  footer{ background:var(--walnut-2); color:#cbd5e1; padding:44px 0 26px; margin-top:20px; }
   .foot-grid{ display:flex; justify-content:space-between; align-items:flex-start; gap:32px; flex-wrap:wrap; }
   .foot-cols{ display:flex; gap:48px; flex-wrap:wrap; }
-  .foot-col h4{ font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:#8f7c62; margin-bottom:10px; }
-  .foot-col a{ display:block; font-size:13.5px; margin-bottom:8px; color:#d8c6a8; }
+  .foot-col h4{ font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:#94a3b8; margin-bottom:10px; }
+  .foot-col a{ display:block; font-size:13.5px; margin-bottom:8px; color:#cbd5e1; }
   .foot-col a:hover{ color:var(--marigold-light); }
   footer .logo-text{ color:#fbf7ee; }
-  .foot-note{ font-size:12px; color:#8f7c62; margin-top:16px; max-width:42ch; line-height:1.6; }
-  .foot-bottom{ border-top:1px solid rgba(255,255,255,0.08); margin-top:28px; padding-top:18px; font-size:12px; color:#7a6852; text-align:center; }
+  .foot-note{ font-size:12px; color:#94a3b8; margin-top:16px; max-width:42ch; line-height:1.6; }
+  .foot-bottom{ border-top:1px solid rgba(255,255,255,0.08); margin-top:28px; padding-top:18px; font-size:12px; color:#94a3b8; text-align:center; }
 
   [dir="rtl"] .search-panel, [dir="rtl"] .nav-actions, [dir="rtl"] .nav-links, [dir="rtl"] .foot-cols{ flex-direction:row-reverse; }
 
