@@ -1156,7 +1156,7 @@
       </div>
 
       <button type="submit" class="form-submit" id="submit-btn" data-en="Submit listing for approval" data-ur="منظوری کے لیے اشتہار جمع کریں">Submit listing for approval</button>
-      <p class="form-note" data-en="Your listing goes to the admin for review first. Once approved, it appears on the site." data-ur="آپ کا اشتہار پہلے ایڈمن کے جائزے کے لیے جاتا ہے۔ منظوری کے بعد یہ ویب سائٹ پر ظاہر ہوگا۔">Your listing goes to the admin for review first. Once approved, it appears on the site.</p>
+      <p class="form-note" data-en="Your listing goes live immediately after submitting." data-ur="جمع کرانے کے فوراً بعد آپ کا اشتہار لائیو ہو جائے گا۔">Your listing goes live immediately after submitting.</p>
       <p class="form-note" id="form-status" style="font-weight:700;"></p>
     </form>
   </div>
@@ -1657,7 +1657,7 @@ const SELLER_INTAKE_WHATSAPP_NUMBER = "966590900938";
 //   4. Account -> General -> copy your "Public Key".
 //   5. Paste all three values below.
 // ============================================================
-const EMAILJS_SERVICE_ID = "service_6w5lobc";
+const EMAILJS_SERVICE_ID = "service_cmal43i";
 const EMAILJS_TEMPLATE_ID = "n5dxlI69";
 const EMAILJS_PUBLIC_KEY = "SfMjVCNbciINEqgKR";
 
@@ -1923,8 +1923,8 @@ document.getElementById('listing-form').addEventListener('submit', async functio
 
     statusEl.style.color = 'var(--ok)';
     statusEl.textContent = isUrdu
-      ? 'شکریہ! آپ کا اشتہار جائزے کے لیے بھیج دیا گیا ہے۔'
-      : 'Thanks! Your listing has been submitted for review.';
+      ? 'شکریہ! آپ کا اشتہار لائیو ہو گیا ہے۔'
+      : 'Thanks! Your listing is now live.';
     document.getElementById('listing-form').reset();
     document.getElementById('file-list').textContent = '';
     selectedPhotos = [];
